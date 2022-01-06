@@ -6,7 +6,6 @@ const App = (): JSX.Element => {
   return (
     <>
       <GlobalStyle />
-
       <MainRouter />
     </>
   );
