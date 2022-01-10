@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Main from '../components/main/Main';
+import Main from '../page/Main/Main';
 import NotFound from '../page/NotFound/NotFound';
 
 const MainRouter = () => {
