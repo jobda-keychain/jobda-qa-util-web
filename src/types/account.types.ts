@@ -4,7 +4,7 @@ export interface IAccount {
     id: number,
     userId: string,
     password: string,
-    platform: string,
-    environment: EService
+    platform: EService,
+    environment: string
     description: string
 }
