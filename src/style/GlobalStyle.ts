@@ -4,6 +4,10 @@ import reset from 'styled-reset';
 const GlobalStyle = createGlobalStyle`
     ${reset};
 
+    * {
+        font-family: 'Roboto', 'sans-serif';
+    }
+
     body {
         padding: 0;
         margin: 0;
