@@ -1,10 +1,10 @@
-import { EService } from "../lib/enum/service";
+import { EPlatform } from "../lib/enum/platform";
 
 export interface IAccount {
     id: number,
     userId: string,
     password: string,
-    platform: EService,
+    platform: EPlatform,
     environment: string
     description: string
 }
