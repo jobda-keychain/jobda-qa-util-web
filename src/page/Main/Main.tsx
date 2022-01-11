@@ -1,10 +1,12 @@
-import { memo } from "react"
+import { memo } from 'react';
+import { MainHeader } from '../../components';
 
 const Main = (): JSX.Element => {
-    return (
-        <div>
-        </div>
-    )
-}
+  return (
+    <>
+      <MainHeader />
+    </>
+  );
+};
 
 export default memo(Main);
