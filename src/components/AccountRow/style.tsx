@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
-export const Row = styled.div`
-    padding: 10px;
-    * {
-        display: inline-flex;
-    }
+export const EnvironmentGroup = styled.div`
+    width: 10%;
 `
 
-export const RowButton = styled.button`
-    color: lightgray;
-    background-color: transparent;
-    border-color: transparent;
-    margin-right: 10px;
+export const PlatformGroup = styled.div`
+    width: 15%;
+`
+
+export const ButtonGroup = styled.div`
+    float: right;
+    gap: 10px;
 `
