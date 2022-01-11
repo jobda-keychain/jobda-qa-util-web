@@ -7,10 +7,10 @@ import * as S from "./style";
 const EnvironmentRow = ({id, name, serverDomain, clientDomain, platform }: IEnvironment): JSX.Element => {
     return (
         <Row>
-            <S.EnvironmentWrapper type='item'><EnvironmentLabel>{name}</EnvironmentLabel></S.EnvironmentWrapper>
-            <S.PlatformWrapper type='item'><PlatformLabel type={platform}>{platform}</PlatformLabel></S.PlatformWrapper>
-            <S.ServerDomainWrapper type='item'><a href={clientDomain}>{clientDomain}</a></S.ServerDomainWrapper> 
-            <S.ClientDomainWrapper type='item'>{serverDomain}</S.ClientDomainWrapper>
+            <S.EnvironmentWrapper type='row'><EnvironmentLabel>{name}</EnvironmentLabel></S.EnvironmentWrapper>
+            <S.PlatformWrapper type='row'><PlatformLabel type={platform}>{platform}</PlatformLabel></S.PlatformWrapper>
+            <S.ServerDomainWrapper type='row'><a href={clientDomain}>{clientDomain}</a></S.ServerDomainWrapper> 
+            <S.ClientDomainWrapper type='row'>{serverDomain}</S.ClientDomainWrapper>
 
             <S.ButtonWrapper>
                 <RowButton><FaPen /></RowButton>
