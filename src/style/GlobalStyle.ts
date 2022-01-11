@@ -6,12 +6,14 @@ const GlobalStyle = createGlobalStyle`
 
     * {
         font-family: 'Roboto', 'sans-serif';
+        box-sizing: border-box;
     }
 
     body {
         padding: 0;
         margin: 0;
         font-family: 'Noto Sans KR', sans-serif;
+        background-color: #f8f9fc;
     };
 `;
 
