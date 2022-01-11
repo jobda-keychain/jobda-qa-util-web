@@ -1,5 +1,5 @@
 import React from 'react';
-import { logo } from '../../assets';
+import { logo } from '../../assets/Main';
 import * as S from './style';
 
 const MainHeader = () => {
