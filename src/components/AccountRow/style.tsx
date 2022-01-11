@@ -11,7 +11,6 @@ export const PlatformGroup = styled.div`
 `
 
 export const ButtonGroup = styled.div`
-    color: #494949;
     float: right;
     gap: 10px;
 `
