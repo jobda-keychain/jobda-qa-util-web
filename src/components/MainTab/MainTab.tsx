@@ -23,10 +23,8 @@ const MainTab = () => {
     setValue(value);
   };
 
-  const onChange = (event: React.SyntheticEvent, value: any) => {
-    if (value && !filters.includes(value)) {
-      setFilters([...filters, value]);
-    }
+  const addFilter = (event: React.SyntheticEvent, value: unknown) => {
+    if (value && !filters.includes(value)) setFilters([...filters, value]);
   };
 
   const onReset = () => {
@@ -55,7 +53,7 @@ const MainTab = () => {
           <S.FilterInput
             size='small'
             onChange={(event, value) => {
-              onChange(event, value);
+              addFilter(event, value);
             }}
             disablePortal
             id='combo-box-demo'
