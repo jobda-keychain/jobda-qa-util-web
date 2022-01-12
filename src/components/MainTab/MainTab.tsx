@@ -19,7 +19,7 @@ const MainTab = () => {
   ]);
   const [filters, setFilters] = useState<any[]>([]);
 
-  const handleChange = (event: React.SyntheticEvent, value: number) => {
+  const tabHandler = (event: React.SyntheticEvent, value: number) => {
     setValue(value);
   };
 
@@ -27,7 +27,7 @@ const MainTab = () => {
     if (value && !filters.includes(value)) setFilters([...filters, value]);
   };
 
-  const onReset = () => {
+  const resetFilter = () => {
     setFilters([]);
   };
 
@@ -39,7 +39,7 @@ const MainTab = () => {
     <StylesProvider injectFirst>
       <S.Section>
         <S.SectionHeader>
-          <S.TabWrapper value={value} onChange={handleChange}>
+          <S.TabWrapper value={value} onChange={tabHandler}>
             <S.ServiceTab label='전체' />
             <S.ServiceTab label='jobda' />
             <S.ServiceTab label='jobda-cms' />
@@ -60,7 +60,7 @@ const MainTab = () => {
             options={envs}
             renderInput={params => <TextField {...params} label='필터 추가' />}
           />
-          <S.ResetBtn onClick={onReset}>필터 초기화</S.ResetBtn>
+          <S.ResetBtn onClick={resetFilter}>필터 초기화</S.ResetBtn>
           <S.FiltersWrapper>
             {filters.map(ele => {
               return (
