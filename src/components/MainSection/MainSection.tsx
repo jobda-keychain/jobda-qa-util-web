@@ -1,8 +1,7 @@
 import React from 'react';
 import * as S from './styles';
-import { deleteTag, setting } from '../../assets/Main';
-import { MainHeader, MainTab } from '..';
-import MainFilter from './../MainFilter/MainFilter';
+import { setting } from '../../assets/Main';
+import { MainFilter, MainTab } from '..';
 
 const MainSection = () => {
   return (
