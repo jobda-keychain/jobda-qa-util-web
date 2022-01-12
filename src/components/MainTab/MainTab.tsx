@@ -6,7 +6,7 @@ import { TextField } from '@mui/material';
 import { IEnvs } from './../../types/envs.types';
 
 const MainTab = () => {
-  const [value, setValue] = useState<Number>(0);
+  const [value, setValue] = useState<number>(0);
   const [envs, setEnvs] = useState<IEnvs[]>([
     {
       id: 1,
@@ -33,7 +33,7 @@ const MainTab = () => {
     setFilters([]);
   };
 
-  const removeFilter = (id: Number) => {
+  const removeFilter = (id: number) => {
     setFilters(filters.filter(ele => ele.id !== id));
   };
 
