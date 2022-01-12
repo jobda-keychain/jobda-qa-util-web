@@ -1,4 +1,4 @@
-export interface IEnvs {
+export interface IEnvironment {
   id: number;
   name: string;
 }

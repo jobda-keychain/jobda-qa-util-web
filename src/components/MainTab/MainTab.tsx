@@ -3,11 +3,11 @@ import * as S from './style';
 import { StylesProvider } from '@mui/styles';
 import { deleteTag, setting } from '../../assets/Main';
 import { TextField } from '@mui/material';
-import { IEnvs } from './../../types/envs.types';
+import { IEnvironment } from './../../types/envs.types';
 
 const MainTab = () => {
   const [value, setValue] = useState(0);
-  const [envs, setEnvs] = useState<IEnvs[]>([
+  const [environments, setEnvironments] = useState<IEnvironment[]>([
     {
       id: 1,
       name: 'dv1',
@@ -58,7 +58,7 @@ const MainTab = () => {
             }}
             disablePortal
             id='combo-box-demo'
-            options={envs.map(ele => ele.name)}
+            options={environments.map(ele => ele.name)}
             renderInput={params => <TextField {...params} label='필터 추가' />}
           />
           <S.ResetBtn onClick={resetFilter}>필터 초기화</S.ResetBtn>
