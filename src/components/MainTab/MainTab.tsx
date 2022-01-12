@@ -17,13 +17,14 @@ const MainTab = () => {
       name: 'st1',
     },
   ]);
+
   const [filters, setFilters] = useState<any[]>([]);
 
   const tabHandler = (event: React.SyntheticEvent, value: number) => {
     setValue(value);
   };
 
-  const addFilter = (event: React.SyntheticEvent, value: unknown) => {
+  const onChange = (event: React.SyntheticEvent, value: unknown) => {
     if (value && !filters.includes(value)) setFilters([...filters, value]);
   };
 
@@ -31,8 +32,8 @@ const MainTab = () => {
     setFilters([]);
   };
 
-  const removeFilter = (id: number) => {
-    setFilters(filters.filter(ele => ele.id !== id));
+  const removeFilter = (name: string) => {
+    setFilters(filters.filter(ele => ele !== name));
   };
 
   return (
@@ -53,19 +54,19 @@ const MainTab = () => {
           <S.FilterInput
             size='small'
             onChange={(event, value) => {
-              addFilter(event, value);
+              onChange(event, value);
             }}
             disablePortal
             id='combo-box-demo'
-            options={envs}
+            options={envs.map(ele => ele.name)}
             renderInput={params => <TextField {...params} label='필터 추가' />}
           />
           <S.ResetBtn onClick={resetFilter}>필터 초기화</S.ResetBtn>
           <S.FiltersWrapper>
             {filters.map(ele => {
               return (
-                <div onClick={() => removeFilter(ele.id)}>
-                  <span key={ele.id}>{ele.name}</span>
+                <div key={ele} onClick={() => removeFilter(ele)}>
+                  <span>{ele}</span>
                   <img src={deleteTag} alt='' />
                 </div>
               );
