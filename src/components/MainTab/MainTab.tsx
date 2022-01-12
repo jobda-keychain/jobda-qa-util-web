@@ -3,17 +3,18 @@ import * as S from './style';
 import { StylesProvider } from '@mui/styles';
 import { deleteTag, setting } from '../../assets/Main';
 import { TextField } from '@mui/material';
+import { IEnvs } from './../../types/envs.types';
 
 const MainTab = () => {
   const [value, setValue] = useState<Number>(0);
-  const [envs, setEnvs] = useState<Object[]>([
+  const [envs, setEnvs] = useState<IEnvs[]>([
     {
       id: 1,
-      label: 'dv1',
+      name: 'dv1',
     },
     {
       id: 2,
-      label: 'st1',
+      name: 'st1',
     },
   ]);
   const [filters, setFilters] = useState<any[]>([]);
@@ -66,7 +67,7 @@ const MainTab = () => {
             {filters.map(ele => {
               return (
                 <div onClick={() => removeFilter(ele.id)}>
-                  <span key={ele.id}>{ele.label}</span>
+                  <span key={ele.id}>{ele.name}</span>
                   <img src={deleteTag} alt='' />
                 </div>
               );
