@@ -6,7 +6,7 @@ import { TextField } from '@mui/material';
 import { IEnvs } from './../../types/envs.types';
 
 const MainTab = () => {
-  const [value, setValue] = useState<number>(0);
+  const [value, setValue] = useState(0);
   const [envs, setEnvs] = useState<IEnvs[]>([
     {
       id: 1,
