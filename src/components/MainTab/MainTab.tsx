@@ -18,13 +18,13 @@ const MainTab = () => {
     },
   ]);
 
-  const [filters, setFilters] = useState<any[]>([]);
+  const [filters, setFilters] = useState<string[]>([]);
 
   const tabHandler = (event: React.SyntheticEvent, value: number) => {
     setValue(value);
   };
 
-  const onChange = (event: React.SyntheticEvent, value: unknown) => {
+  const onChange = (event: React.SyntheticEvent, value: string) => {
     if (value && !filters.includes(value)) setFilters([...filters, value]);
   };
 
@@ -54,7 +54,7 @@ const MainTab = () => {
           <S.FilterInput
             size='small'
             onChange={(event, value) => {
-              onChange(event, value);
+              onChange(event, value as string);
             }}
             disablePortal
             id='combo-box-demo'
