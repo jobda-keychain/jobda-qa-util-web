@@ -3,7 +3,7 @@ import { ModalButton } from "../../style/Modal";
 import * as S from "./style";
 
 const CopyModal = (): JSX.Element => {
-    const [format, setFormat] = useState<string>('');
+    const [format, setFormat] = useState('');
 
     const onChangeFormat = (e: React.ChangeEvent<HTMLInputElement>) => setFormat(e.target.value);
 
