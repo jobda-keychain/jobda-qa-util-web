@@ -5,16 +5,20 @@ import { Row, RowButton } from '../../style/Row';
 import { PlatformLabel, EnvironmentLabel } from '../../style/Labels';
 import * as S from './style';
 
-const AccountRow = ({ userId, platform, environment }: IAccount): JSX.Element => {
+interface AccountRowProps {
+  value: IAccount;
+}
+
+const AccountRow = ({ value }: AccountRowProps): JSX.Element => {
   return (
     <Row>
       <S.EnvironmentWrapper type='row'>
-        <EnvironmentLabel>{environment}</EnvironmentLabel>
+        <EnvironmentLabel>{value.environment}</EnvironmentLabel>
       </S.EnvironmentWrapper>
       <S.PlatformWrapper type='row'>
-        <PlatformLabel type={platform}>{platform}</PlatformLabel>
+        <PlatformLabel type={value.platform}>{value.platform}</PlatformLabel>
       </S.PlatformWrapper>
-      <S.UserIdWrapper type='row'>{userId}</S.UserIdWrapper>
+      <S.UserIdWrapper type='row'>{value.userId}</S.UserIdWrapper>
 
       <S.ButtonWrapper>
         <RowButton>
