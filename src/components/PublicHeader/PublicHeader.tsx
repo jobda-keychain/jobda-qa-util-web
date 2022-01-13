@@ -2,7 +2,7 @@ import React from 'react';
 import { logo } from '../../assets/Main';
 import * as S from './style';
 
-const MainHeader = () => {
+const PublicHeader = () => {
   return (
     <S.Wrapper>
       <S.Logo src={logo} alt='' />
@@ -13,4 +13,4 @@ const MainHeader = () => {
   );
 };
 
-export default MainHeader;
+export default PublicHeader;
