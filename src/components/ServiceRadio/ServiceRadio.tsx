@@ -8,17 +8,19 @@ interface ServiceRadioProps {
 }
 
 const ServiceRadio = ({ platform, onChangePlatform }: ServiceRadioProps): JSX.Element => {
-  const platformControls = useMemo(
+  const radioControls = useMemo(
     () =>
       Object.values(EPlatformToNum)
         .map(value => Number(value))
         .filter(value => !isNaN(value))
-        .map(value => {
-          const platform = EPlatform[EPlatformToNum[value] as keyof typeof EPlatform];
-          return (
-            <FormControlLabel key={value} control={<Radio />} value={platform} label={platform} />
-          );
-        }),
+        .map(value => (
+          <FormControlLabel
+            key={value}
+            control={<Radio />}
+            value={EPlatformToNum[value]}
+            label={EPlatform[EPlatformToNum[value] as keyof typeof EPlatform]}
+          />
+        )),
     [],
   );
 
@@ -26,7 +28,7 @@ const ServiceRadio = ({ platform, onChangePlatform }: ServiceRadioProps): JSX.El
     <FormControl component='fieldset'>
       <FormLabel component='legend'>서비스</FormLabel>
       <RadioGroup row name='platform' value={platform} onChange={onChangePlatform}>
-        {platformControls}
+        {radioControls}
       </RadioGroup>
     </FormControl>
   );

@@ -22,16 +22,11 @@ const EnvironmentModal = ({ type, value }: EnvironmentModalProps): JSX.Element =
     },
   );
 
-  const onChangeEnvironment = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log({
-      ...environment,
-      [e.target.name]: e.target.value,
-    });
+  const onChangeEnvironment = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEnvironment({
       ...environment,
       [e.target.name]: e.target.value,
     });
-  };
 
   const typeLabel = useMemo(() => (type === 'create' ? '생성' : '수정'), [type]);
 
