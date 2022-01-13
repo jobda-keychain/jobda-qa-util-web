@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { logo } from '../../assets/Main';
 import * as S from './style';
 
 const PublicHeader = () => {
+  const [isMainPage, setIsMainPage] = useState(true);
+
+  useEffect(() => {
+    if (window.location.pathname !== '/') setIsMainPage(false);
+  }, []);
+
   return (
     <S.Wrapper>
-      <S.Logo src={logo} alt='' />
+      <S.Title>
+        <S.Logo src={logo} alt='' />
+        {isMainPage || <span>환경관리</span>}
+      </S.Title>
       <S.BtnWrapper>
-        <S.AddAccountBtn>계정 추가</S.AddAccountBtn>
+        {isMainPage ? <S.AddBtn>계정 추가</S.AddBtn> : <S.AddBtn>환경 추가</S.AddBtn>}
       </S.BtnWrapper>
     </S.Wrapper>
   );
