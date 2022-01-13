@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { EPlatform } from '../../lib/enum/platform';
 import { ModalButton } from '../../style/Modal';
 import ServiceRadio from '../ServiceRadio/ServiceRadio';
@@ -36,9 +36,11 @@ const EnvironmentModal = ({
   const onChangePlatform = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPlatform(e.target.value as EPlatform);
 
+  const typeLabel = useMemo(() => (type === 'create' ? '생성' : '수정'), []);
+
   return (
     <S.CopyModal>
-      <h3>환경{type === 'create' ? '생성' : '수정'}</h3>
+      <h3>환경{typeLabel}</h3>
 
       <div>
         <S.MultipleInputWrapper count={2}>
@@ -76,7 +78,7 @@ const EnvironmentModal = ({
       </div>
 
       <S.ButtonWrapper>
-        <ModalButton>{type === 'create' ? '생성' : '수정'}</ModalButton>
+        <ModalButton>{typeLabel}</ModalButton>
       </S.ButtonWrapper>
     </S.CopyModal>
   );
