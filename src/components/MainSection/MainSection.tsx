@@ -13,10 +13,10 @@ const MainSection = () => {
   const accountList = useMemo(
     () =>
       accounts.map(account => (
-        <>
-          <AccountRow key={account.id} value={account} />
+        <div key={account.id}>
+          <AccountRow value={account} />
           <hr />
-        </>
+        </div>
       )),
     [accounts],
   );
