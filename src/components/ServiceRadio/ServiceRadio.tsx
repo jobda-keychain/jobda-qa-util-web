@@ -1,5 +1,5 @@
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
-import { EPlatform } from '../../lib/enum/platform';
+import { EPlatform, EPlatformToNum } from '../../lib/enum/platform';
 
 interface ServiceRadioProps {
   platform: EPlatform;
@@ -17,9 +17,15 @@ const ServiceRadio = ({ platform, onChangePlatform }: ServiceRadioProps): JSX.El
         value={platform}
         onChange={onChangePlatform}
       >
-        {Object.values(EPlatform).map(value => (
-          <FormControlLabel key={value} control={<Radio />} value={value} label={value} />
-        ))}
+        {Object.values(EPlatformToNum)
+          .map(value => Number(value))
+          .filter(value => !isNaN(value))
+          .map(value => {
+            const platform = EPlatform[EPlatformToNum[value] as keyof typeof EPlatform];
+            return (
+              <FormControlLabel key={value} control={<Radio />} value={platform} label={platform} />
+            );
+          })}
       </RadioGroup>
     </FormControl>
   );
