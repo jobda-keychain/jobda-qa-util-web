@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { logo } from '../../assets/Main';
+import { logo } from '../../../assets/Main';
 import * as S from './style';
 
 const PublicHeader = () => {

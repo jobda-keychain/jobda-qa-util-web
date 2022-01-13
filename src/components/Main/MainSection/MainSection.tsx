@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './style';
-import { setting } from '../../assets/Main';
-import { MainFilter, PublicTab } from '..';
+import { setting } from '../../../assets/Main';
+import { MainFilter, PublicTab } from '../..';
 
 const MainSection = () => {
   return (

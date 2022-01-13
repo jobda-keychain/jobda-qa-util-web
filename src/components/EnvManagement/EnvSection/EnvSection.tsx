@@ -1,6 +1,6 @@
 import React from 'react';
+import { PublicTab } from '../..';
 import * as S from './style';
-import { PublicTab } from '..';
 
 const EnvSection = () => {
   return (
