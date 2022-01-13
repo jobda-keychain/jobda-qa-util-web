@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './style';
 
-const MainTab = () => {
+const PublicTab = () => {
   const [tabNumber, setTabNumber] = useState(0);
 
   const tabHandler = (event: React.SyntheticEvent, value: number) => {
@@ -17,4 +17,4 @@ const MainTab = () => {
   );
 };
 
-export default MainTab;
+export default PublicTab;

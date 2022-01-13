@@ -8,6 +8,16 @@ export const Wrapper = styled.div`
   padding-top: 30px;
 `;
 
+export const Title = styled.div`
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  > span {
+    font-size: 24px;
+  }
+`;
+
 export const Logo = styled.img`
   width: 260px;
   height: 80px;
@@ -19,7 +29,7 @@ export const BtnWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-export const AddAccountBtn = styled.button`
+export const AddBtn = styled.button`
   width: 150px;
   height: 50px;
   border: 3px solid #00c17c;

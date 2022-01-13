@@ -1,14 +1,14 @@
 import React from 'react';
-import * as S from './styles';
+import * as S from './style';
 import { setting } from '../../assets/Main';
-import { MainFilter, MainTab } from '..';
+import { MainFilter, PublicTab } from '..';
 
 const MainSection = () => {
   return (
     <S.Wrapper>
       <S.Header>
-        <MainTab />
-        <S.EnvBtn>
+        <PublicTab />
+        <S.EnvBtn to='/env-management'>
           <img src={setting} alt='' />
           <span>환경 관리</span>
         </S.EnvBtn>

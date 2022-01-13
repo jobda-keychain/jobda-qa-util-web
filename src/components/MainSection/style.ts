@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled('section')`
   margin: 0 200px;
@@ -12,7 +13,7 @@ export const Header = styled('header')`
   border-bottom: 1px solid #e7eaf1;
 `;
 
-export const EnvBtn = styled('div')`
+export const EnvBtn = styled(Link)`
   display: flex;
   gap: 5px;
   align-items: center;
@@ -21,4 +22,5 @@ export const EnvBtn = styled('div')`
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
+  text-decoration: none;
 `;
