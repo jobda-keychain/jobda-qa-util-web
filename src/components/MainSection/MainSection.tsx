@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './styles';
+import * as S from './style';
 import { setting } from '../../assets/Main';
 import { MainFilter, PublicTab } from '..';
 import { useNavigate } from 'react-router-dom';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as S from './styles';
+import * as S from './style';
 import { deleteTag } from '../../assets/Main';
 import { IEnvironmentFilter } from '../../types/filter.types';
 import { TextField } from '@mui/material';
