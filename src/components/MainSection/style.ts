@@ -27,4 +27,9 @@ export const EnvBtn = styled(Link)`
 
 export const ListWrapper = styled.div`
   padding: 0px 40px;
+  margin-bottom: 30px;
+`;
+
+export const PaginationtWrapper = styled.div`
+  padding: 20px;
 `;
