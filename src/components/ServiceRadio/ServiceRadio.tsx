@@ -25,13 +25,7 @@ const ServiceRadio = ({ platform, onChangePlatform }: ServiceRadioProps): JSX.El
   return (
     <FormControl component='fieldset'>
       <FormLabel component='legend'>서비스</FormLabel>
-      <RadioGroup
-        row
-        aria-label='service'
-        name='row-radio-buttons-group'
-        value={platform}
-        onChange={onChangePlatform}
-      >
+      <RadioGroup row name='platform' value={platform} onChange={onChangePlatform}>
         {platformControls}
       </RadioGroup>
     </FormControl>

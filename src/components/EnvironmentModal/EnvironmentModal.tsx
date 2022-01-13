@@ -22,29 +22,16 @@ const EnvironmentModal = ({ type, value }: EnvironmentModalProps): JSX.Element =
     },
   );
 
-  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const onChangeEnvironment = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log({
+      ...environment,
+      [e.target.name]: e.target.value,
+    });
     setEnvironment({
       ...environment,
-      name: e.target.value,
+      [e.target.name]: e.target.value,
     });
-
-  const onChangeClientDomain = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setEnvironment({
-      ...environment,
-      clientDomain: e.target.value,
-    });
-
-  const onChangeServerDomain = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setEnvironment({
-      ...environment,
-      serverDomain: e.target.value,
-    });
-
-  const onChangePlatform = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setEnvironment({
-      ...environment,
-      platform: e.target.value as EPlatform,
-    });
+  };
 
   const typeLabel = useMemo(() => (type === 'create' ? '생성' : '수정'), [type]);
 
@@ -55,34 +42,34 @@ const EnvironmentModal = ({ type, value }: EnvironmentModalProps): JSX.Element =
       <div>
         <S.MultipleInputWrapper count={2}>
           <TextField
-            id='filled-basic'
+            name='name'
             label='환경 이름'
             variant='filled'
             value={environment.name}
-            onChange={onChangeName}
+            onChange={onChangeEnvironment}
           />
           <div>
-            <ServiceRadio platform={environment.platform} onChangePlatform={onChangePlatform} />
+            <ServiceRadio platform={environment.platform} onChangePlatform={onChangeEnvironment} />
           </div>
         </S.MultipleInputWrapper>
 
         <S.InputWrapper>
           <TextField
-            id='filled-basic'
+            name='clientDomain'
             label='클라이언트 도메인'
             variant='filled'
             value={environment.clientDomain}
-            onChange={onChangeClientDomain}
+            onChange={onChangeEnvironment}
           />
         </S.InputWrapper>
 
         <S.InputWrapper>
           <TextField
-            id='filled-basic'
+            name='serverDomain'
             label='서버 도메인'
             variant='filled'
             value={environment.serverDomain}
-            onChange={onChangeServerDomain}
+            onChange={onChangeEnvironment}
           />
         </S.InputWrapper>
       </div>
