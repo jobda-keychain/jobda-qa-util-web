@@ -10,7 +10,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function PaginationButton() {
+interface PaginationButtonProps {
+  count: number;
+}
+
+export default function PaginationButton({ count }: PaginationButtonProps) {
   const classes = useStyles();
-  return <Pagination classes={{ ul: classes.ul }} count={10} />;
+  return <Pagination classes={{ ul: classes.ul }} count={count} />;
 }
