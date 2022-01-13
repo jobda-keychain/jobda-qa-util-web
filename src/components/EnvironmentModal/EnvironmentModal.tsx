@@ -25,25 +25,16 @@ const EnvironmentModal = ({
   const [serverDomain, setServerDomain] = useState(serverDomainValue ?? '');
   const [platform, setPlatform] = useState(platformValue ?? EPlatform.JOBDA);
 
-  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-    setName(e.target.value);
-  };
+  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
 
-  const onChangeClientDomain = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+  const onChangeClientDomain = (e: React.ChangeEvent<HTMLInputElement>) =>
     setClientDomain(e.target.value);
-  };
 
-  const onChangeServerDomain = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+  const onChangeServerDomain = (e: React.ChangeEvent<HTMLInputElement>) =>
     setServerDomain(e.target.value);
-  };
 
-  const onChangePlatform = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value as EPlatform);
+  const onChangePlatform = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPlatform(e.target.value as EPlatform);
-  };
 
   return (
     <S.CopyModal>
