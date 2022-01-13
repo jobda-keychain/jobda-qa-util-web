@@ -2,16 +2,13 @@ import React from 'react';
 import * as S from './style';
 import { setting } from '../../assets/Main';
 import { MainFilter, PublicTab } from '..';
-import { useNavigate } from 'react-router-dom';
 
 const MainSection = () => {
-  const navigate = useNavigate();
-
   return (
     <S.Wrapper>
       <S.Header>
         <PublicTab />
-        <S.EnvBtn onClick={() => navigate('/env-management')}>
+        <S.EnvBtn to='/env-management'>
           <img src={setting} alt='' />
           <span>환경 관리</span>
         </S.EnvBtn>
