@@ -1,13 +1,20 @@
 import { TextField } from '@mui/material';
 import { useState } from 'react';
 import { ModalButton } from '../../style/Modal';
+import { IEnvironment } from '../../types/environment.types';
 import ServiceRadio from '../ServiceRadio/ServiceRadio';
 import * as S from './style';
 
-const EnvironmentModal = (): JSX.Element => {
-  const [name, setName] = useState('');
-  const [clientDomain, setClientDomain] = useState('');
-  const [serverDomain, setServerDomain] = useState('');
+interface EnvironmentModalProps {
+  type: 'create' | 'modify';
+  value?: IEnvironment;
+}
+
+const EnvironmentModal = ({ type, value }: EnvironmentModalProps): JSX.Element => {
+  const [name, setName] = useState(value?.name ?? '');
+  const [clientDomain, setClientDomain] = useState(value?.clientDomain ?? '');
+  const [serverDomain, setServerDomain] = useState(value?.serverDomain ?? '');
+  const [platform, setPlatform] = useState(value?.platform ?? 0);
 
   const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
 
@@ -17,9 +24,12 @@ const EnvironmentModal = (): JSX.Element => {
   const onChangeServerDomain = (e: React.ChangeEvent<HTMLInputElement>) =>
     setServerDomain(e.target.value);
 
+  const onChangePlatform = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setPlatform(Number(e.target.value));
+
   return (
     <S.CopyModal>
-      <h3>환경생성</h3>
+      <h3>환경{type === 'create' ? '생성' : '수정'}</h3>
 
       <div>
         <S.MultipleInputWrapper count={2}>
@@ -31,7 +41,7 @@ const EnvironmentModal = (): JSX.Element => {
             onChange={onChangeName}
           />
           <div>
-            <ServiceRadio />
+            <ServiceRadio platform={platform} onChangePlatform={onChangePlatform} />
           </div>
         </S.MultipleInputWrapper>
 
@@ -57,7 +67,7 @@ const EnvironmentModal = (): JSX.Element => {
       </div>
 
       <S.ButtonWrapper>
-        <ModalButton>생성</ModalButton>
+        <ModalButton>{type === 'create' ? '생성' : '수정'}</ModalButton>
       </S.ButtonWrapper>
     </S.CopyModal>
   );
