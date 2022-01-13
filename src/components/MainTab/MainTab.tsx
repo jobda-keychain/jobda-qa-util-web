@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import * as S from './style';
 
 const MainTab = () => {
-  const [value, setValue] = useState(0);
+  const [tabNumber, setTabNumber] = useState(0);
 
   const tabHandler = (event: React.SyntheticEvent, value: number) => {
-    setValue(value);
+    setTabNumber(value);
   };
 
   return (
-    <S.Wrapper value={value} onChange={tabHandler}>
+    <S.Wrapper value={tabNumber} onChange={tabHandler}>
       <S.ServiceTab label='전체' />
       <S.ServiceTab label='jobda' />
       <S.ServiceTab label='jobda-cms' />
