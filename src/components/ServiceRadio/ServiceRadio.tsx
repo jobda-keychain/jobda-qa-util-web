@@ -1,14 +1,12 @@
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
-import { platform } from 'os';
-import { useState } from 'react';
 import { EPlatform, EPlatformToNum } from '../../lib/enum/platform';
 
-const ServiceRadio = (): JSX.Element => {
-  const [selection, setSelection] = useState(0);
+interface ServiceRadioProps {
+  platform: number;
+  onChangePlatform: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-  const onChangeSelection = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setSelection(Number(e.target.value));
-
+const ServiceRadio = ({ platform, onChangePlatform }: ServiceRadioProps): JSX.Element => {
   return (
     <FormControl component='fieldset'>
       <FormLabel component='legend'>서비스</FormLabel>
@@ -16,8 +14,8 @@ const ServiceRadio = (): JSX.Element => {
         row
         aria-label='service'
         name='row-radio-buttons-group'
-        value={selection}
-        onChange={onChangeSelection}
+        value={platform}
+        onChange={onChangePlatform}
       >
         {Object.values(EPlatformToNum)
           .map(value => Number(value))
