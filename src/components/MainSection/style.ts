@@ -24,3 +24,7 @@ export const EnvBtn = styled(Link)`
   cursor: pointer;
   text-decoration: none;
 `;
+
+export const ListWrapper = styled.div`
+  padding: 0px 40px;
+`;

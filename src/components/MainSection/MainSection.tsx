@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import * as S from './style';
 import { setting } from '../../assets/Main';
 import { MainFilter, PublicTab } from '..';
+import AccountHeader from '../AccountList/AccountHeader';
+import { IAccount } from '../../types/account.types';
+import AccountRow from '../AccountList/AccoutRow';
 
 const MainSection = () => {
+  const [accounts, setAccounts] = useState<IAccount[]>([]);
+
+  const accountList = useMemo(
+    () => accounts.map(account => <AccountRow key={account.id} value={account} />),
+    [accounts],
+  );
+
   return (
     <S.Wrapper>
       <S.Header>
@@ -14,6 +24,11 @@ const MainSection = () => {
         </S.EnvBtn>
       </S.Header>
       <MainFilter />
+
+      <S.ListWrapper>
+        <AccountHeader />
+        {accountList}
+      </S.ListWrapper>
     </S.Wrapper>
   );
 };
