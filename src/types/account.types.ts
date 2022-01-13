@@ -1,10 +1,10 @@
-import { EPlatformToNum } from '../lib/enum/platform';
+import { EPlatform } from '../lib/enum/platform';
 
 export interface IAccount {
   id: number;
   userId: string;
   password: string;
-  platform: EPlatformToNum;
+  platform: EPlatform;
   environment: string;
   description: string;
 }

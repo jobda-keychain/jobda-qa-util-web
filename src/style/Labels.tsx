@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { EPlatformToColor, EPlatformToNum } from '../lib/enum/platform';
+import { EPlatformToColor, EPlatform } from '../lib/enum/platform';
 
-export const PlatformLabel = styled.div<{ type: EPlatformToNum }>`
-  background-color: ${props =>
-    EPlatformToColor[EPlatformToNum[props.type] as keyof typeof EPlatformToColor]};
+export const PlatformLabel = styled.div<{ type: EPlatform }>`
+  background-color: ${props => EPlatformToColor[props.type as keyof typeof EPlatformToColor]};
   padding: 5px 10px;
   border-radius: 10px;
 `;

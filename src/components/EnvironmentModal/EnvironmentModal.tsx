@@ -1,31 +1,49 @@
 import { TextField } from '@mui/material';
 import { useState } from 'react';
+import { EPlatform } from '../../lib/enum/platform';
 import { ModalButton } from '../../style/Modal';
-import { IEnvironment } from '../../types/environment.types';
 import ServiceRadio from '../ServiceRadio/ServiceRadio';
 import * as S from './style';
 
 interface EnvironmentModalProps {
   type: 'create' | 'modify';
-  value?: IEnvironment;
+  nameValue?: string;
+  clientDomainValue?: string;
+  serverDomainValue?: string;
+  platformValue?: EPlatform;
 }
 
-const EnvironmentModal = ({ type, value }: EnvironmentModalProps): JSX.Element => {
-  const [name, setName] = useState(value?.name ?? '');
-  const [clientDomain, setClientDomain] = useState(value?.clientDomain ?? '');
-  const [serverDomain, setServerDomain] = useState(value?.serverDomain ?? '');
-  const [platform, setPlatform] = useState(value?.platform ?? 0);
+const EnvironmentModal = ({
+  type,
+  nameValue,
+  clientDomainValue,
+  serverDomainValue,
+  platformValue,
+}: EnvironmentModalProps): JSX.Element => {
+  const [name, setName] = useState(nameValue ?? '');
+  const [clientDomain, setClientDomain] = useState(clientDomainValue ?? '');
+  const [serverDomain, setServerDomain] = useState(serverDomainValue ?? '');
+  const [platform, setPlatform] = useState(platformValue ?? EPlatform.JOBDA);
 
-  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
+  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setName(e.target.value);
+  };
 
-  const onChangeClientDomain = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const onChangeClientDomain = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
     setClientDomain(e.target.value);
+  };
 
-  const onChangeServerDomain = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const onChangeServerDomain = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
     setServerDomain(e.target.value);
+  };
 
-  const onChangePlatform = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setPlatform(Number(e.target.value));
+  const onChangePlatform = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value as EPlatform);
+    setPlatform(e.target.value as EPlatform);
+  };
 
   return (
     <S.CopyModal>

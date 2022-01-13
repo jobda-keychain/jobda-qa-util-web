@@ -1,6 +1,6 @@
 export enum EPlatform {
-  JOBDA = '잡다',
-  JOBDA_CMS = '잡다-CMS',
+  JOBDA = 'JOBDA',
+  JOBDA_CMS = 'JOBDA_CMS',
 }
 
 export enum EPlatformToNum {
