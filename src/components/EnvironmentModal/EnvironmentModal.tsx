@@ -36,7 +36,7 @@ const EnvironmentModal = ({
   const onChangePlatform = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPlatform(e.target.value as EPlatform);
 
-  const typeLabel = useMemo(() => (type === 'create' ? '생성' : '수정'), []);
+  const typeLabel = useMemo(() => (type === 'create' ? '생성' : '수정'), [type]);
 
   return (
     <S.CopyModal>
