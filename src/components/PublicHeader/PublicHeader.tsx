@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { logo } from '../../assets/Main';
 import * as S from './style';
 
 const PublicHeader = () => {
   const [isMainPage, setIsMainPage] = useState(true);
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    if (window.location.pathname !== '/') setIsMainPage(false);
-  }, []);
+    if (pathname !== '/') setIsMainPage(false);
+  }, [pathname]);
 
   return (
     <S.Wrapper>
