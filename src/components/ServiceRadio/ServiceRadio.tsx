@@ -24,6 +24,7 @@ const ServiceRadio = (): JSX.Element => {
           .filter(value => !isNaN(value))
           .map(value => (
             <FormControlLabel
+              key={value}
               control={<Radio />}
               value={value}
               label={EPlatform[EPlatformToNum[value] as keyof typeof EPlatform]}
