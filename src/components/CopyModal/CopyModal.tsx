@@ -18,13 +18,7 @@ const CopyModal = (): JSX.Element => {
         </S.HelpWrapper>
       </div>
 
-      <TextField
-        id='filled-basic'
-        label='환경'
-        variant='filled'
-        value={format}
-        onChange={onChangeFormat}
-      />
+      <TextField label='환경' variant='filled' value={format} onChange={onChangeFormat} />
 
       <S.ButtonWrapper>
         <ModalButton>복사</ModalButton>
