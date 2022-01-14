@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import * as S from './style';
 import { IEnvironmentFilter } from './../../../types/filter.types';
 
@@ -20,47 +20,15 @@ const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
       name: 'st1',
     },
   ]);
-  const [texts, setTexts] = useState({
-    title: '',
-    buttonText: '',
-    isAdd: false,
-    isDetail: false,
-  });
-  const { title, buttonText, isAdd, isDetail } = texts;
-
-  useEffect(() => {
-    switch (type) {
-      case 'add':
-        setTexts({
-          ...texts,
-          title: '추가',
-          buttonText: '추가',
-          isAdd: true,
-        });
-        break;
-      case 'modify':
-        setTexts({
-          ...texts,
-          title: '수정',
-          buttonText: '수정',
-        });
-        break;
-      case 'detail':
-        setTexts({
-          ...texts,
-          title: '상세보기',
-          buttonText: '닫기',
-          isDetail: true,
-        });
-    }
-  }, []);
+  const isAdd = type === '추가';
+  const isDetail = type === '상세보기';
 
   return (
     <>
       {isShowModal && (
         <S.Wrapper onClick={closeModal}>
           <S.ModalContainer onClick={e => e.stopPropagation()}>
-            <S.Title>{`계정 ${title}`}</S.Title>
+            <S.Title>{`계정 ${type}`}</S.Title>
             <S.EnvInput
               size='small'
               disablePortal
@@ -75,7 +43,7 @@ const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
             </S.AuthInputsContainer>
             <textarea placeholder='상세 설명' disabled={isDetail} />
             <S.ButtonContainer>
-              <button>{buttonText}</button>
+              <button>{type === '상세보기' ? '취소' : type}</button>
             </S.ButtonContainer>
           </S.ModalContainer>
         </S.Wrapper>
