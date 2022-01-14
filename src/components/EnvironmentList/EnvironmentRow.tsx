@@ -4,25 +4,23 @@ import { IEnvironment } from '../../types/environment.types';
 import { Row, RowButton } from '../../style/Row';
 import * as S from './style';
 
-const EnvironmentRow = ({
-  id,
-  name,
-  serverDomain,
-  clientDomain,
-  platform,
-}: IEnvironment): JSX.Element => {
+interface EnvironmentRowProps {
+  value: IEnvironment;
+}
+
+const EnvironmentRow = ({ value }: EnvironmentRowProps): JSX.Element => {
   return (
     <Row>
       <S.EnvironmentWrapper type='row'>
-        <EnvironmentLabel>{name}</EnvironmentLabel>
+        <EnvironmentLabel>{value.name}</EnvironmentLabel>
       </S.EnvironmentWrapper>
       <S.PlatformWrapper type='row'>
-        <PlatformLabel type={platform}>{platform}</PlatformLabel>
+        <PlatformLabel type={value.platform}>{value.platform}</PlatformLabel>
       </S.PlatformWrapper>
       <S.ServerDomainWrapper type='row'>
-        <a href={clientDomain}>{clientDomain}</a>
+        <a href={value.clientDomain}>{value.clientDomain}</a>
       </S.ServerDomainWrapper>
-      <S.ClientDomainWrapper type='row'>{serverDomain}</S.ClientDomainWrapper>
+      <S.ClientDomainWrapper type='row'>{value.serverDomain}</S.ClientDomainWrapper>
 
       <S.ButtonWrapper>
         <RowButton>
