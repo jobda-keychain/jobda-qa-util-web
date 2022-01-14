@@ -3,13 +3,15 @@ import React, { FC, useState } from 'react';
 import * as S from './style';
 import { IEnvironmentFilter } from './../../../types/filter.types';
 
+type AccountModalType = 'add' | 'modify' | 'detail';
+
 interface Props {
   isShowModal: boolean;
   closeModal: () => void;
-  type: 'add' | 'modify' | 'detail';
+  type: AccountModalType;
 }
 
-const getModalInfo = (type: 'add' | 'modify' | 'detail') => {
+const getModalInfo = (type: AccountModalType) => {
   switch (type) {
     case 'add':
       return {
