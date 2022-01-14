@@ -6,21 +6,11 @@ import StyledPagination from '../PaginationButton/PaginationButton';
 import { IEnvironment } from '../../types/environment.types';
 import EnvironmentRow from '../EnvironmentList/EnvironmentRow';
 import EnvironmentHeader from '../EnvironmentList/EnvironmentHeader';
+import { EPlatform } from '../../lib/enum/platform';
 
 const EnvSection = () => {
   const [pageCount, setPageCount] = useState(1);
   const [environments, setEnvironments] = useState<IEnvironment[]>([]);
-
-  const environmentList = useMemo(
-    () =>
-      environments.map(environment => (
-        <div key={environment.id}>
-          <EnvironmentRow environment={environment} />
-          <hr />
-        </div>
-      )),
-    [environments],
-  );
 
   return (
     <SectionWrapper>
@@ -31,7 +21,12 @@ const EnvSection = () => {
       <ListWrapper>
         <EnvironmentHeader />
         <hr />
-        {environmentList}
+        {environments.map(environment => (
+          <div key={environment.id}>
+            <EnvironmentRow environment={environment} />
+            <hr />
+          </div>
+        ))}
       </ListWrapper>
 
       <PaginationtWrapper>

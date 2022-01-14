@@ -12,17 +12,6 @@ const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
   const [accounts, setAccounts] = useState<IAccount[]>([]);
 
-  const accountList = useMemo(
-    () =>
-      accounts.map(account => (
-        <div key={account.id}>
-          <AccountRow account={account} />
-          <hr />
-        </div>
-      )),
-    [accounts],
-  );
-
   return (
     <SectionWrapper>
       <S.Header>
@@ -37,7 +26,12 @@ const MainSection = () => {
       <ListWrapper>
         <AccountHeader />
         <hr />
-        {accountList}
+        {accounts.map(account => (
+          <div key={account.id}>
+            <AccountRow account={account} />
+            <hr />
+          </div>
+        ))}
       </ListWrapper>
 
       <PaginationtWrapper>
