@@ -2,7 +2,6 @@ import { TextField } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
 import { IEnvironmentFilter } from './../../../types/filter.types';
-import { setSyntheticLeadingComments } from 'typescript';
 
 interface Props {
   isShowModal: boolean;
@@ -54,7 +53,7 @@ const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
           isDetail: true,
         });
     }
-  }, [texts, type]);
+  }, []);
 
   return (
     <>
