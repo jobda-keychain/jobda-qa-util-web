@@ -37,6 +37,10 @@ export const ModalContainer = styled('div')`
     resize: none;
     outline: none;
   }
+
+  > textarea:disabled {
+    background-color: #e0e0e0;
+  }
 `;
 
 export const Title = styled('span')`
