@@ -9,6 +9,32 @@ interface Props {
   type: 'add' | 'modify' | 'detail';
 }
 
+const getModalInfo = (type: 'add' | 'modify' | 'detail') => {
+  switch (type) {
+    case 'add':
+      return {
+        title: '추가',
+        buttonText: '추가',
+        isAdd: true,
+        isDetail: false,
+      };
+    case 'modify':
+      return {
+        title: '수정',
+        buttonText: '수정',
+        isAdd: false,
+        isDetail: false,
+      };
+    case 'detail':
+      return {
+        title: '상세보기',
+        buttonText: '닫기',
+        isAdd: false,
+        isDetail: true,
+      };
+  }
+};
+
 const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
   const [environments, setEnvironments] = useState<IEnvironmentFilter[]>([
     {
@@ -20,33 +46,7 @@ const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
       name: 'st1',
     },
   ]);
-
-  const getModalInfo = () => {
-    switch (type) {
-      case 'add':
-        return {
-          title: '추가',
-          buttonText: '추가',
-          isAdd: true,
-          isDetail: false,
-        };
-      case 'modify':
-        return {
-          title: '수정',
-          buttonText: '수정',
-          isAdd: false,
-          isDetail: false,
-        };
-      case 'detail':
-        return {
-          title: '상세보기',
-          buttonText: '닫기',
-          isAdd: false,
-          isDetail: true,
-        };
-    }
-  };
-  const { title, buttonText, isAdd, isDetail } = getModalInfo();
+  const { title, buttonText, isAdd, isDetail } = getModalInfo(type);
 
   return (
     <>
