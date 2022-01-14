@@ -10,15 +10,17 @@ interface AccountRowProps {
 }
 
 const AccountRow = ({ value }: AccountRowProps): JSX.Element => {
+  const { environment, platform, userId } = value;
+
   return (
     <Row>
       <S.EnvironmentWrapper type='row'>
-        <EnvironmentLabel>{value.environment}</EnvironmentLabel>
+        <EnvironmentLabel>{environment}</EnvironmentLabel>
       </S.EnvironmentWrapper>
       <S.PlatformWrapper type='row'>
-        <PlatformLabel type={value.platform}>{value.platform}</PlatformLabel>
+        <PlatformLabel type={platform}>{platform}</PlatformLabel>
       </S.PlatformWrapper>
-      <S.UserIdWrapper type='row'>{value.userId}</S.UserIdWrapper>
+      <S.UserIdWrapper type='row'>{userId}</S.UserIdWrapper>
 
       <S.ButtonWrapper>
         <RowButton>
