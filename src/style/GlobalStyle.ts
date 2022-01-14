@@ -46,6 +46,10 @@ const GlobalStyle = createGlobalStyle`
         border: 0;
         border-top: 1px solid #E7EAF1;
     }
+    
+    b {
+        font-weight: bold;
+    }
 `;
 
 export default GlobalStyle;
