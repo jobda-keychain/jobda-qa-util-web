@@ -6,8 +6,6 @@ import { IEnvironmentFilter } from './../../../types/filter.types';
 type AccountModalType = 'add' | 'modify' | 'detail';
 
 interface Props {
-  isShowModal: boolean;
-  closeModal: () => void;
   type: AccountModalType;
 }
 
@@ -37,7 +35,7 @@ const getModalInfo = (type: AccountModalType) => {
   }
 };
 
-const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
+const AccountModal: FC<Props> = ({ type }) => {
   const [environments, setEnvironments] = useState<IEnvironmentFilter[]>([
     {
       id: 1,
@@ -49,46 +47,27 @@ const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
     },
   ]);
   const { title, buttonText, isAdd, isDetail } = getModalInfo(type);
-  const outSection = useRef(null);
 
   return (
-    <>
-      {isShowModal && (
-        <S.Wrapper
-          ref={outSection}
-          onClick={e => {
-            if (outSection.current === e.target) {
-              closeModal();
-            }
-          }}
-        >
-          <S.ModalContainer>
-            <S.Title>{`계정 ${title}`}</S.Title>
-            <S.EnvInput
-              size='small'
-              disablePortal
-              id='combo-box-demo'
-              options={environments.map(ele => ele.name)}
-              disabled={!isAdd}
-              renderInput={params => <TextField {...params} label='환경' variant='filled' />}
-            />
-            <S.AuthInputsContainer>
-              <TextField disabled={isDetail} id='standard-basic' label='아이디' variant='filled' />
-              <TextField
-                disabled={isDetail}
-                id='standard-basic'
-                label='비밀번호'
-                variant='filled'
-              />
-            </S.AuthInputsContainer>
-            <textarea placeholder='상세 설명' disabled={isDetail} />
-            <S.ButtonContainer>
-              <button>{buttonText}</button>
-            </S.ButtonContainer>
-          </S.ModalContainer>
-        </S.Wrapper>
-      )}
-    </>
+    <S.ModalContainer>
+      <S.Title>{`계정 ${title}`}</S.Title>
+      <S.EnvInput
+        size='small'
+        disablePortal
+        id='combo-box-demo'
+        options={environments.map(ele => ele.name)}
+        disabled={!isAdd}
+        renderInput={params => <TextField {...params} label='환경' variant='filled' />}
+      />
+      <S.AuthInputsContainer>
+        <TextField disabled={isDetail} id='standard-basic' label='아이디' variant='filled' />
+        <TextField disabled={isDetail} id='standard-basic' label='비밀번호' variant='filled' />
+      </S.AuthInputsContainer>
+      <textarea placeholder='상세 설명' disabled={isDetail} />
+      <S.ButtonContainer>
+        <button>{buttonText}</button>
+      </S.ButtonContainer>
+    </S.ModalContainer>
   );
 };
 
