@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import React, { FC, useState } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import * as S from './style';
 import { IEnvironmentFilter } from './../../../types/filter.types';
 
@@ -49,12 +49,20 @@ const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
     },
   ]);
   const { title, buttonText, isAdd, isDetail } = getModalInfo(type);
+  const outSection = useRef(null);
 
   return (
     <>
       {isShowModal && (
-        <S.Wrapper onClick={closeModal}>
-          <S.ModalContainer onClick={e => e.stopPropagation()}>
+        <S.Wrapper
+          ref={outSection}
+          onClick={e => {
+            if (outSection.current === e.target) {
+              closeModal();
+            }
+          }}
+        >
+          <S.ModalContainer>
             <S.Title>{`계정 ${title}`}</S.Title>
             <S.EnvInput
               size='small'
