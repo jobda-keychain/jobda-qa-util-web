@@ -15,7 +15,7 @@ const EnvSection = () => {
     () =>
       environments.map(environment => (
         <div key={environment.id}>
-          <EnvironmentRow value={environment} />
+          <EnvironmentRow environment={environment} />
           <hr />
         </div>
       )),

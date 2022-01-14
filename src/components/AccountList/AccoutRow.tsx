@@ -7,11 +7,11 @@ import * as S from './style';
 import { FC } from 'react';
 
 interface AccountRowProps {
-  value: IAccount;
+  account: IAccount;
 }
 
-const AccountRow: FC<AccountRowProps> = ({ value }) => {
-  const { environment, platform, userId } = value;
+const AccountRow: FC<AccountRowProps> = ({ account }) => {
+  const { environment, platform, userId } = account;
 
   return (
     <Row>

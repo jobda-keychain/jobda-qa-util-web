@@ -16,7 +16,7 @@ const MainSection = () => {
     () =>
       accounts.map(account => (
         <div key={account.id}>
-          <AccountRow value={account} />
+          <AccountRow account={account} />
           <hr />
         </div>
       )),

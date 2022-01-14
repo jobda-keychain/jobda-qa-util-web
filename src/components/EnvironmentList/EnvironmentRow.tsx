@@ -6,11 +6,11 @@ import * as S from './style';
 import { FC } from 'react';
 
 interface EnvironmentRowProps {
-  value: IEnvironment;
+  environment: IEnvironment;
 }
 
-const EnvironmentRow: FC<EnvironmentRowProps> = ({ value }) => {
-  const { name, platform, clientDomain, serverDomain } = value;
+const EnvironmentRow: FC<EnvironmentRowProps> = ({ environment }) => {
+  const { name, platform, clientDomain, serverDomain } = environment;
 
   return (
     <Row>
