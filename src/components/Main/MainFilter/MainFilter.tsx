@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './style';
-import { deleteTag } from '../../assets/Main';
-import { IEnvironmentFilter } from '../../types/filter.types';
+import { deleteTag } from '../../../assets/Main';
+import { IEnvironmentFilter } from '../../../types/filter.types';
 import { TextField } from '@mui/material';
 
 const MainFilter = () => {
