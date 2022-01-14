@@ -6,7 +6,7 @@ import { IEnvironmentFilter } from './../../../types/filter.types';
 interface Props {
   isShowModal: boolean;
   closeModal: () => void;
-  type: string;
+  type: 'add' | 'modify' | 'detail';
 }
 
 const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
