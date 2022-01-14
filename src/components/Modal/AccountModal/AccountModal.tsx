@@ -66,7 +66,7 @@ const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
               disablePortal
               id='combo-box-demo'
               options={environments.map(ele => ele.name)}
-              disabled={type !== 'add'}
+              disabled={!isAdd}
               renderInput={params => <TextField {...params} label='환경' variant='filled' />}
             />
             <S.AuthInputsContainer>
