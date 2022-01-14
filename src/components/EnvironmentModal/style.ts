@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Modal } from '../../style/Modal';
 
-export const CopyModal = styled(Modal)`
+export const EnvironmentModal = styled(Modal)`
   width: 600px;
   height: 400px;
   display: flex;
