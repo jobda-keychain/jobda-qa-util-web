@@ -1,12 +1,6 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-export const Wrapper = styled('section')`
-  margin: 0 200px;
-  background-color: #fff;
-  border-radius: 20px;
-`;
-
 export const Header = styled('header')`
   display: flex;
   justify-content: space-between;
@@ -23,13 +17,4 @@ export const EnvBtn = styled(Link)`
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
-`;
-
-export const ListWrapper = styled.div`
-  padding: 0px 40px;
-  margin-bottom: 30px;
-`;
-
-export const PaginationtWrapper = styled.div`
-  padding: 20px;
 `;

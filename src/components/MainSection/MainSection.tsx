@@ -6,6 +6,7 @@ import AccountHeader from '../AccountList/AccountHeader';
 import { IAccount } from '../../types/account.types';
 import AccountRow from '../AccountList/AccoutRow';
 import StyledPagination from '../PaginationButton/PaginationButton';
+import { ListWrapper, PaginationtWrapper, SectionWrapper } from '../../style/Section';
 
 const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
@@ -23,7 +24,7 @@ const MainSection = () => {
   );
 
   return (
-    <S.Wrapper>
+    <SectionWrapper>
       <S.Header>
         <PublicTab />
         <S.EnvBtn to='/env-management'>
@@ -33,16 +34,16 @@ const MainSection = () => {
       </S.Header>
       <MainFilter />
 
-      <S.ListWrapper>
+      <ListWrapper>
         <AccountHeader />
         <hr />
         {accountList}
-      </S.ListWrapper>
+      </ListWrapper>
 
-      <S.PaginationtWrapper>
+      <PaginationtWrapper>
         <StyledPagination count={pageCount} />
-      </S.PaginationtWrapper>
-    </S.Wrapper>
+      </PaginationtWrapper>
+    </SectionWrapper>
   );
 };
 
