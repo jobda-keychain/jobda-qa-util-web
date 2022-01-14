@@ -1,7 +1,7 @@
-import { PlatformLabel, EnvironmentLabel } from '../../style/Labels';
+import { PlatformLabel, EnvironmentLabel } from '../../../style/Labels';
 import { FaPen, FaTrash } from 'react-icons/fa';
-import { IEnvironment } from '../../types/environment.types';
-import { Row, RowButton } from '../../style/Row';
+import { IEnvironment } from '../../../types/environment.types';
+import { Row, RowButton } from '../../../style/Row';
 import * as S from './style';
 import { FC } from 'react';
 

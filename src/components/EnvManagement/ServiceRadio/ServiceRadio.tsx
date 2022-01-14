@@ -1,6 +1,6 @@
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 import { useMemo } from 'react';
-import { EPlatform, EPlatformToNum } from '../../lib/enum/platform';
+import { EPlatform, EPlatformToNum } from '../../../lib/enum/platform';
 
 interface ServiceRadioProps {
   platform: EPlatform;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Modal, ModalButton } from '../../style/Modal';
+import { Modal, ModalButton } from '../../../style/Modal';
 
 export const LoginModal = styled(Modal)`
   width: 420px;

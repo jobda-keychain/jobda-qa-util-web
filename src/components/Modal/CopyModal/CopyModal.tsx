@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { ModalButton } from '../../style/Modal';
+import { ModalButton } from '../../../style/Modal';
 import * as S from './style';
 
 const CopyModal = (): JSX.Element => {

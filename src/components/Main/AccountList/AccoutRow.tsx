@@ -1,8 +1,8 @@
 import { FaClipboard, FaPen, FaTrash } from 'react-icons/fa';
 import { IoArrowRedo } from 'react-icons/io5';
-import { IAccount } from '../../types/account.types';
-import { Row, RowButton } from '../../style/Row';
-import { PlatformLabel, EnvironmentLabel } from '../../style/Labels';
+import { IAccount } from '../../../types/account.types';
+import { Row, RowButton } from '../../../style/Row';
+import { PlatformLabel, EnvironmentLabel } from '../../../style/Labels';
 import * as S from './style';
 import { FC } from 'react';
 

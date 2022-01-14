@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import * as S from './style';
-import AccountRow from '../../AccountList/AccoutRow';
-import StyledPagination from '../../PaginationButton/PaginationButton';
+import AccountRow from '../AccountList/AccoutRow';
+import StyledPagination from '../../Public/PaginationButton/PaginationButton';
 import { ListWrapper, PaginationtWrapper, SectionWrapper } from '../../../style/Section';
 import { setting } from '../../../assets/Main';
 import { MainFilter, PublicTab } from '../..';
-import AccountHeader from './../../AccountList/AccountHeader';
+import AccountHeader from '../AccountList/AccountHeader';
 import { IAccount } from './../../../types/account.types';
 
 const MainSection = () => {

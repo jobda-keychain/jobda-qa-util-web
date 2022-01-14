@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Modal } from '../../style/Modal';
+import { Modal } from '../../../style/Modal';
 
 export const EnvironmentModal = styled(Modal)`
   width: 600px;

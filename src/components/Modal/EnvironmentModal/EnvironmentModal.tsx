@@ -1,9 +1,9 @@
 import { TextField } from '@mui/material';
 import { useMemo, useState } from 'react';
-import { EPlatform } from '../../lib/enum/platform';
-import { ModalButton } from '../../style/Modal';
-import { IEnvironment } from '../../types/environment.types';
-import ServiceRadio from '../ServiceRadio/ServiceRadio';
+import { EPlatform } from '../../../lib/enum/platform';
+import { ModalButton } from '../../../style/Modal';
+import { IEnvironment } from '../../../types/environment.types';
+import ServiceRadio from '../../EnvManagement/ServiceRadio/ServiceRadio';
 import * as S from './style';
 
 interface EnvironmentModalProps {

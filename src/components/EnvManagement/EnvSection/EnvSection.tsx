@@ -2,10 +2,10 @@ import { useState } from 'react';
 import * as S from './style';
 import { PublicTab } from '../..';
 import { ListWrapper, PaginationtWrapper, SectionWrapper } from '../../../style/Section';
-import StyledPagination from '../../PaginationButton/PaginationButton';
+import StyledPagination from '../../Public/PaginationButton/PaginationButton';
 import { IEnvironment } from '../../../types/environment.types';
-import EnvironmentRow from '../../EnvironmentList/EnvironmentRow';
-import EnvironmentHeader from '../../EnvironmentList/EnvironmentHeader';
+import EnvironmentRow from '../EnvironmentList/EnvironmentRow';
+import EnvironmentHeader from '../EnvironmentList/EnvironmentHeader';
 import { EPlatform } from '../../../lib/enum/platform';
 
 const EnvSection = () => {

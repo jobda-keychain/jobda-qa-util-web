@@ -1,6 +1,6 @@
 import { Checkbox, FormControlLabel, TextField } from '@mui/material';
 import React, { FC, useState } from 'react';
-import { logo } from '../../assets/Main';
+import { logo } from '../../../assets/Main';
 import * as S from './style';
 
 const LoginModal: FC = () => {
