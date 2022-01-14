@@ -39,6 +39,10 @@ const GlobalStyle = createGlobalStyle`
     h6 {
         font-size: .67em;
     }
+
+    b {
+        font-weight: bold;
+    }
 `;
 
 export default GlobalStyle;
