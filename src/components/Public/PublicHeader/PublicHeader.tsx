@@ -34,7 +34,7 @@ const PublicHeader = () => {
           <S.AddBtn>환경 추가</S.AddBtn>
         )}
       </S.BtnWrapper>
-      <AccountModal isShowModal={isShowModal} closeModal={closeModal} type='add' />
+      <AccountModal isShowModal={isShowModal} closeModal={closeModal} type='추가' />
     </S.Wrapper>
   );
 };
