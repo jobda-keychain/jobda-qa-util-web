@@ -1,4 +1,4 @@
-import { FormControlLabel, Radio, TextField } from '@mui/material';
+import { Checkbox, FormControlLabel, TextField } from '@mui/material';
 import React, { FC, useState } from 'react';
 import { logo } from '../../assets/Main';
 import * as S from './style';
@@ -6,13 +6,16 @@ import * as S from './style';
 const LoginModal: FC = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
-  const [ischecked, setIschecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => setId(e.target.value);
 
   const onChangePw = (e: React.ChangeEvent<HTMLInputElement>) => setPw(e.target.value);
 
-  const onClickRadio = () => setIschecked(!ischecked);
+  const onChangeIsChecked = (e: React.SyntheticEvent<Element, Event>, checked: boolean) => {
+    setIsChecked(checked);
+    console.log(checked);
+  };
 
   return (
     <S.LoginModal>
@@ -37,7 +40,9 @@ const LoginModal: FC = () => {
         </S.InputWrapper>
 
         <FormControlLabel
-          control={<Radio checked={ischecked} onClick={onClickRadio} />}
+          value={isChecked}
+          onChange={onChangeIsChecked}
+          control={<Checkbox />}
           label='자동로그인'
         />
       </div>
