@@ -34,7 +34,7 @@ const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
         return {
           title: '수정',
           buttonText: '수정',
-          isAdd: true,
+          isAdd: false,
           isDetail: false,
         };
       case 'detail':
@@ -48,6 +48,8 @@ const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
   };
   const { title, buttonText, isAdd, isDetail } = getModalInfo();
 
+  console.log(isAdd);
+  console.log(isDetail);
   return (
     <>
       {isShowModal && (
@@ -63,8 +65,13 @@ const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
               renderInput={params => <TextField {...params} label='환경' variant='filled' />}
             />
             <S.AuthInputsContainer>
-              <TextField disabled={!isAdd} id='standard-basic' label='아이디' variant='filled' />
-              <TextField disabled={!isAdd} id='standard-basic' label='비밀번호' variant='filled' />
+              <TextField disabled={isDetail} id='standard-basic' label='아이디' variant='filled' />
+              <TextField
+                disabled={isDetail}
+                id='standard-basic'
+                label='비밀번호'
+                variant='filled'
+              />
             </S.AuthInputsContainer>
             <textarea placeholder='상세 설명' disabled={isDetail} />
             <S.ButtonContainer>
