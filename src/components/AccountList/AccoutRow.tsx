@@ -4,8 +4,15 @@ import { IAccount } from '../../types/account.types';
 import { Row, RowButton } from '../../style/Row';
 import { PlatformLabel, EnvironmentLabel } from '../../style/Labels';
 import * as S from './style';
+import { FC } from 'react';
 
-const AccountRow = ({ userId, platform, environment }: IAccount): JSX.Element => {
+interface AccountRowProps {
+  account: IAccount;
+}
+
+const AccountRow: FC<AccountRowProps> = ({ account }) => {
+  const { environment, platform, userId } = account;
+
   return (
     <Row>
       <S.EnvironmentWrapper type='row'>

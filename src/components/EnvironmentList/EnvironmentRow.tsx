@@ -3,14 +3,15 @@ import { FaPen, FaTrash } from 'react-icons/fa';
 import { IEnvironment } from '../../types/environment.types';
 import { Row, RowButton } from '../../style/Row';
 import * as S from './style';
+import { FC } from 'react';
 
-const EnvironmentRow = ({
-  id,
-  name,
-  serverDomain,
-  clientDomain,
-  platform,
-}: IEnvironment): JSX.Element => {
+interface EnvironmentRowProps {
+  environment: IEnvironment;
+}
+
+const EnvironmentRow: FC<EnvironmentRowProps> = ({ environment }) => {
+  const { name, platform, clientDomain, serverDomain } = environment;
+
   return (
     <Row>
       <S.EnvironmentWrapper type='row'>

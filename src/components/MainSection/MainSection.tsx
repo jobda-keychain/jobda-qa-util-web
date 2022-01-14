@@ -1,11 +1,19 @@
-import React from 'react';
+import { useMemo, useState } from 'react';
 import * as S from './style';
 import { setting } from '../../assets/Main';
 import { MainFilter, PublicTab } from '..';
+import AccountHeader from '../AccountList/AccountHeader';
+import { IAccount } from '../../types/account.types';
+import AccountRow from '../AccountList/AccoutRow';
+import StyledPagination from '../PaginationButton/PaginationButton';
+import { ListWrapper, PaginationtWrapper, SectionWrapper } from '../../style/Section';
 
 const MainSection = () => {
+  const [pageCount, setPageCount] = useState(1);
+  const [accounts, setAccounts] = useState<IAccount[]>([]);
+
   return (
-    <S.Wrapper>
+    <SectionWrapper>
       <S.Header>
         <PublicTab />
         <S.EnvBtn to='/env-management'>
@@ -14,7 +22,22 @@ const MainSection = () => {
         </S.EnvBtn>
       </S.Header>
       <MainFilter />
-    </S.Wrapper>
+
+      <ListWrapper>
+        <AccountHeader />
+        <hr />
+        {accounts.map(account => (
+          <div key={account.id}>
+            <AccountRow account={account} />
+            <hr />
+          </div>
+        ))}
+      </ListWrapper>
+
+      <PaginationtWrapper>
+        <StyledPagination count={pageCount} />
+      </PaginationtWrapper>
+    </SectionWrapper>
   );
 };
 
