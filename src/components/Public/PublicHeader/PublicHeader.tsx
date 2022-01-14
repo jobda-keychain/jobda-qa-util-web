@@ -38,21 +38,11 @@ const PublicHeader = () => {
       </S.BtnWrapper>
 
       {isMainPage ? (
-        <Modal
-          open={isShowModal}
-          onClose={closeModal}
-          aria-labelledby='modal-modal-title'
-          aria-describedby='modal-modal-description'
-        >
+        <Modal open={isShowModal} onClose={closeModal}>
           <AccountModal type='add' />
         </Modal>
       ) : (
-        <Modal
-          open={isShowModal}
-          onClose={closeModal}
-          aria-labelledby='modal-modal-title'
-          aria-describedby='modal-modal-description'
-        >
+        <Modal open={isShowModal} onClose={closeModal}>
           <EnvironmentModal type='create'></EnvironmentModal>
         </Modal>
       )}
