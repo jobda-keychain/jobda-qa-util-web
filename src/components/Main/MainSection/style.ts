@@ -1,12 +1,6 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-export const Wrapper = styled('section')`
-  margin: 0 200px;
-  background-color: #fff;
-  border-radius: 20px;
-`;
-
 export const Header = styled('header')`
   display: flex;
   justify-content: space-between;

@@ -31,7 +31,7 @@ const EnvironmentModal = ({ type, value }: EnvironmentModalProps): JSX.Element =
   const typeLabel = useMemo(() => (type === 'create' ? '생성' : '수정'), [type]);
 
   return (
-    <S.CopyModal>
+    <S.EnvironmentModal>
       <h3>환경{typeLabel}</h3>
 
       <div>
@@ -72,7 +72,7 @@ const EnvironmentModal = ({ type, value }: EnvironmentModalProps): JSX.Element =
       <S.ButtonWrapper>
         <ModalButton>{typeLabel}</ModalButton>
       </S.ButtonWrapper>
-    </S.CopyModal>
+    </S.EnvironmentModal>
   );
 };
 

@@ -39,6 +39,17 @@ const GlobalStyle = createGlobalStyle`
     h6 {
         font-size: .67em;
     }
+
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #E7EAF1;
+    }
+    
+    b {
+        font-weight: bold;
+    }
 `;
 
 export default GlobalStyle;
