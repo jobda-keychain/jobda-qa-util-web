@@ -48,8 +48,6 @@ const AccountModal: FC<Props> = ({ isShowModal, closeModal, type }) => {
   };
   const { title, buttonText, isAdd, isDetail } = getModalInfo();
 
-  console.log(isAdd);
-  console.log(isDetail);
   return (
     <>
       {isShowModal && (
