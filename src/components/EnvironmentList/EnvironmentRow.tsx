@@ -3,24 +3,27 @@ import { FaPen, FaTrash } from 'react-icons/fa';
 import { IEnvironment } from '../../types/environment.types';
 import { Row, RowButton } from '../../style/Row';
 import * as S from './style';
+import { FC } from 'react';
 
 interface EnvironmentRowProps {
   value: IEnvironment;
 }
 
-const EnvironmentRow = ({ value }: EnvironmentRowProps): JSX.Element => {
+const EnvironmentRow: FC<EnvironmentRowProps> = ({ value }) => {
+  const { name, platform, clientDomain, serverDomain } = value;
+
   return (
     <Row>
       <S.EnvironmentWrapper type='row'>
-        <EnvironmentLabel>{value.name}</EnvironmentLabel>
+        <EnvironmentLabel>{name}</EnvironmentLabel>
       </S.EnvironmentWrapper>
       <S.PlatformWrapper type='row'>
-        <PlatformLabel type={value.platform}>{value.platform}</PlatformLabel>
+        <PlatformLabel type={platform}>{platform}</PlatformLabel>
       </S.PlatformWrapper>
       <S.ServerDomainWrapper type='row'>
-        <a href={value.clientDomain}>{value.clientDomain}</a>
+        <a href={clientDomain}>{clientDomain}</a>
       </S.ServerDomainWrapper>
-      <S.ClientDomainWrapper type='row'>{value.serverDomain}</S.ClientDomainWrapper>
+      <S.ClientDomainWrapper type='row'>{serverDomain}</S.ClientDomainWrapper>
 
       <S.ButtonWrapper>
         <RowButton>
