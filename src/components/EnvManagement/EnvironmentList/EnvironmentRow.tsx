@@ -13,9 +13,10 @@ interface EnvironmentRowProps {
 }
 
 const EnvironmentRow: FC<EnvironmentRowProps> = ({ environment }) => {
+  const { name, platform, clientDomain, serverDomain } = environment;
+
   const [isOpenModifyModal, setIsOpenModifyModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-  const { name, platform, clientDomain, serverDomain } = environment;
 
   const toggleIsOpenModifyModal = () => {
     setIsOpenModifyModal(!isOpenModifyModal);
