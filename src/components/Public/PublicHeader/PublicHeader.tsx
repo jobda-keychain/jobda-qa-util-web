@@ -7,7 +7,7 @@ import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
 import * as S from './style';
 
 const PublicHeader = () => {
-  const { isMainPage, isOpenModal, toggleIsOpenModal, onClickCreateEnvironment } = useHeader();
+  const { isMainPage, isOpenModal, toggleIsOpenModal } = useHeader();
 
   return (
     <S.Wrapper>

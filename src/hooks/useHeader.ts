@@ -18,15 +18,7 @@ const useHeader = () => {
     setIsOpenModal(!isOpenModal);
   }, [isOpenModal]);
 
-  const onClickCreateEnvironment = useCallback(async (environment: ICreateEnvironmentDto) => {
-    try {
-      await CreateEnvironment(environment);
-    } catch (error: any) {
-      // 실패
-    }
-  }, []);
-
-  return { isMainPage, isOpenModal, toggleIsOpenModal, onClickCreateEnvironment };
+  return { isMainPage, isOpenModal, toggleIsOpenModal };
 };
 
 export default useHeader;
