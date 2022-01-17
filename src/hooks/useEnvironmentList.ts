@@ -21,13 +21,13 @@ const useEnvironmentList = () => {
 
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
 
-  const toggleIsOpenModifyModal = () => {
+  const toggleIsOpenModifyModal = useCallback(() => {
     setIsOpenModifyModal(!isOpenModifyModal);
-  };
+  }, []);
 
-  const toggleIsOpenDeleteModal = () => {
+  const toggleIsOpenDeleteModal = useCallback(() => {
     setIsOpenDeleteModal(!isOpenDeleteModal);
-  };
+  }, []);
 
   return {
     pageCount,
