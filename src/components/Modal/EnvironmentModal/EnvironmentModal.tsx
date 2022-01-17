@@ -37,7 +37,11 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
             onChange={onChangeEnvironment}
           />
           <div>
-            <ServiceRadio platform={environment.platform} onChangePlatform={onChangeEnvironment} />
+            <ServiceRadio
+              disabled={type === 'modify'}
+              platform={environment.platform}
+              onChangePlatform={onChangeEnvironment}
+            />
           </div>
         </S.MultipleInputWrapper>
 

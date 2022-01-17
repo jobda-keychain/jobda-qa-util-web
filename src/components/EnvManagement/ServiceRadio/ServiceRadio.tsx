@@ -3,11 +3,12 @@ import { useMemo } from 'react';
 import { EPlatform, EPlatformToNum } from '../../../lib/enum/platform';
 
 interface ServiceRadioProps {
+  disabled: boolean;
   platform: EPlatform;
   onChangePlatform: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const ServiceRadio = ({ platform, onChangePlatform }: ServiceRadioProps): JSX.Element => {
+const ServiceRadio = ({ disabled, platform, onChangePlatform }: ServiceRadioProps): JSX.Element => {
   const radioControls = useMemo(
     () =>
       Object.values(EPlatformToNum)
@@ -25,7 +26,7 @@ const ServiceRadio = ({ platform, onChangePlatform }: ServiceRadioProps): JSX.El
   );
 
   return (
-    <FormControl component='fieldset'>
+    <FormControl component='fieldset' disabled={disabled}>
       <FormLabel component='legend'>서비스</FormLabel>
       <RadioGroup row name='platform' value={platform} onChange={onChangePlatform}>
         {radioControls}
