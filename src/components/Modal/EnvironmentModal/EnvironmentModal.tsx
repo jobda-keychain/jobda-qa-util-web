@@ -8,12 +8,12 @@ import * as S from './style';
 
 interface EnvironmentModalProps {
   type: 'create' | 'modify';
-  value?: IEnvironment;
+  environmentValue?: IEnvironment;
 }
 
-const EnvironmentModal = ({ type, value }: EnvironmentModalProps): JSX.Element => {
+const EnvironmentModal = ({ type, environmentValue }: EnvironmentModalProps): JSX.Element => {
   const [environment, setEnvironment] = useState(
-    value ?? {
+    environmentValue ?? {
       id: 0,
       name: '',
       serverDomain: '',
@@ -28,7 +28,7 @@ const EnvironmentModal = ({ type, value }: EnvironmentModalProps): JSX.Element =
       [e.target.name]: e.target.value,
     });
 
-  const typeLabel = useMemo(() => (type === 'create' ? '생성' : '수정'), [type]);
+  const typeLabel = type === 'create' ? '생성' : '수정';
 
   return (
     <S.EnvironmentModal>
