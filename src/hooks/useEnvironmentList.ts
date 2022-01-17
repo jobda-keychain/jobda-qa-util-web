@@ -4,7 +4,7 @@ import { IEnvironment } from '../types/environment.types';
 import { CreateEnvironment } from '../util/api/environment/environment.api';
 import { ICreateEnvironmentDto } from '../util/api/environment/environment.dto';
 
-const useEnvironment = () => {
+const useEnvironmentList = () => {
   const [pageCount, setPageCount] = useState(1);
 
   const [environments, setEnvironments] = useState<IEnvironment[]>([
@@ -29,14 +29,6 @@ const useEnvironment = () => {
     setIsOpenDeleteModal(!isOpenDeleteModal);
   };
 
-  const onClickCreateEnvironment = useCallback(async (environment: ICreateEnvironmentDto) => {
-    try {
-      await CreateEnvironment(environment);
-    } catch (error: any) {
-      // 실패
-    }
-  }, []);
-
   return {
     pageCount,
     environments,
@@ -44,8 +36,7 @@ const useEnvironment = () => {
     isOpenDeleteModal,
     toggleIsOpenModifyModal,
     toggleIsOpenDeleteModal,
-    onClickCreateEnvironment,
   };
 };
 
-export default useEnvironment;
+export default useEnvironmentList;

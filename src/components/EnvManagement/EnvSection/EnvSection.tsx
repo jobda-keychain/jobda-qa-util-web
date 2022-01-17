@@ -5,7 +5,7 @@ import StyledPagination from '../../Public/PaginationButton/PaginationButton';
 import { ListWrapper, PaginationtWrapper, SectionWrapper } from '../../../style/Section';
 import EnvironmentRow from '../EnvironmentList/EnvironmentRow';
 import EnvironmentHeader from '../EnvironmentList/EnvironmentHeader';
-import useEnvironment from '../../../hooks/useEnvironment';
+import useEnvironmentList from '../../../hooks/useEnvironmentList';
 import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 
@@ -17,8 +17,7 @@ const EnvSection = () => {
     isOpenDeleteModal,
     toggleIsOpenModifyModal,
     toggleIsOpenDeleteModal,
-    onClickCreateEnvironment,
-  } = useEnvironment();
+  } = useEnvironmentList();
 
   return (
     <SectionWrapper>
