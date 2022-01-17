@@ -3,10 +3,7 @@ import { FaPen, FaTrash } from 'react-icons/fa';
 import { IEnvironment } from '../../../types/environment.types';
 import { Row, RowButton } from '../../../style/Row';
 import * as S from './style';
-import { FC, useState } from 'react';
-import { Modal } from '@mui/material';
-import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
-import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
+import { FC } from 'react';
 
 interface EnvironmentRowProps {
   environment: IEnvironment;
@@ -20,17 +17,6 @@ const EnvironmentRow: FC<EnvironmentRowProps> = ({
   toggleIsOpenDeleteModal,
 }) => {
   const { name, platform, clientDomain, serverDomain } = environment;
-
-  const [isOpenModifyModal, setIsOpenModifyModal] = useState(false);
-  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-
-  const toggleIsOpenModifyModal = () => {
-    setIsOpenModifyModal(!isOpenModifyModal);
-  };
-
-  const toggleIsOpenDeleteModal = () => {
-    setIsOpenDeleteModal(!isOpenDeleteModal);
-  };
 
   return (
     <Row>
@@ -53,14 +39,6 @@ const EnvironmentRow: FC<EnvironmentRowProps> = ({
           <FaTrash />
         </RowButton>
       </S.ButtonWrapper>
-
-      <Modal open={isOpenModifyModal} onClose={toggleIsOpenModifyModal}>
-        <EnvironmentModal type='modify' value={environment} />
-      </Modal>
-
-      <Modal open={isOpenDeleteModal} onClose={toggleIsOpenDeleteModal}>
-        <DeleteModal></DeleteModal>
-      </Modal>
     </Row>
   );
 };
