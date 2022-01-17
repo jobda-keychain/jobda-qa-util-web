@@ -49,7 +49,7 @@ const EnvironmentRow: FC<EnvironmentRowProps> = ({ environment }) => {
       </S.ButtonWrapper>
 
       <Modal open={isOpenModifyModal} onClose={toggleIsOpenModifyModal}>
-        <EnvironmentModal type='modify' value={environment}></EnvironmentModal>
+        <EnvironmentModal type='modify' value={environment} />
       </Modal>
 
       <Modal open={isOpenDeleteModal} onClose={toggleIsOpenDeleteModal}>
