@@ -9,11 +9,16 @@ import * as S from './style';
 interface EnvironmentModalProps {
   type: 'create' | 'modify';
   environmentValue?: IEnvironment;
+  onClose: () => void;
 }
 
-const EnvironmentModal: FC<EnvironmentModalProps> = ({ type, environmentValue }): JSX.Element => {
+const EnvironmentModal: FC<EnvironmentModalProps> = ({
+  type,
+  environmentValue,
+  onClose,
+}): JSX.Element => {
   const { environment, onChangeEnvironment, onClickCreateEnvironment, onClickModifyEnvironment } =
-    useEnvironmentModal();
+    useEnvironmentModal(onClose, environmentValue);
 
   const onClick = type === 'create' ? onClickCreateEnvironment : onClickModifyEnvironment;
   const typeLabel = type === 'create' ? '생성' : '수정';

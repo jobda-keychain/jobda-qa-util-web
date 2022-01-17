@@ -3,7 +3,7 @@ import { EPlatform } from '../lib/enum/platform';
 import { IEnvironment } from '../types/environment.types';
 import { CreateEnvironment } from '../util/api/environment/environment.api';
 
-const useEnvironmentModal = (environmentValue?: IEnvironment) => {
+const useEnvironmentModal = (onClose: () => void, environmentValue?: IEnvironment) => {
   const [environment, setEnvironment] = useState(
     environmentValue ?? {
       id: 0,
@@ -26,6 +26,7 @@ const useEnvironmentModal = (environmentValue?: IEnvironment) => {
   const onClickCreateEnvironment = useCallback(async () => {
     try {
       await CreateEnvironment(environment);
+      onClose();
     } catch (error: any) {
       // 실패
     }
@@ -33,6 +34,7 @@ const useEnvironmentModal = (environmentValue?: IEnvironment) => {
 
   const onClickModifyEnvironment = useCallback(async () => {
     try {
+      onClose();
     } catch (error: any) {
       // 실패
     }

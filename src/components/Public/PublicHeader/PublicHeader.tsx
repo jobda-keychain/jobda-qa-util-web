@@ -29,7 +29,7 @@ const PublicHeader = () => {
         </Modal>
       ) : (
         <Modal open={isOpenModal} onClose={toggleIsOpenModal}>
-          <EnvironmentModal type='create'></EnvironmentModal>
+          <EnvironmentModal type='create' onClose={toggleIsOpenModal} />
         </Modal>
       )}
     </S.Wrapper>

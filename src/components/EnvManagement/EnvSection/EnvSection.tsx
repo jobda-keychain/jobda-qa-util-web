@@ -39,7 +39,11 @@ const EnvSection = () => {
             <hr />
 
             <Modal open={isOpenModifyModal} onClose={toggleIsOpenModifyModal}>
-              <EnvironmentModal type='modify' environmentValue={environment} />
+              <EnvironmentModal
+                type='modify'
+                environmentValue={environment}
+                onClose={toggleIsOpenModifyModal}
+              />
             </Modal>
 
             <Modal open={isOpenDeleteModal} onClose={toggleIsOpenDeleteModal}>
