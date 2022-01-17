@@ -7,10 +7,10 @@ import { IEnvironment } from '../../../types/environment.types';
 import EnvironmentRow from '../EnvironmentList/EnvironmentRow';
 import EnvironmentHeader from '../EnvironmentList/EnvironmentHeader';
 import { EPlatform } from '../../../lib/enum/platform';
+import useEnvironment from '../../../hooks/useEnvironment';
 
 const EnvSection = () => {
-  const [pageCount, setPageCount] = useState(1);
-  const [environments, setEnvironments] = useState<IEnvironment[]>([]);
+  const { pageCount, environments, onClickCreateEnvironment } = useEnvironment();
 
   return (
     <SectionWrapper>
