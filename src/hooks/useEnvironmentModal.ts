@@ -30,7 +30,7 @@ const useEnvironmentModal = (onClose: () => void, environmentValue?: IEnvironmen
     } catch (error: any) {
       // 실패
     }
-  }, [environment]);
+  }, [environment, onClose]);
 
   const onClickModifyEnvironment = useCallback(async () => {
     try {
@@ -38,7 +38,7 @@ const useEnvironmentModal = (onClose: () => void, environmentValue?: IEnvironmen
     } catch (error: any) {
       // 실패
     }
-  }, []);
+  }, [onClose]);
 
   return { environment, onChangeEnvironment, onClickCreateEnvironment, onClickModifyEnvironment };
 };
