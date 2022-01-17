@@ -4,7 +4,10 @@ import { IAccount } from '../../../types/account.types';
 import { Row, RowButton } from '../../../style/Row';
 import { PlatformLabel, EnvironmentLabel } from '../../../style/Labels';
 import * as S from './style';
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { Modal } from '@mui/material';
+import AccountModal from '../../Modal/AccountModal/AccountModal';
+import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 
 interface AccountRowProps {
   account: IAccount;
@@ -12,6 +15,22 @@ interface AccountRowProps {
 
 const AccountRow: FC<AccountRowProps> = ({ account }) => {
   const { environment, platform, userId } = account;
+
+  const [isOpenDetailModal, setIsOpenDetailModal] = useState(false);
+  const [isOpenModifyModal, setIsOpenModifyModal] = useState(false);
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
+  const toggleIsOpenDetailModal = () => {
+    setIsOpenDetailModal(!isOpenDetailModal);
+  };
+
+  const toggleIsOpenModifyModal = () => {
+    setIsOpenModifyModal(!isOpenModifyModal);
+  };
+
+  const toggleIsOpenDeleteModal = () => {
+    setIsOpenDeleteModal(!isOpenDeleteModal);
+  };
 
   return (
     <Row>
@@ -21,13 +40,15 @@ const AccountRow: FC<AccountRowProps> = ({ account }) => {
       <S.PlatformWrapper type='row'>
         <PlatformLabel type={platform}>{platform}</PlatformLabel>
       </S.PlatformWrapper>
-      <S.UserIdWrapper type='row'>{userId}</S.UserIdWrapper>
+      <S.UserIdWrapper type='row' onClick={toggleIsOpenDetailModal}>
+        {userId}
+      </S.UserIdWrapper>
 
       <S.ButtonWrapper>
-        <RowButton>
+        <RowButton onClick={toggleIsOpenModifyModal}>
           <FaPen />
         </RowButton>
-        <RowButton>
+        <RowButton onClick={toggleIsOpenDeleteModal}>
           <FaTrash />
         </RowButton>
         <RowButton>
@@ -37,6 +58,18 @@ const AccountRow: FC<AccountRowProps> = ({ account }) => {
           <FaClipboard />
         </RowButton>
       </S.ButtonWrapper>
+
+      <Modal open={isOpenDetailModal} onClose={toggleIsOpenDetailModal}>
+        <AccountModal type='detail'></AccountModal>
+      </Modal>
+
+      <Modal open={isOpenModifyModal} onClose={toggleIsOpenModifyModal}>
+        <AccountModal type='modify'></AccountModal>
+      </Modal>
+
+      <Modal open={isOpenDeleteModal} onClose={toggleIsOpenDeleteModal}>
+        <DeleteModal></DeleteModal>
+      </Modal>
     </Row>
   );
 };
