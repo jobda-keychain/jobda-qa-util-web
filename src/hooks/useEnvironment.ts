@@ -7,7 +7,27 @@ import { ICreateEnvironmentDto } from '../util/api/environment/environment.dto';
 const useEnvironment = () => {
   const [pageCount, setPageCount] = useState(1);
 
-  const [environments, setEnvironments] = useState<IEnvironment[]>([]);
+  const [environments, setEnvironments] = useState<IEnvironment[]>([
+    {
+      id: 0,
+      name: 'string',
+      serverDomain: 'string',
+      clientDomain: 'string',
+      platform: EPlatform.JOBDA,
+    },
+  ]);
+
+  const [isOpenModifyModal, setIsOpenModifyModal] = useState(false);
+
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
+  const toggleIsOpenModifyModal = () => {
+    setIsOpenModifyModal(!isOpenModifyModal);
+  };
+
+  const toggleIsOpenDeleteModal = () => {
+    setIsOpenDeleteModal(!isOpenDeleteModal);
+  };
 
   const onClickCreateEnvironment = useCallback(async (environment: ICreateEnvironmentDto) => {
     try {
@@ -17,7 +37,15 @@ const useEnvironment = () => {
     }
   }, []);
 
-  return { pageCount, environments, onClickCreateEnvironment };
+  return {
+    pageCount,
+    environments,
+    isOpenModifyModal,
+    isOpenDeleteModal,
+    toggleIsOpenModifyModal,
+    toggleIsOpenDeleteModal,
+    onClickCreateEnvironment,
+  };
 };
 
 export default useEnvironment;
