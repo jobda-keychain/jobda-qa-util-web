@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
-import { useMemo, useState } from 'react';
-import { EPlatform } from '../../../lib/enum/platform';
+import { FC } from 'react';
+import useEnvironmentModal from '../../../hooks/useEnvironmentModal';
 import { ModalButton } from '../../../style/Modal';
 import { IEnvironment } from '../../../types/environment.types';
 import ServiceRadio from '../../EnvManagement/ServiceRadio/ServiceRadio';
@@ -11,23 +11,11 @@ interface EnvironmentModalProps {
   environmentValue?: IEnvironment;
 }
 
-const EnvironmentModal = ({ type, environmentValue }: EnvironmentModalProps): JSX.Element => {
-  const [environment, setEnvironment] = useState(
-    environmentValue ?? {
-      id: 0,
-      name: '',
-      serverDomain: '',
-      clientDomain: '',
-      platform: EPlatform.JOBDA,
-    },
-  );
+const EnvironmentModal: FC<EnvironmentModalProps> = ({ type, environmentValue }): JSX.Element => {
+  const { environment, onChangeEnvironment, onClickCreateEnvironment, onClickModifyEnvironment } =
+    useEnvironmentModal();
 
-  const onChangeEnvironment = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setEnvironment({
-      ...environment,
-      [e.target.name]: e.target.value,
-    });
-
+  const onClick = type === 'create' ? onClickCreateEnvironment : onClickModifyEnvironment;
   const typeLabel = type === 'create' ? '생성' : '수정';
 
   return (
@@ -70,7 +58,7 @@ const EnvironmentModal = ({ type, environmentValue }: EnvironmentModalProps): JS
       </div>
 
       <S.ButtonWrapper>
-        <ModalButton>{typeLabel}</ModalButton>
+        <ModalButton onClick={onClick}>{typeLabel}</ModalButton>
       </S.ButtonWrapper>
     </S.EnvironmentModal>
   );
