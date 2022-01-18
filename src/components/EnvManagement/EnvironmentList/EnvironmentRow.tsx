@@ -7,14 +7,14 @@ import { FC } from 'react';
 
 interface EnvironmentRowProps {
   environment: Environment;
-  toggleIsOpenModifyModal: () => void;
-  toggleIsOpenDeleteModal: () => void;
+  setModalType: (modalType: 'modify' | 'delete') => void;
+  toggleIsOpenModal: () => void;
 }
 
 const EnvironmentRow: FC<EnvironmentRowProps> = ({
   environment,
-  toggleIsOpenModifyModal,
-  toggleIsOpenDeleteModal,
+  setModalType,
+  toggleIsOpenModal,
 }) => {
   const { name, platform, clientDomain, serverDomain } = environment;
 
@@ -32,10 +32,20 @@ const EnvironmentRow: FC<EnvironmentRowProps> = ({
       <S.ClientDomainWrapper type='row'>{serverDomain}</S.ClientDomainWrapper>
 
       <S.ButtonWrapper>
-        <RowButton onClick={toggleIsOpenModifyModal}>
+        <RowButton
+          onClick={() => {
+            setModalType('modify');
+            toggleIsOpenModal();
+          }}
+        >
           <FaPen />
         </RowButton>
-        <RowButton onClick={toggleIsOpenDeleteModal}>
+        <RowButton
+          onClick={() => {
+            setModalType('delete');
+            toggleIsOpenModal();
+          }}
+        >
           <FaTrash />
         </RowButton>
       </S.ButtonWrapper>

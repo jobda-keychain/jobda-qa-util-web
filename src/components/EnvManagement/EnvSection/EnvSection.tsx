@@ -8,16 +8,14 @@ import EnvironmentHeader from '../EnvironmentList/EnvironmentHeader';
 import useEnvironmentList from '../../../hooks/useEnvironmentList';
 import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
+import { useState } from 'react';
+import useModal from '../../../hooks/useModal';
 
 const EnvSection = () => {
-  const {
-    pageCount,
-    environments,
-    isOpenModifyModal,
-    isOpenDeleteModal,
-    toggleIsOpenModifyModal,
-    toggleIsOpenDeleteModal,
-  } = useEnvironmentList();
+  const { pageCount, environments } = useEnvironmentList();
+  const { isOpenModal, toggleIsOpenModal } = useModal();
+
+  const [modalType, setModalType] = useState<'modify' | 'delete'>('modify');
 
   return (
     <SectionWrapper>
@@ -33,20 +31,20 @@ const EnvSection = () => {
           <div key={environment.id}>
             <EnvironmentRow
               environment={environment}
-              toggleIsOpenModifyModal={toggleIsOpenModifyModal}
-              toggleIsOpenDeleteModal={toggleIsOpenDeleteModal}
+              setModalType={setModalType}
+              toggleIsOpenModal={toggleIsOpenModal}
             />
             <hr />
 
-            <Modal open={isOpenModifyModal} onClose={toggleIsOpenModifyModal}>
+            <Modal open={modalType === 'modify' && isOpenModal} onClose={toggleIsOpenModal}>
               <EnvironmentModal
                 type='modify'
                 environmentValue={environment}
-                onClose={toggleIsOpenModifyModal}
+                onClose={toggleIsOpenModal}
               />
             </Modal>
 
-            <Modal open={isOpenDeleteModal} onClose={toggleIsOpenDeleteModal}>
+            <Modal open={modalType === 'delete' && isOpenModal} onClose={toggleIsOpenModal}>
               <DeleteModal></DeleteModal>
             </Modal>
           </div>
