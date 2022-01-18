@@ -10,6 +10,7 @@ import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import { useState } from 'react';
 import useModal from '../../../hooks/useModal';
+import { EnvironmentModalType } from '../../../types/modal.types';
 
 const EnvSection = () => {
   const { pageCount, environments } = useEnvironmentList();
