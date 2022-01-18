@@ -6,18 +6,22 @@ import StyledPagination from '../../Public/PaginationButton/PaginationButton';
 import { IEnvironment } from '../../../types/environment.types';
 import EnvironmentRow from '../EnvironmentList/EnvironmentRow';
 import EnvironmentHeader from '../EnvironmentList/EnvironmentHeader';
-import { EPlatform } from '../../../lib/enum/platform';
 
 const EnvSection = () => {
   const [pageCount, setPageCount] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [environments, setEnvironments] = useState<IEnvironment[]>([]);
+  const [tabNumber, setTabNumber] = useState<number>(0);
+
+  const pageHandler = (event: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
+  };
 
   return (
     <SectionWrapper>
       <S.TabBox>
-        <PublicTab />
+        <PublicTab tabNumber={tabNumber} setTabNumber={setTabNumber} />
       </S.TabBox>
-
       <ListWrapper>
         <EnvironmentHeader />
         <hr />
@@ -28,9 +32,8 @@ const EnvSection = () => {
           </div>
         ))}
       </ListWrapper>
-
       <PaginationtWrapper>
-        <StyledPagination count={pageCount} />
+        <StyledPagination page={currentPage} onChange={pageHandler} count={pageCount} />
       </PaginationtWrapper>
     </SectionWrapper>
   );
