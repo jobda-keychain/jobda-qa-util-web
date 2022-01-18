@@ -12,7 +12,7 @@ export const getAccountList = async (
   environment?: string,
 ) => {
   try {
-    const params = { page, platform, size: 5, environment };
+    const params = { page, platform, size: 7, environment };
     return await instance.get<AccountListResponse>(`/accounts`, { params });
   } catch (error) {
     throw error;
