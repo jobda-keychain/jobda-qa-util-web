@@ -14,7 +14,7 @@ interface AccountRowProps {
 }
 
 const AccountRow: FC<AccountRowProps> = ({ account }) => {
-  const { environment, platform, userId } = account;
+  const { id, environment, platform, userId } = account;
 
   const [isOpenDetailModal, setIsOpenDetailModal] = useState(false);
   const [isOpenModifyModal, setIsOpenModifyModal] = useState(false);
@@ -68,7 +68,7 @@ const AccountRow: FC<AccountRowProps> = ({ account }) => {
       </Modal>
 
       <Modal open={isOpenDeleteModal} onClose={toggleIsOpenDeleteModal}>
-        <DeleteModal></DeleteModal>
+        <DeleteModal type='account' id={id} onClose={toggleIsOpenDeleteModal}></DeleteModal>
       </Modal>
     </Row>
   );
