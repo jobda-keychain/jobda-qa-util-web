@@ -46,7 +46,11 @@ const EnvSection = () => {
             </Modal>
 
             <Modal open={modalType === 'delete' && isOpenModal} onClose={toggleIsOpenModal}>
-              <DeleteModal></DeleteModal>
+              <DeleteModal
+                type='environment'
+                id={environment.id}
+                onClose={toggleIsOpenModal}
+              ></DeleteModal>
             </Modal>
           </div>
         ))}
