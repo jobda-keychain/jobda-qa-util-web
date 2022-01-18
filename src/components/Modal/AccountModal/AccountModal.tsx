@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import React, { FC, useState } from 'react';
 import * as S from './style';
-import { IEnvironmentFilter } from './../../../types/filter.types';
+import { EnvironmentFilter } from './../../../types/filter.types';
 
 type AccountModalType = 'add' | 'modify' | 'detail';
 
@@ -48,7 +48,7 @@ const onClickHandler = (type: AccountModalType, onClose: () => void) => {
 };
 
 const AccountModal: FC<Props> = ({ type, onClose }) => {
-  const [environments, setEnvironments] = useState<IEnvironmentFilter[]>([
+  const [environments, setEnvironments] = useState<EnvironmentFilter[]>([
     {
       id: 1,
       label: 'dv1',

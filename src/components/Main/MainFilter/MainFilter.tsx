@@ -1,22 +1,22 @@
 import React, { FC, useState, useEffect } from 'react';
 import * as S from './style';
 import { deleteTag } from '../../../assets/Main';
-import { IEnvironmentFilter } from '../../../types/filter.types';
+import { EnvironmentFilter } from '../../../types/filter.types';
 import { TextField } from '@mui/material';
 import { getEnvironmentList } from './../../../util/api/EnvironmentList/index';
 
 interface MainFilterProps {
-  filters: IEnvironmentFilter[];
-  setFilters: (filters: IEnvironmentFilter[]) => void;
+  filters: EnvironmentFilter[];
+  setFilters: (filters: EnvironmentFilter[]) => void;
   tabNumber: number;
 }
 
 const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => {
-  const [environments, setEnvironments] = useState<IEnvironmentFilter[]>([]);
+  const [environments, setEnvironments] = useState<EnvironmentFilter[]>([]);
   const [filterValue, setFilterValue] = useState<string>('');
   const [filterInputValue, setFilterInputValue] = useState('');
 
-  const addFilter = (value: IEnvironmentFilter) => {
+  const addFilter = (value: EnvironmentFilter) => {
     setFilterInputValue('');
     setFilterValue('');
     if (value && !filters.includes(value)) {
@@ -74,7 +74,7 @@ const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => 
         value={filterValue}
         onChange={(event, value) => {
           inputHandler(event, value as string);
-          addFilter(value as IEnvironmentFilter);
+          addFilter(value as EnvironmentFilter);
         }}
         inputValue={filterInputValue}
         onInputChange={inputChange}

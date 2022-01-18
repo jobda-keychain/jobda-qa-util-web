@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 export const Modal = styled.div`
@@ -9,6 +10,7 @@ export const Modal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
+
 export const ModalButton = styled.button`
   width: 140px;
   height: 40px;
@@ -16,3 +18,9 @@ export const ModalButton = styled.button`
   background-color: #00c17c;
   border: none;
 `;
+
+export const ModalWrapper = React.forwardRef((props: any, ref: any) => (
+  <Modal {...props} ref={ref}>
+    {props.children}
+  </Modal>
+));

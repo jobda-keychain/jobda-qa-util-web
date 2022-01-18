@@ -1,34 +1,27 @@
 import { TextField } from '@mui/material';
-import { useMemo, useState } from 'react';
-import { EPlatform } from '../../../lib/enum/platform';
+import { FC } from 'react';
+import useEnvironmentModal from '../../../hooks/useEnvironmentModal';
 import { ModalButton } from '../../../style/Modal';
-import { IEnvironment } from '../../../types/environment.types';
+import { Environment } from '../../../types/environment.types';
 import ServiceRadio from '../../EnvManagement/ServiceRadio/ServiceRadio';
 import * as S from './style';
 
 interface EnvironmentModalProps {
   type: 'create' | 'modify';
-  value?: IEnvironment;
+  environmentValue?: Environment;
+  onClose: () => void;
 }
 
-const EnvironmentModal = ({ type, value }: EnvironmentModalProps): JSX.Element => {
-  const [environment, setEnvironment] = useState(
-    value ?? {
-      id: 0,
-      name: '',
-      serverDomain: '',
-      clientDomain: '',
-      platform: EPlatform.JOBDA,
-    },
-  );
+const EnvironmentModal: FC<EnvironmentModalProps> = ({
+  type,
+  environmentValue,
+  onClose,
+}): JSX.Element => {
+  const { environment, onChangeEnvironment, onClickCreateEnvironment, onClickModifyEnvironment } =
+    useEnvironmentModal(onClose, environmentValue);
 
-  const onChangeEnvironment = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setEnvironment({
-      ...environment,
-      [e.target.name]: e.target.value,
-    });
-
-  const typeLabel = useMemo(() => (type === 'create' ? '생성' : '수정'), [type]);
+  const onClick = type === 'create' ? onClickCreateEnvironment : onClickModifyEnvironment;
+  const typeLabel = type === 'create' ? '생성' : '수정';
 
   return (
     <S.EnvironmentModal>
@@ -44,7 +37,11 @@ const EnvironmentModal = ({ type, value }: EnvironmentModalProps): JSX.Element =
             onChange={onChangeEnvironment}
           />
           <div>
-            <ServiceRadio platform={environment.platform} onChangePlatform={onChangeEnvironment} />
+            <ServiceRadio
+              disabled={type === 'modify'}
+              platform={environment.platform}
+              onChangePlatform={onChangeEnvironment}
+            />
           </div>
         </S.MultipleInputWrapper>
 
@@ -70,7 +67,7 @@ const EnvironmentModal = ({ type, value }: EnvironmentModalProps): JSX.Element =
       </div>
 
       <S.ButtonWrapper>
-        <ModalButton>{typeLabel}</ModalButton>
+        <ModalButton onClick={onClick}>{typeLabel}</ModalButton>
       </S.ButtonWrapper>
     </S.EnvironmentModal>
   );

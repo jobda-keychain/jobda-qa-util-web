@@ -1,30 +1,23 @@
 import { PlatformLabel, EnvironmentLabel } from '../../../style/Labels';
 import { FaPen, FaTrash } from 'react-icons/fa';
-import { IEnvironment } from '../../../types/environment.types';
+import { Environment } from '../../../types/environment.types';
 import { Row, RowButton } from '../../../style/Row';
 import * as S from './style';
-import { FC, useState } from 'react';
-import { Modal } from '@mui/material';
-import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
-import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
+import { FC } from 'react';
+import { EnvironmentModalType } from '../../../types/modal.types';
 
 interface EnvironmentRowProps {
-  environment: IEnvironment;
+  environment: Environment;
+  setModalType: (modalType: EnvironmentModalType) => void;
+  toggleIsOpenModal: () => void;
 }
 
-const EnvironmentRow: FC<EnvironmentRowProps> = ({ environment }) => {
+const EnvironmentRow: FC<EnvironmentRowProps> = ({
+  environment,
+  setModalType,
+  toggleIsOpenModal,
+}) => {
   const { name, platform, clientDomain, serverDomain } = environment;
-
-  const [isOpenModifyModal, setIsOpenModifyModal] = useState(false);
-  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-
-  const toggleIsOpenModifyModal = () => {
-    setIsOpenModifyModal(!isOpenModifyModal);
-  };
-
-  const toggleIsOpenDeleteModal = () => {
-    setIsOpenDeleteModal(!isOpenDeleteModal);
-  };
 
   return (
     <Row>
@@ -40,21 +33,23 @@ const EnvironmentRow: FC<EnvironmentRowProps> = ({ environment }) => {
       <S.ClientDomainWrapper type='row'>{serverDomain}</S.ClientDomainWrapper>
 
       <S.ButtonWrapper>
-        <RowButton onClick={toggleIsOpenModifyModal}>
+        <RowButton
+          onClick={() => {
+            setModalType('modify');
+            toggleIsOpenModal();
+          }}
+        >
           <FaPen />
         </RowButton>
-        <RowButton onClick={toggleIsOpenDeleteModal}>
+        <RowButton
+          onClick={() => {
+            setModalType('delete');
+            toggleIsOpenModal();
+          }}
+        >
           <FaTrash />
         </RowButton>
       </S.ButtonWrapper>
-
-      <Modal open={isOpenModifyModal} onClose={toggleIsOpenModifyModal}>
-        <EnvironmentModal type='modify' value={environment} />
-      </Modal>
-
-      <Modal open={isOpenDeleteModal} onClose={toggleIsOpenDeleteModal}>
-        <DeleteModal></DeleteModal>
-      </Modal>
     </Row>
   );
 };

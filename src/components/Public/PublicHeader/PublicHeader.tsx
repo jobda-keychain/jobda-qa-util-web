@@ -1,27 +1,14 @@
 import Modal from '@mui/material/Modal';
-import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { logo } from '../../../assets/Main';
+import useHeader from '../../../hooks/useHeader';
+import { ModalWrapper } from '../../../style/Modal';
 import AccountModal from '../../Modal/AccountModal/AccountModal';
 import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
 import * as S from './style';
 
 const PublicHeader = () => {
-  const [isMainPage, setIsMainPage] = useState(true);
-  const [isShowModal, setIsShowModal] = useState(false);
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    if (pathname !== '/') setIsMainPage(false);
-  }, [pathname]);
-
-  const openModal = () => {
-    setIsShowModal(true);
-  };
-
-  const closeModal = () => {
-    setIsShowModal(false);
-  };
+  const { isMainPage, isOpenModal, toggleIsOpenModal } = useHeader();
 
   return (
     <S.Wrapper>
@@ -31,19 +18,23 @@ const PublicHeader = () => {
       </S.Title>
       <S.BtnWrapper>
         {isMainPage ? (
-          <S.AddBtn onClick={openModal}>계정 추가</S.AddBtn>
+          <S.AddBtn onClick={toggleIsOpenModal}>계정 추가</S.AddBtn>
         ) : (
-          <S.AddBtn onClick={openModal}>환경 추가</S.AddBtn>
+          <S.AddBtn onClick={toggleIsOpenModal}>환경 추가</S.AddBtn>
         )}
       </S.BtnWrapper>
 
       {isMainPage ? (
-        <Modal open={isShowModal} onClose={closeModal}>
-          <AccountModal type='add' />
+        <Modal open={isOpenModal} onClose={toggleIsOpenModal}>
+          <ModalWrapper>
+            <AccountModal type='add' />
+          </ModalWrapper>
         </Modal>
       ) : (
-        <Modal open={isShowModal} onClose={closeModal}>
-          <EnvironmentModal type='create'></EnvironmentModal>
+        <Modal open={isOpenModal} onClose={toggleIsOpenModal}>
+          <ModalWrapper>
+            <EnvironmentModal type='create' onClose={toggleIsOpenModal} />
+          </ModalWrapper>
         </Modal>
       )}
     </S.Wrapper>

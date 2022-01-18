@@ -1,6 +1,6 @@
-import { EPlatform } from '../lib/enum/platform';
+import { Platform } from '../lib/enum/platform';
 
-export interface IAccount {
+export interface Account {
   id: number;
   userId: string;
   password?: string;

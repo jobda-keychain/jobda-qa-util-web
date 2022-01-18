@@ -1,12 +1,16 @@
 import { TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
+import useCopy from '../../../hooks/useCopy';
 import { ModalButton } from '../../../style/Modal';
+import { Account } from '../../../types/account.types';
 import * as S from './style';
 
-const CopyModal = (): JSX.Element => {
-  const [format, setFormat] = useState('');
+interface CopyModalProps {
+  account: Account;
+}
 
-  const onChangeFormat = (e: React.ChangeEvent<HTMLInputElement>) => setFormat(e.target.value);
+const CopyModal: FC<CopyModalProps> = ({ account }) => {
+  const { format, onChangeFormat, copy } = useCopy(account);
 
   return (
     <S.CopyModal>
@@ -21,7 +25,7 @@ const CopyModal = (): JSX.Element => {
       <TextField label='환경' variant='filled' value={format} onChange={onChangeFormat} />
 
       <S.ButtonWrapper>
-        <ModalButton>복사</ModalButton>
+        <ModalButton onClick={copy}>복사</ModalButton>
       </S.ButtonWrapper>
     </S.CopyModal>
   );
