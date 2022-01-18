@@ -2,13 +2,13 @@ import { TextField } from '@mui/material';
 import { FC } from 'react';
 import useEnvironmentModal from '../../../hooks/useEnvironmentModal';
 import { ModalButton } from '../../../style/Modal';
-import { IEnvironment } from '../../../types/environment.types';
+import { Environment } from '../../../types/environment.types';
 import ServiceRadio from '../../EnvManagement/ServiceRadio/ServiceRadio';
 import * as S from './style';
 
 interface EnvironmentModalProps {
   type: 'create' | 'modify';
-  environmentValue?: IEnvironment;
+  environmentValue?: Environment;
   onClose: () => void;
 }
 

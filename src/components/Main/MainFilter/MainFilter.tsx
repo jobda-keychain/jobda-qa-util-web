@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import * as S from './style';
 import { deleteTag } from '../../../assets/Main';
-import { IEnvironmentFilter } from '../../../types/filter.types';
+import { EnvironmentFilter } from '../../../types/filter.types';
 import { TextField } from '@mui/material';
 
 const MainFilter = () => {
-  const [environments, setEnvironments] = useState<IEnvironmentFilter[]>([
+  const [environments, setEnvironments] = useState<EnvironmentFilter[]>([
     {
       id: 1,
       name: 'dv1',

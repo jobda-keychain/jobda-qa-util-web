@@ -1,25 +1,25 @@
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 import { useMemo } from 'react';
-import { EPlatform, EPlatformToNum } from '../../../lib/enum/platform';
+import { Platform, PlatformToNum } from '../../../lib/enum/platform';
 
 interface ServiceRadioProps {
   disabled: boolean;
-  platform: EPlatform;
+  platform: Platform;
   onChangePlatform: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const ServiceRadio = ({ disabled, platform, onChangePlatform }: ServiceRadioProps): JSX.Element => {
   const radioControls = useMemo(
     () =>
-      Object.values(EPlatformToNum)
+      Object.values(PlatformToNum)
         .map(value => Number(value))
         .filter(value => !isNaN(value))
         .map(value => (
           <FormControlLabel
             key={value}
             control={<Radio />}
-            value={EPlatformToNum[value]}
-            label={EPlatform[EPlatformToNum[value] as keyof typeof EPlatform]}
+            value={PlatformToNum[value]}
+            label={Platform[PlatformToNum[value] as keyof typeof Platform]}
           />
         )),
     [],

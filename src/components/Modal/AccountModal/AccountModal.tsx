@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import React, { FC, useRef, useState } from 'react';
 import * as S from './style';
-import { IEnvironmentFilter } from './../../../types/filter.types';
+import { EnvironmentFilter } from './../../../types/filter.types';
 
 type AccountModalType = 'add' | 'modify' | 'detail';
 
@@ -36,7 +36,7 @@ const getModalInfo = (type: AccountModalType) => {
 };
 
 const AccountModal: FC<Props> = ({ type }) => {
-  const [environments, setEnvironments] = useState<IEnvironmentFilter[]>([
+  const [environments, setEnvironments] = useState<EnvironmentFilter[]>([
     {
       id: 1,
       name: 'dv1',

@@ -6,11 +6,11 @@ import { ListWrapper, PaginationtWrapper, SectionWrapper } from '../../../style/
 import { setting } from '../../../assets/Main';
 import { MainFilter, PublicTab } from '../..';
 import AccountHeader from '../AccountList/AccountHeader';
-import { IAccount } from './../../../types/account.types';
+import { Account } from './../../../types/account.types';
 
 const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
-  const [accounts, setAccounts] = useState<IAccount[]>([]);
+  const [accounts, setAccounts] = useState<Account[]>([]);
 
   return (
     <SectionWrapper>

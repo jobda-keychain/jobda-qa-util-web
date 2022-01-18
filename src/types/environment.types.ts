@@ -1,9 +1,9 @@
-import { EPlatform } from '../lib/enum/platform';
+import { Platform } from '../lib/enum/platform';
 
-export interface IEnvironment {
+export interface Environment {
   id: number;
   name: string;
   serverDomain: string;
   clientDomain: string;
-  platform: EPlatform;
+  platform: Platform;
 }

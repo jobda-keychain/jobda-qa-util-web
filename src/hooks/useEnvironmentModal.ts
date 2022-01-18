@@ -1,16 +1,16 @@
 import { useCallback, useState } from 'react';
-import { EPlatform } from '../lib/enum/platform';
-import { IEnvironment } from '../types/environment.types';
+import { Platform } from '../lib/enum/platform';
+import { Environment } from '../types/environment.types';
 import { CreateEnvironment } from '../util/api/environment/environment.api';
 
-const useEnvironmentModal = (onClose: () => void, environmentValue?: IEnvironment) => {
+const useEnvironmentModal = (onClose: () => void, environmentValue?: Environment) => {
   const [environment, setEnvironment] = useState(
     environmentValue ?? {
       id: 0,
       name: '',
       serverDomain: '',
       clientDomain: '',
-      platform: EPlatform.JOBDA,
+      platform: Platform.JOBDA,
     },
   );
 
