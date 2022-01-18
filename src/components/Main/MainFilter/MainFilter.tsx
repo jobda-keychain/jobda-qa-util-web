@@ -13,9 +13,15 @@ interface MainFilterProps {
 
 const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => {
   const [environments, setEnvironments] = useState<IEnvironmentFilter[]>([]);
+  const [filterValue, setFilterValue] = useState<string>('');
+  // const [filterInputValue, setFilterInputValue] = useState('');
 
   const addFilter = (value: IEnvironmentFilter) => {
-    if (value && !filters.includes(value)) setFilters([...filters, value]);
+    if (value && !filters.includes(value)) {
+      setFilters([...filters, value]);
+      // setFilterInputValue('');
+      // setFilterValue('');
+    }
   };
 
   const resetFilter = () => {
@@ -25,6 +31,14 @@ const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => 
   const removeFilter = (id: number) => {
     setFilters(filters.filter(ele => ele.id !== id));
   };
+
+  const inputHandler = (e: React.SyntheticEvent, value: string) => {
+    setFilterValue(value);
+  };
+
+  // const inputChange = (e: React.SyntheticEvent, value: string) => {
+  //   setFilterInputValue(value);
+  // };
 
   const fetchFilterList = async () => {
     try {
@@ -48,6 +62,8 @@ const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => 
   };
 
   useEffect(() => {
+    resetFilter();
+    setFilterValue('');
     fetchFilterList();
   }, [tabNumber]);
 
@@ -55,9 +71,13 @@ const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => 
     <S.Wrapper>
       <S.FilterInput
         size='small'
+        value={filterValue}
         onChange={(event, value) => {
+          inputHandler(event, value as string);
           addFilter(value as IEnvironmentFilter);
         }}
+        // inputValue={filterInputValue}
+        // onInputChange={inputChange}
         disablePortal
         id='combo-box-demo'
         options={environments}
