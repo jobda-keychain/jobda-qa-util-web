@@ -6,3 +6,9 @@ export interface CreateEnvironmentRequest {
   clientDomain: string;
   platform: Platform;
 }
+
+export interface ModifyEnvironmentRequest {
+  name: string;
+  serverDomain: string;
+  clientDomain: string;
+}
