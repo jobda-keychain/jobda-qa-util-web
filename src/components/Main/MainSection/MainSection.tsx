@@ -10,7 +10,11 @@ import { IAccount } from './../../../types/account.types';
 
 const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [accounts, setAccounts] = useState<IAccount[]>([]);
+  const pageHandler = (event: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
+  };
 
   return (
     <SectionWrapper>
@@ -33,7 +37,7 @@ const MainSection = () => {
         ))}
       </ListWrapper>
       <PaginationtWrapper>
-        <StyledPagination count={pageCount} />
+        <StyledPagination page={currentPage} onChange={pageHandler} count={pageCount} />
       </PaginationtWrapper>
     </SectionWrapper>
   );
