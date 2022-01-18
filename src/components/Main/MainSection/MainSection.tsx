@@ -13,6 +13,7 @@ const MainSection = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [accounts, setAccounts] = useState<IAccount[]>([]);
   const [filters, setFilters] = useState<IEnvironmentFilter[]>([]);
+  const [tabNumber, setTabNumber] = useState<number>(0);
   const pageHandler = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
   };
@@ -20,7 +21,7 @@ const MainSection = () => {
   return (
     <SectionWrapper>
       <S.Header>
-        <PublicTab />
+        <PublicTab tabNumber={tabNumber} setTabNumber={setTabNumber} />
         <S.EnvBtn to='/env-management'>
           <img src={setting} alt='' />
           <span>환경 관리</span>

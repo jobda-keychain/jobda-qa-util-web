@@ -1,29 +1,15 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import * as S from './style';
 
 interface PublicTabProps {
-  updateTab: (tabName: string | null) => void;
+  tabNumber: number;
+  setTabNumber: (tabNumber: number) => void;
 }
 
-const PublicTab: FC<PublicTabProps> = ({ updateTab }) => {
-  const [tabNumber, setTabNumber] = useState(0);
-
+const PublicTab: FC<PublicTabProps> = ({ tabNumber, setTabNumber }) => {
   const tabHandler = (event: React.SyntheticEvent, value: number) => {
     setTabNumber(value);
   };
-
-  useEffect(() => {
-    switch (tabNumber) {
-      case 0:
-        updateTab(null);
-        break;
-      case 1:
-        updateTab('JOBDA');
-        break;
-      case 2:
-        updateTab('JOBDA_CMS');
-    }
-  }, [tabNumber]);
 
   return (
     <S.Wrapper value={tabNumber} onChange={tabHandler}>
