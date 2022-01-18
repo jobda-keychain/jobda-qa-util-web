@@ -1,13 +1,13 @@
 import { useCallback } from 'react';
 
 const useDeleteAccount = (id: number, onClose: () => void) => {
-  const deleteAccount = useCallback(async () => {
+  const onClickDeleteAccountButton = useCallback(async () => {
     try {
       onClose();
     } catch (error: any) {}
   }, [id, onClose]);
 
-  return { deleteAccount };
+  return { onClickDeleteAccountButton };
 };
 
 export default useDeleteAccount;
