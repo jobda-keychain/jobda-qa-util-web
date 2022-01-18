@@ -6,3 +6,9 @@ export const CreateEnvironment = async (dto: CreateEnvironmentRequest): Promise<
   const { status } = await instance.post(url, dto);
   return status === 201;
 };
+
+export const DeleteEnvironment = async (id: number): Promise<boolean> => {
+  const url: string = `environments/${id}`;
+  const { status } = await instance.delete(url);
+  return status === 204;
+};
