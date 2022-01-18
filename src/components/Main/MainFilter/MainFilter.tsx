@@ -49,7 +49,7 @@ const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => 
 
   useEffect(() => {
     fetchFilterList();
-  }, []);
+  }, [tabNumber]);
 
   return (
     <S.Wrapper>
