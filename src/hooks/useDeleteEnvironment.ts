@@ -1,13 +1,7 @@
 import { useCallback } from 'react';
 import { DeleteEnvironment } from '../util/api/environment/environment.api';
 
-const useDelete = (id: number, onClose: () => void) => {
-  const deleteAccount = useCallback(async () => {
-    try {
-      onClose();
-    } catch (error: any) {}
-  }, [id, onClose]);
-
+const useDeleteEnvironment = (id: number, onClose: () => void) => {
   const deleteEnvironment = useCallback(async () => {
     try {
       await DeleteEnvironment(id);
@@ -15,7 +9,7 @@ const useDelete = (id: number, onClose: () => void) => {
     } catch (error: any) {}
   }, [id, onClose]);
 
-  return { deleteAccount, deleteEnvironment };
+  return { deleteEnvironment };
 };
 
-export default useDelete;
+export default useDeleteEnvironment;

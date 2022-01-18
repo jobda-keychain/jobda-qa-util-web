@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import React, { FC } from 'react';
-import useDelete from '../../../hooks/useDelete';
+import useDeleteAccount from '../../../hooks/useDeleteAccount';
+import useDeleteEnvironment from '../../../hooks/useDeleteEnvironment';
 import { DeleteModalType } from '../../../types/modal.types';
 import * as S from './style';
 
@@ -11,7 +12,8 @@ interface DeleteModalProps {
 }
 
 const DeleteModal: FC<DeleteModalProps> = ({ id, type, onClose }) => {
-  const { deleteAccount, deleteEnvironment } = useDelete(id, onClose);
+  const { deleteEnvironment } = useDeleteEnvironment(id, onClose);
+  const { deleteAccount } = useDeleteAccount(id, onClose);
 
   const onClick = type === 'account' ? deleteAccount : deleteEnvironment;
 
