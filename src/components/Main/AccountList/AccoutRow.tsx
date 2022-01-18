@@ -4,33 +4,17 @@ import { Account } from '../../../types/account.types';
 import { Row, RowButton } from '../../../style/Row';
 import { PlatformLabel, EnvironmentLabel } from '../../../style/Labels';
 import * as S from './style';
-import { FC, useState } from 'react';
-import { Modal } from '@mui/material';
-import AccountModal from '../../Modal/AccountModal/AccountModal';
-import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
+import { FC } from 'react';
+import { AccountModalType } from '../../../types/modal.types';
 
 interface AccountRowProps {
   account: Account;
+  setModalType: (modalType: AccountModalType) => void;
+  toggleIsOpenModal: () => void;
 }
 
-const AccountRow: FC<AccountRowProps> = ({ account }) => {
+const AccountRow: FC<AccountRowProps> = ({ account, setModalType, toggleIsOpenModal }) => {
   const { environment, platform, userId } = account;
-
-  const [isOpenDetailModal, setIsOpenDetailModal] = useState(false);
-  const [isOpenModifyModal, setIsOpenModifyModal] = useState(false);
-  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-
-  const toggleIsOpenDetailModal = () => {
-    setIsOpenDetailModal(!isOpenDetailModal);
-  };
-
-  const toggleIsOpenModifyModal = () => {
-    setIsOpenModifyModal(!isOpenModifyModal);
-  };
-
-  const toggleIsOpenDeleteModal = () => {
-    setIsOpenDeleteModal(!isOpenDeleteModal);
-  };
 
   return (
     <Row>
@@ -40,36 +24,45 @@ const AccountRow: FC<AccountRowProps> = ({ account }) => {
       <S.PlatformWrapper type='row'>
         <PlatformLabel type={platform}>{platform}</PlatformLabel>
       </S.PlatformWrapper>
-      <S.UserIdWrapper type='row' onClick={toggleIsOpenDetailModal}>
+      <S.UserIdWrapper
+        type='row'
+        onClick={() => {
+          setModalType('detail');
+          toggleIsOpenModal();
+        }}
+      >
         {userId}
       </S.UserIdWrapper>
 
       <S.ButtonWrapper>
-        <RowButton onClick={toggleIsOpenModifyModal}>
+        <RowButton
+          onClick={() => {
+            setModalType('modify');
+            toggleIsOpenModal();
+          }}
+        >
           <FaPen />
         </RowButton>
-        <RowButton onClick={toggleIsOpenDeleteModal}>
+        <RowButton
+          onClick={() => {
+            setModalType('delete');
+            toggleIsOpenModal();
+          }}
+        >
           <FaTrash />
         </RowButton>
         <RowButton>
           <IoArrowRedo />
         </RowButton>
         <RowButton>
-          <FaClipboard />
+          <FaClipboard
+            onClick={() => {
+              setModalType('copy');
+              toggleIsOpenModal();
+            }}
+          />
         </RowButton>
       </S.ButtonWrapper>
-
-      <Modal open={isOpenDetailModal} onClose={toggleIsOpenDetailModal}>
-        <AccountModal type='detail'></AccountModal>
-      </Modal>
-
-      <Modal open={isOpenModifyModal} onClose={toggleIsOpenModifyModal}>
-        <AccountModal type='modify'></AccountModal>
-      </Modal>
-
-      <Modal open={isOpenDeleteModal} onClose={toggleIsOpenDeleteModal}>
-        <DeleteModal></DeleteModal>
-      </Modal>
     </Row>
   );
 };
