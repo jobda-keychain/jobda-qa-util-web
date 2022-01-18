@@ -5,26 +5,32 @@ import StyledPagination from '../../Public/PaginationButton/PaginationButton';
 import { ListWrapper, PaginationtWrapper, SectionWrapper } from '../../../style/Section';
 import EnvironmentRow from '../EnvironmentList/EnvironmentRow';
 import EnvironmentHeader from '../EnvironmentList/EnvironmentHeader';
-import useEnvironmentList from '../../../hooks/useEnvironmentList';
 import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import { useState } from 'react';
 import useModal from '../../../hooks/useModal';
 import { EnvironmentModalType } from '../../../types/modal.types';
 import { ModalWrapper } from '../../../style/Modal';
+import { Environment } from '../../../types/environment.types';
 
 const EnvSection = () => {
-  const { pageCount, environments } = useEnvironmentList();
-  const { isOpenModal, toggleIsOpenModal } = useModal();
+  const [pageCount, setPageCount] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [environments, setEnvironments] = useState<Environment[]>([]);
+  const [tabNumber, setTabNumber] = useState<number>(0);
 
+  const pageHandler = (event: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
+  };
+
+  const { isOpenModal, toggleIsOpenModal } = useModal();
   const [modalType, setModalType] = useState<EnvironmentModalType>('modify');
 
   return (
     <SectionWrapper>
       <S.TabBox>
-        <PublicTab />
+        <PublicTab tabNumber={tabNumber} setTabNumber={setTabNumber} />
       </S.TabBox>
-
       <ListWrapper>
         <EnvironmentHeader />
         <hr />
@@ -56,9 +62,8 @@ const EnvSection = () => {
           </div>
         ))}
       </ListWrapper>
-
       <PaginationtWrapper>
-        <StyledPagination count={pageCount} />
+        <StyledPagination page={currentPage} onChange={pageHandler} count={pageCount} />
       </PaginationtWrapper>
     </SectionWrapper>
   );

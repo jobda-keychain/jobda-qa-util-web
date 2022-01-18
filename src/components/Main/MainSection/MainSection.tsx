@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as S from './style';
 import AccountRow from '../AccountList/AccoutRow';
 import StyledPagination from '../../Public/PaginationButton/PaginationButton';
@@ -15,6 +15,8 @@ import AccountModal from '../../Modal/AccountModal/AccountModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import CopyModal from '../../Modal/CopyModal/CopyModal';
 import { ModalWrapper } from '../../../style/Modal';
+import { getAccountList } from './../../../util/api/AccountList/index';
+import { EnvironmentFilter } from './../../../types/filter.types';
 
 const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
@@ -28,20 +30,55 @@ const MainSection = () => {
       description: 'string',
     },
   ]);
-  const { isOpenModal, toggleIsOpenModal } = useModal();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filters, setFilters] = useState<EnvironmentFilter[]>([]);
+  const [tabNumber, setTabNumber] = useState<number>(0);
 
+  const { isOpenModal, toggleIsOpenModal } = useModal();
   const [modalType, setModalType] = useState<AccountModalType>('modify');
+
+  const getAccounts = async () => {
+    try {
+      let platform;
+      switch (tabNumber) {
+        case 0:
+          platform = null;
+          break;
+        case 1:
+          platform = 'JOBDA';
+          break;
+        case 2:
+          platform = 'JOBDA_CMS';
+      }
+      const environment = filters.map(ele => ele.id).join(',');
+      const res = await getAccountList(currentPage - 1, platform, environment);
+      setAccounts(res.data.data);
+      setPageCount(res.data.totalPages);
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  const pageHandler = (event: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
+  };
+
+  useEffect(() => {
+    getAccounts();
+  }, [tabNumber, filters, currentPage]);
 
   return (
     <SectionWrapper>
       <S.Header>
-        <PublicTab />
+        <PublicTab tabNumber={tabNumber} setTabNumber={setTabNumber} />
         <S.EnvBtn to='/env-management'>
           <img src={setting} alt='' />
           <span>환경 관리</span>
         </S.EnvBtn>
       </S.Header>
-      <MainFilter />
+      {tabNumber !== 0 && (
+        <MainFilter filters={filters} setFilters={setFilters} tabNumber={tabNumber} />
+      )}
       <ListWrapper>
         <AccountHeader />
         <hr />
@@ -57,7 +94,7 @@ const MainSection = () => {
 
             <Modal open={modalType === 'detail' && isOpenModal} onClose={toggleIsOpenModal}>
               <ModalWrapper>
-                <AccountModal type='detail'></AccountModal>
+                <AccountModal type='detail' onClose={toggleIsOpenModal}></AccountModal>
               </ModalWrapper>
             </Modal>
 
@@ -82,7 +119,7 @@ const MainSection = () => {
         ))}
       </ListWrapper>
       <PaginationtWrapper>
-        <StyledPagination count={pageCount} />
+        <StyledPagination page={currentPage} onChange={pageHandler} count={pageCount} />
       </PaginationtWrapper>
     </SectionWrapper>
   );

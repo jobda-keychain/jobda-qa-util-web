@@ -15,7 +15,7 @@ export const ModalContainer = styled(Modal)`
     padding: 10px;
     border: none;
     border-radius: 10px;
-    background-color: #f0f0f0;
+    background-color: #e9eaed;
     font-size: 16px;
     resize: none;
     outline: none;
