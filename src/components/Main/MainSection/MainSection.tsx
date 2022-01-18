@@ -27,8 +27,9 @@ const MainSection = () => {
           <span>환경 관리</span>
         </S.EnvBtn>
       </S.Header>
-      <MainFilter />
+      {tabNumber !== 0 && (
         <MainFilter filters={filters} setFilters={setFilters} tabNumber={tabNumber} />
+      )}
       <ListWrapper>
         <AccountHeader />
         <hr />
