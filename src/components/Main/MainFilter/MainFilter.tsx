@@ -13,12 +13,12 @@ interface MainFilterProps {
 
 const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => {
   const [environments, setEnvironments] = useState<EnvironmentFilter[]>([]);
-  const [filterValue, setFilterValue] = useState<string>('');
+  const [filterValue, setFilterValue] = useState<string | null>(null);
   const [filterInputValue, setFilterInputValue] = useState('');
 
   const addFilter = (value: EnvironmentFilter) => {
+    setFilterValue(null);
     setFilterInputValue('');
-    setFilterValue('');
     if (value && !filters.includes(value)) {
       setFilters([...filters, value]);
     }
@@ -63,7 +63,7 @@ const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => 
 
   useEffect(() => {
     resetFilter();
-    setFilterValue('');
+    setFilterValue(null);
     fetchFilterList();
   }, [tabNumber]);
 
