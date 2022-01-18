@@ -1,4 +1,4 @@
-export interface IEnvironmentFilter {
+export interface EnvironmentFilter {
   id: number;
   name: string;
 }
