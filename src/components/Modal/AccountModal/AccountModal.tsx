@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import React, { FC, useRef, useState } from 'react';
+import React, { FC, useState } from 'react';
 import * as S from './style';
 import { IEnvironmentFilter } from './../../../types/filter.types';
 
@@ -7,6 +7,7 @@ type AccountModalType = 'add' | 'modify' | 'detail';
 
 interface Props {
   type: AccountModalType;
+  onClose?: () => void;
 }
 
 const getModalInfo = (type: AccountModalType) => {
@@ -35,7 +36,18 @@ const getModalInfo = (type: AccountModalType) => {
   }
 };
 
-const AccountModal: FC<Props> = ({ type }) => {
+const onClickHandler = (type: AccountModalType, onClose: () => void) => {
+  switch (type) {
+    case 'add':
+      break;
+    case 'modify':
+      break;
+    case 'detail':
+      onClose();
+  }
+};
+
+const AccountModal: FC<Props> = ({ type, onClose }) => {
   const [environments, setEnvironments] = useState<IEnvironmentFilter[]>([
     {
       id: 1,
@@ -55,7 +67,7 @@ const AccountModal: FC<Props> = ({ type }) => {
         size='small'
         disablePortal
         id='combo-box-demo'
-        options={environments.map(ele => ele.name)}
+        options={environments}
         disabled={!isAdd}
         renderInput={params => <TextField {...params} label='환경' variant='filled' />}
       />
@@ -65,7 +77,7 @@ const AccountModal: FC<Props> = ({ type }) => {
       </S.AuthInputsContainer>
       <textarea placeholder='상세 설명' disabled={isDetail} />
       <S.ButtonContainer>
-        <button>{buttonText}</button>
+        <button onClick={() => onClickHandler(type, () => onClose)}>{buttonText}</button>
       </S.ButtonContainer>
     </S.ModalContainer>
   );
