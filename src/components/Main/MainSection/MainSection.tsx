@@ -12,6 +12,7 @@ const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [accounts, setAccounts] = useState<IAccount[]>([]);
+  const [filters, setFilters] = useState<IEnvironmentFilter[]>([]);
   const pageHandler = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
   };
@@ -26,6 +27,7 @@ const MainSection = () => {
         </S.EnvBtn>
       </S.Header>
       <MainFilter />
+        <MainFilter filters={filters} setFilters={setFilters} tabNumber={tabNumber} />
       <ListWrapper>
         <AccountHeader />
         <hr />

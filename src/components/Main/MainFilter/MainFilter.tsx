@@ -4,11 +4,11 @@ import { deleteTag } from '../../../assets/Main';
 import { IEnvironmentFilter } from '../../../types/filter.types';
 import { TextField } from '@mui/material';
 
-const MainFilter = () => {
-  const [environments, setEnvironments] = useState<IEnvironmentFilter[]>([
-    {
-      id: 1,
-      name: 'dv1',
+interface MainFilterProps {
+  filters: IEnvironmentFilter[];
+  setFilters: (filters: IEnvironmentFilter[]) => void;
+  tabNumber: number;
+}
     },
     {
       id: 2,
@@ -16,9 +16,9 @@ const MainFilter = () => {
     },
   ]);
 
-  const [filters, setFilters] = useState<string[]>([]);
+const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => {
 
-  const addFilter = (value: string) => {
+  const addFilter = (value: IEnvironmentFilter) => {
     if (value && !filters.includes(value)) setFilters([...filters, value]);
   };
 
@@ -26,27 +26,27 @@ const MainFilter = () => {
     setFilters([]);
   };
 
-  const removeFilter = (name: string) => {
-    setFilters(filters.filter(ele => ele !== name));
+  const removeFilter = (id: number) => {
+    setFilters(filters.filter(ele => ele.id !== id));
   };
   return (
     <S.Wrapper>
       <S.FilterInput
         size='small'
         onChange={(event, value) => {
-          addFilter(value as string);
+          addFilter(value as IEnvironmentFilter);
         }}
         disablePortal
         id='combo-box-demo'
-        options={environments.map(ele => ele.name)}
+        options={environments}
         renderInput={params => <TextField {...params} label='필터 추가' />}
       />
       <S.ResetBtn onClick={resetFilter}>필터 초기화</S.ResetBtn>
       <S.FiltersBox>
         {filters.map(ele => {
           return (
-            <div key={ele} onClick={() => removeFilter(ele)}>
-              <span>{ele}</span>
+            <div key={ele.id} onClick={() => removeFilter(ele.id)}>
+              <span>{ele.label}</span>
               <img src={deleteTag} alt='' />
             </div>
           );
