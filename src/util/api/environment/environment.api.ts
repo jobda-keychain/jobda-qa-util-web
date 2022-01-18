@@ -1,13 +1,13 @@
 import instance from '../Default';
 import { CreateEnvironmentRequest, ModifyEnvironmentRequest } from './environment.request';
 
-export const CreateEnvironment = async (request: CreateEnvironmentRequest): Promise<boolean> => {
+export const createEnvironment = async (request: CreateEnvironmentRequest): Promise<boolean> => {
   const url: string = `environments`;
   const { status } = await instance.post(url, request);
   return status === 201;
 };
 
-export const ModifyEnvironment = async (
+export const modifyEnvironment = async (
   id: number,
   request: ModifyEnvironmentRequest,
 ): Promise<boolean> => {

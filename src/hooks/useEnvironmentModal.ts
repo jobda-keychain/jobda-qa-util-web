@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Platform } from '../lib/enum/platform';
 import { Environment } from '../types/environment.types';
-import { CreateEnvironment, ModifyEnvironment } from '../util/api/environment/environment.api';
+import { createEnvironment, modifyEnvironment } from '../util/api/environment/environment.api';
 
 const useEnvironmentModal = (onClose: () => void, environmentValue?: Environment) => {
   const [environment, setEnvironment] = useState(
@@ -22,7 +22,7 @@ const useEnvironmentModal = (onClose: () => void, environmentValue?: Environment
 
   const onClickCreateEnvironment = useCallback(async () => {
     try {
-      await CreateEnvironment(environment);
+      await createEnvironment(environment);
       onClose();
     } catch (error: any) {
       // 실패
@@ -31,7 +31,7 @@ const useEnvironmentModal = (onClose: () => void, environmentValue?: Environment
 
   const onClickModifyEnvironment = useCallback(async () => {
     try {
-      await ModifyEnvironment(environment.id, environment);
+      await modifyEnvironment(environment.id, environment);
       onClose();
     } catch (error: any) {
       // 실패
