@@ -17,7 +17,7 @@ interface PaginationButtonProps {
   page: number;
 }
 
-export default function StyledPagination({ count, page }: PaginationButtonProps) {
+export default function StyledPagination({ count, page, onChange }: PaginationButtonProps) {
   const classes = useStyles();
-  return <Pagination classes={{ ul: classes.ul }} count={count} page={page} />;
+  return <Pagination classes={{ ul: classes.ul }} count={count} page={page} onChange={onChange} />;
 }

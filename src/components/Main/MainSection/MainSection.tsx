@@ -45,7 +45,7 @@ const MainSection = () => {
 
   useEffect(() => {
     getAccounts();
-  }, [tabNumber, filters]);
+  }, [tabNumber, filters, currentPage]);
 
   return (
     <SectionWrapper>
