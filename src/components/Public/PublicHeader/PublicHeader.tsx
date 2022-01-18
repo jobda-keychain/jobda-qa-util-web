@@ -2,6 +2,7 @@ import Modal from '@mui/material/Modal';
 import { useLocation } from 'react-router-dom';
 import { logo } from '../../../assets/Main';
 import useHeader from '../../../hooks/useHeader';
+import { ModalWrapper } from '../../../style/Modal';
 import AccountModal from '../../Modal/AccountModal/AccountModal';
 import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
 import * as S from './style';
@@ -25,11 +26,15 @@ const PublicHeader = () => {
 
       {isMainPage ? (
         <Modal open={isOpenModal} onClose={toggleIsOpenModal}>
-          <AccountModal type='add' />
+          <ModalWrapper>
+            <AccountModal type='add' />
+          </ModalWrapper>
         </Modal>
       ) : (
         <Modal open={isOpenModal} onClose={toggleIsOpenModal}>
-          <EnvironmentModal type='create' onClose={toggleIsOpenModal} />
+          <ModalWrapper>
+            <EnvironmentModal type='create' onClose={toggleIsOpenModal} />
+          </ModalWrapper>
         </Modal>
       )}
     </S.Wrapper>

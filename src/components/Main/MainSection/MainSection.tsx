@@ -14,6 +14,7 @@ import { Modal } from '@mui/material';
 import AccountModal from '../../Modal/AccountModal/AccountModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import CopyModal from '../../Modal/CopyModal/CopyModal';
+import { ModalWrapper } from '../../../style/Modal';
 
 const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
@@ -55,19 +56,27 @@ const MainSection = () => {
             <hr />
 
             <Modal open={modalType === 'detail' && isOpenModal} onClose={toggleIsOpenModal}>
-              <AccountModal type='detail'></AccountModal>
+              <ModalWrapper>
+                <AccountModal type='detail'></AccountModal>
+              </ModalWrapper>
             </Modal>
 
             <Modal open={modalType === 'modify' && isOpenModal} onClose={toggleIsOpenModal}>
-              <AccountModal type='modify'></AccountModal>
+              <ModalWrapper>
+                <AccountModal type='modify'></AccountModal>
+              </ModalWrapper>
             </Modal>
 
             <Modal open={modalType === 'delete' && isOpenModal} onClose={toggleIsOpenModal}>
-              <DeleteModal id={account.id} type='account' onClose={toggleIsOpenModal}></DeleteModal>
+              <ModalWrapper>
+                <DeleteModal id={account.id} type='account' onClose={toggleIsOpenModal} />
+              </ModalWrapper>
             </Modal>
 
             <Modal open={modalType === 'copy' && isOpenModal} onClose={toggleIsOpenModal}>
-              <CopyModal account={account}></CopyModal>
+              <ModalWrapper>
+                <CopyModal account={account}></CopyModal>
+              </ModalWrapper>
             </Modal>
           </div>
         ))}

@@ -11,6 +11,7 @@ import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import { useState } from 'react';
 import useModal from '../../../hooks/useModal';
 import { EnvironmentModalType } from '../../../types/modal.types';
+import { ModalWrapper } from '../../../style/Modal';
 
 const EnvSection = () => {
   const { pageCount, environments } = useEnvironmentList();
@@ -38,15 +39,19 @@ const EnvSection = () => {
             <hr />
 
             <Modal open={modalType === 'modify' && isOpenModal} onClose={toggleIsOpenModal}>
-              <EnvironmentModal
-                type='modify'
-                environmentValue={environment}
-                onClose={toggleIsOpenModal}
-              />
+              <ModalWrapper>
+                <EnvironmentModal
+                  type='modify'
+                  environmentValue={environment}
+                  onClose={toggleIsOpenModal}
+                />
+              </ModalWrapper>
             </Modal>
 
             <Modal open={modalType === 'delete' && isOpenModal} onClose={toggleIsOpenModal}>
-              <DeleteModal type='environment' id={environment.id} onClose={toggleIsOpenModal} />
+              <ModalWrapper>
+                <DeleteModal type='environment' id={environment.id} onClose={toggleIsOpenModal} />
+              </ModalWrapper>
             </Modal>
           </div>
         ))}
