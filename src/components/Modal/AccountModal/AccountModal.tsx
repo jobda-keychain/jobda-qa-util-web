@@ -39,11 +39,11 @@ const AccountModal: FC<Props> = ({ type }) => {
   const [environments, setEnvironments] = useState<IEnvironmentFilter[]>([
     {
       id: 1,
-      name: 'dv1',
+      label: 'dv1',
     },
     {
       id: 2,
-      name: 'st1',
+      label: 'st1',
     },
   ]);
   const { title, buttonText, isAdd, isDetail } = getModalInfo(type);
