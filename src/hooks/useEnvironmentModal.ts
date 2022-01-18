@@ -14,14 +14,11 @@ const useEnvironmentModal = (onClose: () => void, environmentValue?: Environment
     },
   );
 
-  const onChangeEnvironment = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) =>
-      setEnvironment({
-        ...environment,
-        [e.target.name]: e.target.value,
-      }),
-    [environment],
-  );
+  const onChangeEnvironment = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setEnvironment({
+      ...environment,
+      [e.target.name]: e.target.value,
+    });
 
   const onClickCreateEnvironment = useCallback(async () => {
     try {
