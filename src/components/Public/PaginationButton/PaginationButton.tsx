@@ -13,9 +13,11 @@ const useStyles = makeStyles(() => ({
 
 interface PaginationButtonProps {
   count: number;
+  onChange: (event: React.ChangeEvent<unknown>, value: number) => void;
+  page: number;
 }
 
-export default function StyledPagination({ count }: PaginationButtonProps) {
+export default function StyledPagination({ count, page }: PaginationButtonProps) {
   const classes = useStyles();
-  return <Pagination classes={{ ul: classes.ul }} count={count} />;
+  return <Pagination classes={{ ul: classes.ul }} count={count} page={page} />;
 }
