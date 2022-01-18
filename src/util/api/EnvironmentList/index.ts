@@ -1,10 +1,10 @@
-import { EPlatform } from '../../../lib/enum/platform';
+import { Platform } from '../../../lib/enum/platform';
 import instance from './../Default/index';
 
 interface EnvironmentItemResponse {
   id: number;
   name: string;
-  platform: EPlatform;
+  platform: Platform;
 }
 
 interface EnvironmentListResponse {

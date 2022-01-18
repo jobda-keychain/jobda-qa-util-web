@@ -4,7 +4,7 @@ export interface Account {
   id: number;
   userId: string;
   password?: string;
-  platform: EPlatform;
+  platform: Platform;
   environment: string;
   description: string;
 }

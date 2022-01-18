@@ -1,8 +1,8 @@
 import instance from './../Default/index';
-import { IAccount } from './../../../types/account.types';
+import { Account } from './../../../types/account.types';
 
 interface AccountListResponse {
-  data: IAccount[];
+  data: Account[];
   totalPages: number;
 }
 

@@ -33,7 +33,7 @@ const MainSection = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState<EnvironmentFilter[]>([]);
   const [tabNumber, setTabNumber] = useState<number>(0);
-  
+
   const { isOpenModal, toggleIsOpenModal } = useModal();
   const [modalType, setModalType] = useState<AccountModalType>('modify');
 
@@ -87,7 +87,7 @@ const MainSection = () => {
             <AccountRow
               account={account}
               setModalType={setModalType}
-              toggsOpenModal={toggleIsOpenModal}
+              toggleIsOpenModal={toggleIsOpenModal}
             />
 
             <hr />
