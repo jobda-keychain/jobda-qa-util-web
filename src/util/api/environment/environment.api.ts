@@ -13,9 +13,10 @@ export const modifyEnvironment = async (
 ): Promise<boolean> => {
   const url: string = `environments/${id}`;
   const { status } = await instance.put(url, request);
+  return status === 204;
 };
-  
-export const DeleteEnvironment = async (id: number): Promise<boolean> => {
+
+export const deleteEnvironment = async (id: number): Promise<boolean> => {
   const url: string = `environments/${id}`;
   const { status } = await instance.delete(url);
   return status === 204;

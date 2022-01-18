@@ -12,10 +12,10 @@ interface DeleteModalProps {
 }
 
 const DeleteModal: FC<DeleteModalProps> = ({ id, type, onClose }) => {
-  const { deleteEnvironment } = useDeleteEnvironment(id, onClose);
-  const { deleteAccount } = useDeleteAccount(id, onClose);
+  const { onClickDeleteAccountButton } = useDeleteAccount(id, onClose);
+  const { onClickDeleteEnvironmentButton } = useDeleteEnvironment(id, onClose);
 
-  const onClick = type === 'account' ? deleteAccount : deleteEnvironment;
+  const onClick = type === 'account' ? onClickDeleteAccountButton : onClickDeleteEnvironmentButton;
 
   return (
     <S.ModalContainer>

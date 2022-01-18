@@ -63,7 +63,7 @@ const MainSection = () => {
             </Modal>
 
             <Modal open={modalType === 'delete' && isOpenModal} onClose={toggleIsOpenModal}>
-              <DeleteModal></DeleteModal>
+              <DeleteModal id={account.id} type='account' onClose={toggleIsOpenModal}></DeleteModal>
             </Modal>
 
             <Modal open={modalType === 'copy' && isOpenModal} onClose={toggleIsOpenModal}>
