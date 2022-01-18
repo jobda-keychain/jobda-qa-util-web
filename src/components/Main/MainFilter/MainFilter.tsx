@@ -9,14 +9,9 @@ interface MainFilterProps {
   setFilters: (filters: IEnvironmentFilter[]) => void;
   tabNumber: number;
 }
-    },
-    {
-      id: 2,
-      name: 'st1',
-    },
-  ]);
 
 const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => {
+  const [environments, setEnvironments] = useState<IEnvironmentFilter[]>([]);
 
   const addFilter = (value: IEnvironmentFilter) => {
     if (value && !filters.includes(value)) setFilters([...filters, value]);
