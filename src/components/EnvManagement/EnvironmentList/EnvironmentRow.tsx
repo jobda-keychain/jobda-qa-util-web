@@ -4,10 +4,11 @@ import { Environment } from '../../../types/environment.types';
 import { Row, RowButton } from '../../../style/Row';
 import * as S from './style';
 import { FC } from 'react';
+import { EnvironmentModalType } from '../../../types/modal.types';
 
 interface EnvironmentRowProps {
   environment: Environment;
-  setModalType: (modalType: 'modify' | 'delete') => void;
+  setModalType: (modalType: EnvironmentModalType) => void;
   toggleIsOpenModal: () => void;
 }
 

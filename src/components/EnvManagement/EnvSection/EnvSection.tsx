@@ -15,7 +15,7 @@ const EnvSection = () => {
   const { pageCount, environments } = useEnvironmentList();
   const { isOpenModal, toggleIsOpenModal } = useModal();
 
-  const [modalType, setModalType] = useState<'modify' | 'delete'>('modify');
+  const [modalType, setModalType] = useState<EnvironmentModalType>('modify');
 
   return (
     <SectionWrapper>
