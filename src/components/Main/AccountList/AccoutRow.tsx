@@ -15,7 +15,6 @@ interface AccountRowProps {
 
 const AccountRow: FC<AccountRowProps> = ({ account }) => {
   const { environment, platform, userId } = account;
-
   const [isOpenDetailModal, setIsOpenDetailModal] = useState(false);
   const [isOpenModifyModal, setIsOpenModifyModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -43,7 +42,6 @@ const AccountRow: FC<AccountRowProps> = ({ account }) => {
       <S.UserIdWrapper type='row' onClick={toggleIsOpenDetailModal}>
         {userId}
       </S.UserIdWrapper>
-
       <S.ButtonWrapper>
         <RowButton onClick={toggleIsOpenModifyModal}>
           <FaPen />
@@ -58,17 +56,14 @@ const AccountRow: FC<AccountRowProps> = ({ account }) => {
           <FaClipboard />
         </RowButton>
       </S.ButtonWrapper>
-
       <Modal open={isOpenDetailModal} onClose={toggleIsOpenDetailModal}>
-        <AccountModal type='detail'></AccountModal>
+        <AccountModal type='detail' onClose={toggleIsOpenDetailModal} />
       </Modal>
-
       <Modal open={isOpenModifyModal} onClose={toggleIsOpenModifyModal}>
-        <AccountModal type='modify'></AccountModal>
+        <AccountModal type='modify' />
       </Modal>
-
       <Modal open={isOpenDeleteModal} onClose={toggleIsOpenDeleteModal}>
-        <DeleteModal></DeleteModal>
+        <DeleteModal />
       </Modal>
     </Row>
   );
