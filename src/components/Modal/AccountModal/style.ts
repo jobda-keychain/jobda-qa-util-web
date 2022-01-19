@@ -4,12 +4,15 @@ import { Modal } from '../../../style/Modal';
 export const ModalContainer = styled(Modal)`
   width: 800px;
   height: 600px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 40px;
 
-  > textarea {
+  > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  textarea {
     width: 100%;
     height: 200px;
     padding: 10px;
@@ -21,8 +24,8 @@ export const ModalContainer = styled(Modal)`
     outline: none;
   }
 
-  > textarea:disabled {
-    background-color: #e0e0e0;
+  textarea:disabled {
+    background-color: #dadbdd;
   }
 `;
 
