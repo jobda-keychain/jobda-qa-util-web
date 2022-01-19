@@ -36,7 +36,7 @@ const useEnvironmentModal = (onClose: () => void, environmentValue?: Environment
     } catch (error: any) {
       // 실패
     }
-  }, [onClose]);
+  }, [environment, onClose]);
 
   return { environment, onChangeEnvironment, onClickCreateEnvironment, onClickModifyEnvironment };
 };

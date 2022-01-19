@@ -20,16 +20,7 @@ import { EnvironmentFilter } from './../../../types/filter.types';
 
 const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
-  const [accounts, setAccounts] = useState<Account[]>([
-    {
-      id: 0,
-      userId: 'string',
-      password: 'string',
-      platform: Platform.JOBDA,
-      environment: 'string',
-      description: 'string',
-    },
-  ]);
+  const [accounts, setAccounts] = useState<Account[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState<EnvironmentFilter[]>([]);
   const [tabNumber, setTabNumber] = useState<number>(0);
