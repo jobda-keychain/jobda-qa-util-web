@@ -15,6 +15,7 @@ import AccountModal from '../../Modal/AccountModal/AccountModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import CopyModal from '../../Modal/CopyModal/CopyModal';
 import { ModalWrapper } from '../../../style/Modal';
+import useAutoLogin from '../../../hooks/useAutoLogin';
 
 const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
@@ -28,8 +29,10 @@ const MainSection = () => {
       description: 'string',
     },
   ]);
-  const { isOpenModal, toggleIsOpenModal } = useModal();
 
+  const { autoLogin } = useAutoLogin();
+
+  const { isOpenModal, toggleIsOpenModal } = useModal();
   const [modalType, setModalType] = useState<AccountModalType>('modify');
 
   return (
@@ -51,6 +54,7 @@ const MainSection = () => {
               account={account}
               setModalType={setModalType}
               toggleIsOpenModal={toggleIsOpenModal}
+              autoLogin={autoLogin}
             />
 
             <hr />

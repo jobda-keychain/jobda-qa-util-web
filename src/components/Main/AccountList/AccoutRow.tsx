@@ -11,10 +11,16 @@ interface AccountRowProps {
   account: Account;
   setModalType: (modalType: AccountModalType) => void;
   toggleIsOpenModal: () => void;
+  autoLogin: (id: string, password?: string) => void;
 }
 
-const AccountRow: FC<AccountRowProps> = ({ account, setModalType, toggleIsOpenModal }) => {
-  const { environment, platform, userId } = account;
+const AccountRow: FC<AccountRowProps> = ({
+  account,
+  setModalType,
+  toggleIsOpenModal,
+  autoLogin,
+}) => {
+  const { password, environment, platform, userId } = account;
 
   return (
     <Row>
@@ -43,6 +49,7 @@ const AccountRow: FC<AccountRowProps> = ({ account, setModalType, toggleIsOpenMo
         >
           <FaPen />
         </RowButton>
+
         <RowButton
           onClick={() => {
             setModalType('delete');
@@ -51,16 +58,18 @@ const AccountRow: FC<AccountRowProps> = ({ account, setModalType, toggleIsOpenMo
         >
           <FaTrash />
         </RowButton>
-        <RowButton>
+
+        <RowButton onClick={() => autoLogin(userId, password)}>
           <IoArrowRedo />
         </RowButton>
-        <RowButton>
-          <FaClipboard
-            onClick={() => {
-              setModalType('copy');
-              toggleIsOpenModal();
-            }}
-          />
+
+        <RowButton
+          onClick={() => {
+            setModalType('copy');
+            toggleIsOpenModal();
+          }}
+        >
+          <FaClipboard />
         </RowButton>
       </S.ButtonWrapper>
     </Row>
