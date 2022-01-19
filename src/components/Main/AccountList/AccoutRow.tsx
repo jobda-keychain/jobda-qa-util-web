@@ -4,7 +4,7 @@ import { Account } from '../../../types/account.types';
 import { Row, RowButton } from '../../../style/Row';
 import { PlatformLabel, EnvironmentLabel } from '../../../style/Labels';
 import * as S from './style';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { AccountModalType } from '../../../types/modal.types';
 
 interface AccountRowProps {

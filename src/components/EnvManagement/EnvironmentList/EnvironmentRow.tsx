@@ -3,7 +3,7 @@ import { FaPen, FaTrash } from 'react-icons/fa';
 import { Environment } from '../../../types/environment.types';
 import { Row, RowButton } from '../../../style/Row';
 import * as S from './style';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { EnvironmentModalType } from '../../../types/modal.types';
 
 interface EnvironmentRowProps {

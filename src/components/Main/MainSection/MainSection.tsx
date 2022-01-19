@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './style';
 import AccountRow from '../AccountList/AccoutRow';
 import StyledPagination from '../../Public/PaginationButton/PaginationButton';

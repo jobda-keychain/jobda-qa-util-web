@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import useEnvironmentModal from '../../../hooks/useEnvironmentModal';
 import { ModalButton } from '../../../style/Modal';
 import { Environment } from '../../../types/environment.types';
