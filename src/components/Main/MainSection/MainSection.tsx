@@ -7,7 +7,6 @@ import { setting } from '../../../assets/Main';
 import { MainFilter, PublicTab } from '../..';
 import AccountHeader from '../AccountList/AccountHeader';
 import { Account } from './../../../types/account.types';
-import { Platform } from '../../../lib/enum/platform';
 import useModal from '../../../hooks/useModal';
 import { AccountModalType } from '../../../types/modal.types';
 import { Modal } from '@mui/material';
@@ -15,25 +14,15 @@ import AccountModal from '../../Modal/AccountModal/AccountModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import CopyModal from '../../Modal/CopyModal/CopyModal';
 import { ModalWrapper } from '../../../style/Modal';
-import { getAccountList } from './../../../util/api/AccountList/index';
 import { EnvironmentFilter } from './../../../types/filter.types';
+import { getAccountList } from './../../../util/api/Account/index';
 
 const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
-  const [accounts, setAccounts] = useState<Account[]>([
-    {
-      id: 0,
-      userId: 'string',
-      password: 'string',
-      platform: Platform.JOBDA,
-      environment: 'string',
-      description: 'string',
-    },
-  ]);
+  const [accounts, setAccounts] = useState<Account[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState<EnvironmentFilter[]>([]);
   const [tabNumber, setTabNumber] = useState<number>(0);
-
   const { isOpenModal, toggleIsOpenModal } = useModal();
   const [modalType, setModalType] = useState<AccountModalType>('modify');
 
@@ -94,25 +83,30 @@ const MainSection = () => {
 
             <Modal open={modalType === 'detail' && isOpenModal} onClose={toggleIsOpenModal}>
               <ModalWrapper>
-                <AccountModal type='detail' onClose={toggleIsOpenModal}></AccountModal>
+                <AccountModal id={account.id} type='detail' onClose={toggleIsOpenModal} />
               </ModalWrapper>
             </Modal>
 
             <Modal open={modalType === 'modify' && isOpenModal} onClose={toggleIsOpenModal}>
               <ModalWrapper>
-                <AccountModal type='modify'></AccountModal>
+                <AccountModal id={account.id} onClose={toggleIsOpenModal} type='modify' />
               </ModalWrapper>
             </Modal>
 
             <Modal open={modalType === 'delete' && isOpenModal} onClose={toggleIsOpenModal}>
               <ModalWrapper>
-                <DeleteModal id={account.id} type='account' onClose={toggleIsOpenModal} />
+                <DeleteModal
+                  getAccounts={getAccounts}
+                  id={account.id}
+                  type='account'
+                  onClose={toggleIsOpenModal}
+                />
               </ModalWrapper>
             </Modal>
 
             <Modal open={modalType === 'copy' && isOpenModal} onClose={toggleIsOpenModal}>
               <ModalWrapper>
-                <CopyModal account={account}></CopyModal>
+                <CopyModal account={account} />
               </ModalWrapper>
             </Modal>
           </div>
