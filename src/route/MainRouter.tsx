@@ -6,7 +6,7 @@ import NotFound from '../page/NotFound/NotFound';
 
 const MainRouter = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/'>
       <Routes>
         <Route path='*' element={<NotFound />} />
         <Route path='/' element={<Main />} />
