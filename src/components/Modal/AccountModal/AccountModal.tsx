@@ -200,6 +200,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
           onChange={onInputsChange}
           placeholder='상세 설명'
           disabled={isDetail}
+          maxLength={100}
         />
 
         {errorMessage && <Alert severity='error'>{errorMessage}</Alert>}
