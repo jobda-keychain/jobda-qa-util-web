@@ -1,12 +1,9 @@
 import { TextField, Alert } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
-import { EnvironmentFilter } from './../../../types/filter.types';
-import { getEnvironmentList } from './../../../util/api/EnvironmentList/index';
 import { EnvironmentOptionsType } from './../../../models/vo/index';
 import { addAccount, getDetail, getFilterList } from '../../../util/api/Account';
 import { modifyAccount } from './../../../util/api/Account/index';
-import { AxiosError } from 'axios';
 import handleAxiosError from '../../../util/api/handleAxiosError';
 
 type AccountModalType = 'add' | 'modify' | 'detail';
