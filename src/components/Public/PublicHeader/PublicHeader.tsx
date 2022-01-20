@@ -6,14 +6,20 @@ import { ModalWrapper } from '../../../style/Modal';
 import AccountModal from '../../Modal/AccountModal/AccountModal';
 import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
 import * as S from './style';
+import { useNavigate } from 'react-router-dom';
 
 const PublicHeader = () => {
   const { isMainPage, isOpenModal, toggleIsOpenModal } = useHeader();
+  const navigate = useNavigate();
+
+  const linkToMain = () => {
+    navigate('/');
+  };
 
   return (
     <S.Wrapper>
       <S.Title>
-        <S.Logo src={logo} alt='' />
+        <S.Logo onClick={linkToMain} src={logo} alt='' />
         {isMainPage || <span>환경관리</span>}
       </S.Title>
       <S.BtnWrapper>
