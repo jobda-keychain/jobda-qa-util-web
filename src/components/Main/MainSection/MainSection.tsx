@@ -14,9 +14,9 @@ import AccountModal from '../../Modal/AccountModal/AccountModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import CopyModal from '../../Modal/CopyModal/CopyModal';
 import { ModalWrapper } from '../../../style/Modal';
-import { EnvironmentFilter } from './../../../types/filter.types';
 import { getAccountList } from './../../../util/api/Account/index';
 import { Platform } from '../../../lib/enum/platform';
+import { EnvironmentOptionsType } from './../../../models/vo/index';
 
 const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
@@ -30,7 +30,7 @@ const MainSection = () => {
     description: '',
   });
   const [currentPage, setCurrentPage] = useState(1);
-  const [filters, setFilters] = useState<EnvironmentFilter[]>([]);
+  const [filters, setFilters] = useState<EnvironmentOptionsType[]>([]);
   const [tabNumber, setTabNumber] = useState<number>(0);
   const { isOpenModal, toggleIsOpenModal } = useModal();
   const [modalType, setModalType] = useState<AccountModalType>('modify');
