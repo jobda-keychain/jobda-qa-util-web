@@ -1,16 +1,16 @@
 import { TextField } from '@mui/material';
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import useCopy from '../../../hooks/useCopy';
 import { ModalButton } from '../../../style/Modal';
-import { Account } from '../../../types/account.types';
 import * as S from './style';
 
 interface CopyModalProps {
-  account: Account;
+  id: number;
+  onClose: () => void;
 }
 
-const CopyModal: FC<CopyModalProps> = ({ account }) => {
-  const { format, onChangeFormat, copy } = useCopy(account);
+const CopyModal: FC<CopyModalProps> = ({ id, onClose }) => {
+  const { format, onChangeFormat, copy } = useCopy(id, onClose);
 
   return (
     <S.CopyModal>
