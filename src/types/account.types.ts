@@ -1,10 +1,10 @@
-import { EService } from "../lib/enum/service";
-import { EStage } from "../lib/enum/stage";
+import { Platform } from '../lib/enum/platform';
 
-export interface IAccount {
-    id: string,
-    pw: string,
-    stage: EStage,
-    des: string,
-    service: EService
+export interface Account {
+  id: number;
+  userId: string;
+  password?: string;
+  platform: Platform;
+  environment: string;
+  description: string;
 }

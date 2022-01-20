@@ -1,10 +1,13 @@
-import { memo } from "react"
+import React, { memo } from 'react';
+import { PublicHeader, MainSection } from '../../components';
 
 const Main = (): JSX.Element => {
-    return (
-        <div>
-        </div>
-    )
-}
+  return (
+    <>
+      <PublicHeader />
+      <MainSection />
+    </>
+  );
+};
 
 export default memo(Main);
