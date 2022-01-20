@@ -11,16 +11,19 @@ function getWrapperStyle(type: 'header' | 'row') {
 }
 
 export const EnvironmentWrapper = styled.div<{ type: 'header' | 'row' }>`
+  margin-right: 10px;
   width: 10%;
   ${({ type }) => getWrapperStyle(type)}
 `;
 
 export const PlatformWrapper = styled.div<{ type: 'header' | 'row' }>`
+  margin-right: 10px;
   width: 15%;
   ${({ type }) => getWrapperStyle(type)}
 `;
 
 export const UserIdWrapper = styled.div<{ type: 'header' | 'row' }>`
+  margin-right: 10px;
   width: 50%;
   height: 100%;
   ${({ type }) => getWrapperStyle(type)};
@@ -33,5 +36,9 @@ export const ButtonWrapper = styled.div`
 
   > button {
     cursor: pointer;
+  }
+
+  * {
+    width: 32px;
   }
 `;
