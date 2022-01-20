@@ -70,6 +70,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
   const gettingDetailInfo = async () => {
     getDetail(id)
       .then(res => {
+        setEnvironmentValue(res.data.environment);
         setInputs({
           userId: res.data.userId,
           password: res.data.password,
@@ -163,6 +164,9 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
           disablePortal
           id='combo-box-demo'
           options={environments}
+          isOptionEqualToValue={(option, value) =>
+            (option as EnvironmentOptionsType).id === (value as EnvironmentOptionsType).id
+          }
           disabled={!isAdd}
           renderInput={params => <TextField {...params} label='환경' variant='filled' required />}
         />
