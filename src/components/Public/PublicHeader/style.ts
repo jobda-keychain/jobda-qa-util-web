@@ -21,6 +21,7 @@ export const Title = styled.div`
 export const Logo = styled.img`
   width: 260px;
   height: 80px;
+  cursor: pointer;
 `;
 
 export const BtnWrapper = styled.div`
