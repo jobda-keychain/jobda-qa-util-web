@@ -88,7 +88,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
           ...inputs,
           environmentId: environmentValue && environmentValue.id,
         });
-        onClose();
+        window.location.reload();
       },
       {
         400: '잘못된 입력입니다.',
