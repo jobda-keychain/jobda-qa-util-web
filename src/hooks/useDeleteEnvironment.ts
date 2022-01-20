@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { deleteEnvironment } from '../util/api/environment/environment.api';
+import { deleteEnvironment } from '../util/api/environment';
 
 const useDeleteEnvironment = (id: number, onClose: () => void) => {
   const onClickDeleteEnvironmentButton = useCallback(async () => {

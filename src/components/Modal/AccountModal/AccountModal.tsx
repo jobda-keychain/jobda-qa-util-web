@@ -3,8 +3,10 @@ import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
 import { EnvironmentFilter } from './../../../types/filter.types';
 import { getEnvironmentList } from './../../../util/api/EnvironmentList/index';
-import { addAccount, getDetail, modifyAccount } from './../../../util/api/Account/index';
 import { EnvironmentOptionsType } from './../../../models/vo/index';
+import { addAccount, getDetail, getFilterList } from '../../../util/api/Account';
+import { modifyAccount } from './../../../util/api/Account/index';
+import { AxiosError } from 'axios';
 import handleAxiosError from '../../../util/api/handleAxiosError';
 
 type AccountModalType = 'add' | 'modify' | 'detail';
@@ -42,7 +44,7 @@ const getModalInfo = (type: AccountModalType) => {
 };
 
 const AccountModal: FC<Props> = ({ type, onClose, id }) => {
-  const [environments, setEnvironments] = useState<EnvironmentFilter[]>([]);
+  const [environments, setEnvironments] = useState<EnvironmentOptionsType[]>([]);
   const [environmentValue, setEnvironmentValue] = useState<EnvironmentOptionsType | null>(null);
   const [inputs, setInputs] = useState({
     userId: '',
@@ -56,7 +58,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id }) => {
 
   const fetchFilterList = async () => {
     try {
-      const res = await getEnvironmentList();
+      const res = await getFilterList();
       const environments = res.data.data.map(ele => ({
         id: ele.id,
         label: `${ele.name}(${ele.platform})`,

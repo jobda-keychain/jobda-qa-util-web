@@ -2,8 +2,8 @@ import { AxiosError } from 'axios';
 import { useCallback, useState } from 'react';
 import { Platform } from '../lib/enum/platform';
 import { Environment } from '../types/environment.types';
-import { createEnvironment, modifyEnvironment } from '../util/api/environment/environment.api';
 import handleAxiosError from '../util/api/handleAxiosError';
+import { createEnvironment, modifyEnvironment } from '../util/api/environment';
 
 const useEnvironmentModal = (onClose: () => void, environmentValue?: Environment) => {
   const [environment, setEnvironment] = useState(

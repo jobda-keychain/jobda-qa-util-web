@@ -1,5 +1,5 @@
 import instance from './../Default/index';
-import { GetAccountListResponse, GetDetailResponse } from '../../../models/response';
+import { AccountListResponse, FilterListResponse } from '../../../models/response';
 import { AddAccountRequest, ModifyAccountRequest } from '../../../models/request';
 
 export const getAccountList = async (
@@ -9,7 +9,7 @@ export const getAccountList = async (
 ) => {
   try {
     const params = { page, platform, size: 6, environment };
-    return await instance.get<GetAccountListResponse>(`/accounts`, { params });
+    return await instance.get<AccountListResponse>(`/accounts`, { params });
   } catch (error) {
     throw error;
   }
@@ -42,6 +42,15 @@ export const getDetail = (id?: number) => {
 export const deleteAccount = (id?: number) => {
   try {
     return instance.delete(`/accounts/${id}`);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getFilterList = async (platform?: string) => {
+  try {
+    const params = { platform };
+    return await instance.get<FilterListResponse>(`/environments/search`, { params });
   } catch (error) {
     throw error;
   }

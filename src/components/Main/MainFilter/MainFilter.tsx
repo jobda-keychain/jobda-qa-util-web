@@ -1,22 +1,22 @@
 import React, { FC, useState, useEffect } from 'react';
 import * as S from './style';
 import { deleteTag } from '../../../assets/Main';
-import { EnvironmentFilter } from '../../../types/filter.types';
 import { TextField } from '@mui/material';
-import { getEnvironmentList } from './../../../util/api/EnvironmentList/index';
+import { getFilterList } from '../../../util/api/Account';
+import { EnvironmentOptionsType } from './../../../models/vo/index';
 
 interface MainFilterProps {
-  filters: EnvironmentFilter[];
-  setFilters: (filters: EnvironmentFilter[]) => void;
+  filters: EnvironmentOptionsType[];
+  setFilters: (filters: EnvironmentOptionsType[]) => void;
   tabNumber: number;
 }
 
 const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => {
-  const [environments, setEnvironments] = useState<EnvironmentFilter[]>([]);
+  const [environments, setEnvironments] = useState<EnvironmentOptionsType[]>([]);
   const [filterValue, setFilterValue] = useState<string | null>(null);
   const [filterInputValue, setFilterInputValue] = useState('');
 
-  const addFilter = (value: EnvironmentFilter) => {
+  const addFilter = (value: EnvironmentOptionsType) => {
     setFilterValue(null);
     setFilterInputValue('');
     if (value && !filters.includes(value)) {
@@ -50,7 +50,7 @@ const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => 
         case 2:
           platform = 'JOBDA_CMS';
       }
-      const res = await getEnvironmentList(platform);
+      const res = await getFilterList(platform);
       const environments = res.data.data.map(ele => ({
         id: ele.id,
         label: ele.name,
@@ -74,7 +74,7 @@ const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => 
         value={filterValue}
         onChange={(event, value) => {
           inputHandler(event, value as string);
-          addFilter(value as EnvironmentFilter);
+          addFilter(value as EnvironmentOptionsType);
         }}
         inputValue={filterInputValue}
         onInputChange={inputChange}
