@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Platform } from '../lib/enum/platform';
 import { Account } from '../types/account.types';
 
 const useCopy = (account: Account) => {
@@ -13,7 +14,7 @@ const useCopy = (account: Account) => {
       return format
         .replace('!(Env)', account.environment)
         .replace('!(Id)', account.userId)
-        .replace('!(Pw)', account.password)
+        .replace('!(Pw)', account.password!)
         .replace('!(Ser)', account.platform);
     }
   };

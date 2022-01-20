@@ -9,10 +9,11 @@ interface DeleteModalProps {
   id: number;
   type: DeleteModalType;
   onClose: () => void;
+  getAccounts?: () => void;
 }
 
-const DeleteModal: FC<DeleteModalProps> = ({ id, type, onClose }) => {
-  const { onClickDeleteAccountButton } = useDeleteAccount(id, onClose);
+const DeleteModal: FC<DeleteModalProps> = ({ id, type, onClose, getAccounts }) => {
+  const { onClickDeleteAccountButton } = useDeleteAccount(id, onClose, getAccounts);
   const { onClickDeleteEnvironmentButton } = useDeleteEnvironment(id, onClose);
 
   const onClick = type === 'account' ? onClickDeleteAccountButton : onClickDeleteEnvironmentButton;

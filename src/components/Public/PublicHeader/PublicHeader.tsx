@@ -27,7 +27,7 @@ const PublicHeader = () => {
       {isMainPage ? (
         <Modal open={isOpenModal} onClose={toggleIsOpenModal}>
           <ModalWrapper>
-            <AccountModal type='add' />
+            <AccountModal type='add' onClose={toggleIsOpenModal} />
           </ModalWrapper>
         </Modal>
       ) : (

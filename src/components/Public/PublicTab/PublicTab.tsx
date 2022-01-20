@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { FC } from 'react';
 import * as S from './style';
 
-const PublicTab = () => {
-  const [tabNumber, setTabNumber] = useState(0);
+interface PublicTabProps {
+  tabNumber: number;
+  setTabNumber: (tabNumber: number) => void;
+}
 
+const PublicTab: FC<PublicTabProps> = ({ tabNumber, setTabNumber }) => {
   const tabHandler = (event: React.SyntheticEvent, value: number) => {
     setTabNumber(value);
   };

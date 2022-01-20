@@ -39,7 +39,6 @@ const AccountRow: FC<AccountRowProps> = ({
       >
         {userId}
       </S.UserIdWrapper>
-
       <S.ButtonWrapper>
         <RowButton
           onClick={() => {
