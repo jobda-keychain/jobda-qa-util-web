@@ -1,22 +1,22 @@
-import { useCallback, useState } from 'react';
+import { AxiosError } from 'axios';
+import { useCallback } from 'react';
 import { login } from '../util/api/Account';
-import handleAxiosError from '../util/api/handleAxiosError';
 
 const useAutoLogin = () => {
-  const [errorMessage, setErrorMessage] = useState('');
-
   const autoLogin = useCallback(async (id: number) => {
-    handleAxiosError(
-      async () => {
-        const { data } = await login(id);
-        window.open(data.clientDomain, '_blank');
-      },
-      { 401: '사용할 수 없는 계정입니다.' },
-      setErrorMessage,
-    );
+    try {
+      const { data } = await login(id);
+      window.open(data.clientDomain, '_blank');
+    } catch (error: any) {
+      const axiosError = error as AxiosError;
+
+      if (axiosError.response?.status === 401) {
+        alert('로그인할 수 없는 계정입니다.');
+      }
+    }
   }, []);
 
-  return { errorMessage, autoLogin };
+  return { autoLogin };
 };
 
 export default useAutoLogin;

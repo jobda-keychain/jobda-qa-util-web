@@ -36,7 +36,7 @@ const MainSection = () => {
   const { isOpenModal, toggleIsOpenModal } = useModal();
   const [modalType, setModalType] = useState<AccountModalType>('modify');
 
-  const { errorMessage, autoLogin } = useAutoLogin();
+  const { autoLogin } = useAutoLogin();
 
   const getAccounts = async () => {
     try {
