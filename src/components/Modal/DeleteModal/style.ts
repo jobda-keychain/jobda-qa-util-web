@@ -3,7 +3,6 @@ import { Modal } from '../../../style/Modal';
 
 export const ModalContainer = styled(Modal)`
   width: 500px;
-  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
