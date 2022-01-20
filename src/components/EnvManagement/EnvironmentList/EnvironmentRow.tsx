@@ -1,10 +1,11 @@
 import { PlatformLabel, EnvironmentLabel } from '../../../style/Labels';
 import { FaPen, FaTrash } from 'react-icons/fa';
 import { Environment } from '../../../types/environment.types';
-import { Row, RowButton } from '../../../style/Row';
+import { Row } from '../../../style/Row';
 import * as S from './style';
 import React, { FC } from 'react';
 import { EnvironmentModalType } from '../../../types/modal.types';
+import { IconButton } from '@mui/material';
 
 interface EnvironmentRowProps {
   environment: Environment;
@@ -33,22 +34,23 @@ const EnvironmentRow: FC<EnvironmentRowProps> = ({
       <S.ClientDomainWrapper type='row'>{serverDomain}</S.ClientDomainWrapper>
 
       <S.ButtonWrapper>
-        <RowButton
+        <IconButton
           onClick={() => {
             setModalType('modify');
             toggleIsOpenModal();
           }}
         >
           <FaPen />
-        </RowButton>
-        <RowButton
+        </IconButton>
+
+        <IconButton
           onClick={() => {
             setModalType('delete');
             toggleIsOpenModal();
           }}
         >
           <FaTrash />
-        </RowButton>
+        </IconButton>
       </S.ButtonWrapper>
     </Row>
   );
