@@ -17,6 +17,7 @@ import { ModalWrapper } from '../../../style/Modal';
 import { getAccountList } from './../../../util/api/Account/index';
 import { Platform } from '../../../lib/enum/platform';
 import { EnvironmentOptionsType } from './../../../models/vo/index';
+import useAutoLogin from './../../../hooks/useAutoLogin';
 
 const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
