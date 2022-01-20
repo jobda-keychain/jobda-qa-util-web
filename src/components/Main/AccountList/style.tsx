@@ -34,11 +34,12 @@ export const ButtonWrapper = styled.div`
   float: right;
   gap: 10px;
 
-  > button {
-    cursor: pointer;
+  * {
+    height: 32px;
+    width: 32px;
   }
 
-  * {
-    width: 32px;
+  button {
+    color: #bebebe;
   }
 `;

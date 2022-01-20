@@ -39,6 +39,11 @@ export const ButtonWrapper = styled.div`
   gap: 10px;
 
   * {
+    height: 32px;
     width: 32px;
+  }
+
+  button {
+    color: #bebebe;
   }
 `;

@@ -1,11 +1,12 @@
 import { FaClipboard, FaPen, FaTrash } from 'react-icons/fa';
 import { IoArrowRedo } from 'react-icons/io5';
 import { Account } from '../../../types/account.types';
-import { Row, RowButton } from '../../../style/Row';
+import { Row } from '../../../style/Row';
 import { PlatformLabel, EnvironmentLabel } from '../../../style/Labels';
 import * as S from './style';
 import React, { FC } from 'react';
 import { AccountModalType } from '../../../types/modal.types';
+import { IconButton } from '@mui/material';
 
 interface AccountRowProps {
   account: Account;
@@ -40,36 +41,36 @@ const AccountRow: FC<AccountRowProps> = ({
         {userId}
       </S.UserIdWrapper>
       <S.ButtonWrapper>
-        <RowButton
+        <IconButton
           onClick={() => {
             setModalType('modify');
             toggleIsOpenModal();
           }}
         >
           <FaPen />
-        </RowButton>
+        </IconButton>
 
-        <RowButton
+        <IconButton
           onClick={() => {
             setModalType('delete');
             toggleIsOpenModal();
           }}
         >
           <FaTrash />
-        </RowButton>
+        </IconButton>
 
-        <RowButton onClick={() => autoLogin(userId, password)}>
+        <IconButton onClick={() => autoLogin(userId, password)}>
           <IoArrowRedo />
-        </RowButton>
+        </IconButton>
 
-        <RowButton
+        <IconButton
           onClick={() => {
             setModalType('copy');
             toggleIsOpenModal();
           }}
         >
           <FaClipboard />
-        </RowButton>
+        </IconButton>
       </S.ButtonWrapper>
     </Row>
   );
