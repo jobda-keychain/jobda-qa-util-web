@@ -33,7 +33,6 @@ const AccountRow: FC<AccountRowProps> = ({ account, setModalType, toggleIsOpenMo
       >
         {userId}
       </S.UserIdWrapper>
-
       <S.ButtonWrapper>
         <RowButton
           onClick={() => {
