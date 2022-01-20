@@ -46,7 +46,10 @@ const useEnvironmentModal = (
         refresh?.();
         onClose();
       },
-      { 409: '이미 존재하는 이름입니다.', 400: '잘못된 입력입니다.' },
+      {
+        409: '이미 존재하는 이름입니다.',
+        400: '잘못된 입력입니다. 혹은 환경에 속한 계정이 있을 수 있습니다. 환경에 속한 계정을 전부 제거하고 재시도하세요',
+      },
       setErrorMessage,
     );
   }, [environment, onClose]);
