@@ -93,7 +93,9 @@ const MainSection = () => {
             <AccountRow
               account={account}
               setModalType={setModalType}
-              autoLogin={autoLogin}
+              autoLogin={() => {
+                autoLogin(account.id);
+              }}
               toggleIsOpenModal={() => {
                 setSelectedAccount(account);
                 toggleIsOpenModal();

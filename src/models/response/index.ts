@@ -25,3 +25,8 @@ export interface EnvironmentListResponse {
   data: Environment[];
   totalPages: number;
 }
+
+export interface LoginResponse {
+  accessToken: string;
+  clientDomain: string;
+}

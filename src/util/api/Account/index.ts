@@ -1,5 +1,5 @@
 import instance from './../Default/index';
-import { AccountListResponse, FilterListResponse } from '../../../models/response';
+import { AccountListResponse, FilterListResponse, LoginResponse } from '../../../models/response';
 import { AddAccountRequest, ModifyAccountRequest } from '../../../models/request';
 
 export const getAccountList = async (
@@ -54,4 +54,8 @@ export const getFilterList = async (platform?: string) => {
   } catch (error) {
     throw error;
   }
+};
+
+export const login = async (id: number) => {
+  return await instance.post<LoginResponse>(`/accounts/${id}`);
 };
