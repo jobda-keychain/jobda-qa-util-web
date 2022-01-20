@@ -8,6 +8,7 @@ import EnvironmentHeader from '../EnvironmentList/EnvironmentHeader';
 import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import { useEffect, useState } from 'react';
+
 import useModal from '../../../hooks/useModal';
 import { EnvironmentModalType } from '../../../types/modal.types';
 import { ModalWrapper } from '../../../style/Modal';

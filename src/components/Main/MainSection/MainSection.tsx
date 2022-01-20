@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './style';
 import AccountRow from '../AccountList/AccoutRow';
 import StyledPagination from '../../Public/PaginationButton/PaginationButton';
@@ -34,6 +34,8 @@ const MainSection = () => {
   const [tabNumber, setTabNumber] = useState<number>(0);
   const { isOpenModal, toggleIsOpenModal } = useModal();
   const [modalType, setModalType] = useState<AccountModalType>('modify');
+
+  const { autoLogin } = useAutoLogin();
 
   const getAccounts = async () => {
     try {
@@ -85,6 +87,7 @@ const MainSection = () => {
             <AccountRow
               account={account}
               setModalType={setModalType}
+              autoLogin={autoLogin}
               toggleIsOpenModal={() => {
                 setSelectedAccount(account);
                 toggleIsOpenModal();

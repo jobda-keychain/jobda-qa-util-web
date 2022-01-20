@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { PublicHeader, MainSection } from '../../components';
 
 const Main = (): JSX.Element => {

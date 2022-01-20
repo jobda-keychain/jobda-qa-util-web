@@ -1,5 +1,5 @@
+import React from 'react';
 import Modal from '@mui/material/Modal';
-import { useLocation } from 'react-router-dom';
 import { logo } from '../../../assets/Main';
 import useHeader from '../../../hooks/useHeader';
 import { ModalWrapper } from '../../../style/Modal';
