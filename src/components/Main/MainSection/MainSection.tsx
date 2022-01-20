@@ -20,24 +20,7 @@ import { Platform } from '../../../lib/enum/platform';
 
 const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
-  const [accounts, setAccounts] = useState<Account[]>([
-    {
-      id: 1,
-      userId: 'asdfasdfasdf',
-      password: 'asfasdf',
-      platform: Platform.JOBDA,
-      environment: 'asdfasdf',
-      description: 'asdfasfasdf',
-    },
-    {
-      id: 2,
-      userId: '뿡뿡이',
-      password: '가',
-      platform: Platform.JOBDA_CMS,
-      environment: '좋아요',
-      description: '그냥',
-    },
-  ]);
+  const [accounts, setAccounts] = useState<Account[]>([]);
   const [selectedAccount, setSelectedAccount] = useState<Account>({
     id: 1,
     userId: '',

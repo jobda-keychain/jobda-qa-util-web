@@ -12,12 +12,20 @@ import useModal from '../../../hooks/useModal';
 import { EnvironmentModalType } from '../../../types/modal.types';
 import { ModalWrapper } from '../../../style/Modal';
 import { Environment } from '../../../types/environment.types';
+import { Platform } from '../../../lib/enum/platform';
 
 const EnvSection = () => {
   const [pageCount, setPageCount] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [environments, setEnvironments] = useState<Environment[]>([]);
   const [tabNumber, setTabNumber] = useState<number>(0);
+  const [selectedEnvironment, setSelectedEnvironment] = useState<Environment>({
+    id: 0,
+    name: '',
+    serverDomain: '',
+    clientDomain: '',
+    platform: Platform.JOBDA,
+  });
 
   const pageHandler = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
@@ -40,31 +48,35 @@ const EnvSection = () => {
             <EnvironmentRow
               environment={environment}
               setModalType={setModalType}
-              toggleIsOpenModal={toggleIsOpenModal}
+              toggleIsOpenModal={() => {
+                setSelectedEnvironment(environment);
+                toggleIsOpenModal();
+              }}
             />
             <hr />
-
-            <Modal open={modalType === 'modify' && isOpenModal} onClose={toggleIsOpenModal}>
-              <ModalWrapper>
-                <EnvironmentModal
-                  type='modify'
-                  environmentValue={environment}
-                  onClose={toggleIsOpenModal}
-                />
-              </ModalWrapper>
-            </Modal>
-
-            <Modal open={modalType === 'delete' && isOpenModal} onClose={toggleIsOpenModal}>
-              <ModalWrapper>
-                <DeleteModal type='environment' id={environment.id} onClose={toggleIsOpenModal} />
-              </ModalWrapper>
-            </Modal>
           </div>
         ))}
       </ListWrapper>
+
       <PaginationtWrapper>
         <StyledPagination page={currentPage} onChange={pageHandler} count={pageCount} />
       </PaginationtWrapper>
+
+      <Modal open={modalType === 'modify' && isOpenModal} onClose={toggleIsOpenModal}>
+        <ModalWrapper>
+          <EnvironmentModal
+            type='modify'
+            environmentValue={selectedEnvironment}
+            onClose={toggleIsOpenModal}
+          />
+        </ModalWrapper>
+      </Modal>
+
+      <Modal open={modalType === 'delete' && isOpenModal} onClose={toggleIsOpenModal}>
+        <ModalWrapper>
+          <DeleteModal type='environment' id={selectedEnvironment.id} onClose={toggleIsOpenModal} />
+        </ModalWrapper>
+      </Modal>
     </SectionWrapper>
   );
 };
