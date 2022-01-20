@@ -12,6 +12,7 @@ interface Props {
   type: AccountModalType;
   onClose: () => void;
   id?: number;
+  getAccounts?: () => void;
 }
 
 const getModalInfo = (type: AccountModalType) => {
@@ -40,7 +41,7 @@ const getModalInfo = (type: AccountModalType) => {
   }
 };
 
-const AccountModal: FC<Props> = ({ type, onClose, id }) => {
+const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
   const [environments, setEnvironments] = useState<EnvironmentOptionsType[]>([]);
   const [environmentValue, setEnvironmentValue] = useState<EnvironmentOptionsType | null>(null);
   const [inputs, setInputs] = useState({
@@ -87,7 +88,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id }) => {
           ...inputs,
           environmentId: environmentValue && environmentValue.id,
         });
-        onClose();
+        window.location.reload();
       },
       {
         400: '잘못된 입력입니다.',
@@ -108,6 +109,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id }) => {
           id,
         );
         onClose();
+        if (getAccounts) getAccounts();
       },
       {
         400: '잘못된 입력입니다.',

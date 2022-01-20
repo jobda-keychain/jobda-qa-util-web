@@ -116,7 +116,12 @@ const MainSection = () => {
 
       <Modal open={modalType === 'modify' && isOpenModal} onClose={toggleIsOpenModal}>
         <ModalWrapper>
-          <AccountModal id={selectedAccount.id} onClose={toggleIsOpenModal} type='modify' />
+          <AccountModal
+            getAccounts={getAccounts}
+            id={selectedAccount.id}
+            onClose={toggleIsOpenModal}
+            type='modify'
+          />
         </ModalWrapper>
       </Modal>
 
