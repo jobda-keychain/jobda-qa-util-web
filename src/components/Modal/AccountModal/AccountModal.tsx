@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { TextField, Alert } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
 import { EnvironmentFilter } from './../../../types/filter.types';
@@ -52,6 +52,8 @@ const AccountModal: FC<Props> = ({ type, onClose, id }) => {
   const { userId, password, description } = inputs;
   const { title, buttonText, isAdd, isDetail } = getModalInfo(type);
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const fetchFilterList = async () => {
     try {
       const res = await getEnvironmentList();
@@ -88,13 +90,16 @@ const AccountModal: FC<Props> = ({ type, onClose, id }) => {
       console.log('계정이 성공적으로 생성되었습니다.');
       onClose();
     } catch (err: unknown) {
-      switch ((err as AxiosError).response?.status) {
-        case 400:
-          console.log('빈칸이 있는지 확인해주세요.');
-          break;
-        case 401:
-          console.log('존재하는 계정인지 확인해주세요.');
-          break;
+      const axiosError = err as AxiosError;
+
+      if (axiosError.response?.status === 400) {
+        setErrorMessage('잘못된 입력 값입니다.');
+      } else if (axiosError.response?.status === 401) {
+        setErrorMessage('존재하지 않는 계정입니다.');
+      } else if (axiosError.response?.status === 409) {
+        setErrorMessage('환경, 서비스, 아이디가 중복됩니다.');
+      } else {
+        setErrorMessage(axiosError.message);
       }
     }
   };
@@ -110,13 +115,16 @@ const AccountModal: FC<Props> = ({ type, onClose, id }) => {
       console.log('계정이 성공적으로 수정되었습니다.');
       onClose();
     } catch (err: unknown) {
-      switch ((err as AxiosError).response?.status) {
-        case 400:
-          console.log('빈칸이 있는지 확인해주세요.');
-          break;
-        case 401:
-          console.log('존재하는 계정인지 확인해주세요.');
-          break;
+      const axiosError = err as AxiosError;
+
+      if (axiosError.response?.status === 400) {
+        setErrorMessage('잘못된 입력 값입니다.');
+      } else if (axiosError.response?.status === 401) {
+        setErrorMessage('존재하지 않는 계정입니다.');
+      } else if (axiosError.response?.status === 409) {
+        setErrorMessage('환경, 서비스, 아이디가 중복됩니다.');
+      } else {
+        setErrorMessage(axiosError.message);
       }
     }
   };
@@ -198,6 +206,9 @@ const AccountModal: FC<Props> = ({ type, onClose, id }) => {
           placeholder='상세 설명'
           disabled={isDetail}
         />
+
+        {errorMessage && <Alert severity='error'>{errorMessage}</Alert>}
+
         <S.ButtonContainer>
           <button>{buttonText}</button>
         </S.ButtonContainer>

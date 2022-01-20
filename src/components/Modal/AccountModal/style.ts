@@ -9,12 +9,12 @@ export const ModalContainer = styled(Modal)`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 40px;
+    gap: 30px;
   }
 
   textarea {
     width: 100%;
-    height: 200px;
+    height: 160px;
     padding: 10px;
     border: none;
     border-radius: 10px;
