@@ -1,10 +1,10 @@
-import { TextField } from '@mui/material';
+import { TextField, Alert } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
-import { AxiosError } from 'axios';
 import { EnvironmentOptionsType } from './../../../models/vo/index';
 import { addAccount, getDetail, getFilterList } from '../../../util/api/Account';
 import { modifyAccount } from './../../../util/api/Account/index';
+import handleAxiosError from '../../../util/api/handleAxiosError';
 
 type AccountModalType = 'add' | 'modify' | 'detail';
 
@@ -51,6 +51,8 @@ const AccountModal: FC<Props> = ({ type, onClose, id }) => {
   const { userId, password, description } = inputs;
   const { title, buttonText, isAdd, isDetail } = getModalInfo(type);
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const fetchFilterList = async () => {
     try {
       const res = await getFilterList();
@@ -79,45 +81,41 @@ const AccountModal: FC<Props> = ({ type, onClose, id }) => {
   };
 
   const addingAccount = async () => {
-    try {
-      await addAccount({
-        ...inputs,
-        environmentId: environmentValue && environmentValue.id,
-      });
-      console.log('계정이 성공적으로 생성되었습니다.');
-      onClose();
-    } catch (err: unknown) {
-      switch ((err as AxiosError).response?.status) {
-        case 400:
-          console.log('빈칸이 있는지 확인해주세요.');
-          break;
-        case 401:
-          console.log('존재하는 계정인지 확인해주세요.');
-          break;
-      }
-    }
+    handleAxiosError(
+      async () => {
+        await addAccount({
+          ...inputs,
+          environmentId: environmentValue && environmentValue.id,
+        });
+        onClose();
+      },
+      {
+        400: '잘못된 입력입니다.',
+        401: '존재하지 않는 계정입니다.',
+        409: '환경, 서비스, 아이디가 중복됩니다.',
+      },
+      setErrorMessage,
+    );
   };
 
   const modifyingAccount = async () => {
-    try {
-      await modifyAccount(
-        {
-          ...inputs,
-        },
-        id,
-      );
-      console.log('계정이 성공적으로 수정되었습니다.');
-      onClose();
-    } catch (err: unknown) {
-      switch ((err as AxiosError).response?.status) {
-        case 400:
-          console.log('빈칸이 있는지 확인해주세요.');
-          break;
-        case 401:
-          console.log('존재하는 계정인지 확인해주세요.');
-          break;
-      }
-    }
+    handleAxiosError(
+      async () => {
+        await modifyAccount(
+          {
+            ...inputs,
+          },
+          id,
+        );
+        onClose();
+      },
+      {
+        400: '잘못된 입력입니다.',
+        401: '존재하지 않는 계정입니다.',
+        409: '환경, 서비스, 아이디가 중복됩니다.',
+      },
+      setErrorMessage,
+    );
   };
 
   const onSubmitHandler = async (e: React.SyntheticEvent) => {
@@ -197,6 +195,9 @@ const AccountModal: FC<Props> = ({ type, onClose, id }) => {
           placeholder='상세 설명'
           disabled={isDetail}
         />
+
+        {errorMessage && <Alert severity='error'>{errorMessage}</Alert>}
+
         <S.ButtonContainer>
           <button>{buttonText}</button>
         </S.ButtonContainer>
