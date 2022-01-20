@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { TextField, Alert } from '@mui/material';
 import React, { FC } from 'react';
 import useEnvironmentModal from '../../../hooks/useEnvironmentModal';
 import { ModalButton } from '../../../style/Modal';
@@ -17,8 +17,13 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
   environmentValue,
   onClose,
 }): JSX.Element => {
-  const { environment, onChangeEnvironment, onClickCreateEnvironment, onClickModifyEnvironment } =
-    useEnvironmentModal(onClose, environmentValue);
+  const {
+    environment,
+    errorMessage,
+    onChangeEnvironment,
+    onClickCreateEnvironment,
+    onClickModifyEnvironment,
+  } = useEnvironmentModal(onClose, environmentValue);
 
   const onClick = type === 'create' ? onClickCreateEnvironment : onClickModifyEnvironment;
   const typeLabel = type === 'create' ? '생성' : '수정';
@@ -65,6 +70,8 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
           />
         </S.InputWrapper>
       </div>
+
+      {errorMessage && <Alert severity='error'>{errorMessage}</Alert>}
 
       <S.ButtonWrapper>
         <ModalButton onClick={onClick}>{typeLabel}</ModalButton>
