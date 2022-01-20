@@ -52,6 +52,10 @@ const EnvSection = () => {
   };
 
   useEffect(() => {
+    setCurrentPage(1);
+  }, [tabNumber]);
+
+  useEffect(() => {
     getEnvironments();
   }, [tabNumber, currentPage]);
 

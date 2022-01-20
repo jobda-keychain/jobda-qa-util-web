@@ -65,6 +65,10 @@ const MainSection = () => {
   };
 
   useEffect(() => {
+    setCurrentPage(1);
+  }, [tabNumber]);
+
+  useEffect(() => {
     getAccounts();
   }, [tabNumber, filters, currentPage]);
 
