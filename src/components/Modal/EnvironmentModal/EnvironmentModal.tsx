@@ -42,6 +42,7 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
             variant='filled'
             value={environment.name}
             onChange={onChangeEnvironment}
+            inputProps={{ maxLength: 10, minLength: 2 }}
           />
           <div>
             <ServiceRadio
@@ -59,6 +60,7 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
             variant='filled'
             value={environment.clientDomain}
             onChange={onChangeEnvironment}
+            inputProps={{ maxLength: 255, minLength: 2 }}
           />
         </S.InputWrapper>
 
@@ -69,6 +71,7 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
             variant='filled'
             value={environment.serverDomain}
             onChange={onChangeEnvironment}
+            inputProps={{ maxLength: 255, minLength: 2 }}
           />
         </S.InputWrapper>
       </div>
