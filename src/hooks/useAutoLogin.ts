@@ -1,6 +1,10 @@
+import { login } from '../util/api/Account';
+
 const useAutoLogin = () => {
-  const autoLogin = () => {
-    window.open('https://jobda.im/login', '_blank');
+  const autoLogin = async (id: number) => {
+    const { data } = await login(id);
+
+    window.open(data.clientDomain, '_blank');
   };
 
   return { autoLogin };

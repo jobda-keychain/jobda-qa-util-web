@@ -12,7 +12,7 @@ interface AccountRowProps {
   account: Account;
   setModalType: (modalType: AccountModalType) => void;
   toggleIsOpenModal: () => void;
-  autoLogin: (id: string, password?: string) => void;
+  autoLogin: () => void;
 }
 
 const AccountRow: FC<AccountRowProps> = ({
@@ -21,7 +21,7 @@ const AccountRow: FC<AccountRowProps> = ({
   toggleIsOpenModal,
   autoLogin,
 }) => {
-  const { password, environment, platform, userId } = account;
+  const { environment, platform, userId } = account;
 
   return (
     <Row>
@@ -59,7 +59,7 @@ const AccountRow: FC<AccountRowProps> = ({
           <FaTrash />
         </IconButton>
 
-        <IconButton onClick={() => autoLogin(userId, password)}>
+        <IconButton onClick={autoLogin}>
           <IoArrowRedo />
         </IconButton>
 
