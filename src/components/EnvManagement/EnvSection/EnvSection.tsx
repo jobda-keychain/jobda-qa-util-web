@@ -7,12 +7,14 @@ import EnvironmentRow from '../EnvironmentList/EnvironmentRow';
 import EnvironmentHeader from '../EnvironmentList/EnvironmentHeader';
 import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import useModal from '../../../hooks/useModal';
 import { EnvironmentModalType } from '../../../types/modal.types';
 import { ModalWrapper } from '../../../style/Modal';
 import { Environment } from '../../../types/environment.types';
 import { Platform } from '../../../lib/enum/platform';
+import { getEnvironmentList } from '../../../util/api/environment';
 
 const EnvSection = () => {
   const [pageCount, setPageCount] = useState(1);
@@ -26,12 +28,36 @@ const EnvSection = () => {
     clientDomain: '',
     platform: Platform.JOBDA,
   });
+  const { isOpenModal, toggleIsOpenModal } = useModal();
+
+  const getEnvironments = async () => {
+    try {
+      let platform;
+      switch (tabNumber) {
+        case 0:
+          platform = null;
+          break;
+        case 1:
+          platform = 'JOBDA';
+          break;
+        case 2:
+          platform = 'JOBDA_CMS';
+      }
+      const res = await getEnvironmentList(currentPage - 1, platform);
+      setEnvironments(res.data.data);
+      setPageCount(res.data.totalPages);
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  useEffect(() => {
+    getEnvironments();
+  }, [tabNumber, currentPage]);
 
   const pageHandler = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
   };
-
-  const { isOpenModal, toggleIsOpenModal } = useModal();
   const [modalType, setModalType] = useState<EnvironmentModalType>('modify');
 
   return (
