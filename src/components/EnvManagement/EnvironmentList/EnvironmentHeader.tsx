@@ -1,5 +1,6 @@
 import { Row } from '../../../style/Row';
 import * as S from './style';
+import React from 'react';
 
 const EnvironmentHeader = (): JSX.Element => {
   return (

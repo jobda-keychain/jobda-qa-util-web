@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './style';
 import AccountRow from '../AccountList/AccoutRow';
 import StyledPagination from '../../Public/PaginationButton/PaginationButton';
@@ -14,6 +14,7 @@ import AccountModal from '../../Modal/AccountModal/AccountModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import CopyModal from '../../Modal/CopyModal/CopyModal';
 import { ModalWrapper } from '../../../style/Modal';
+import useAutoLogin from '../../../hooks/useAutoLogin';
 import { EnvironmentFilter } from './../../../types/filter.types';
 import { getAccountList } from './../../../util/api/Account/index';
 import { Platform } from '../../../lib/enum/platform';
@@ -34,6 +35,8 @@ const MainSection = () => {
   const [tabNumber, setTabNumber] = useState<number>(0);
   const { isOpenModal, toggleIsOpenModal } = useModal();
   const [modalType, setModalType] = useState<AccountModalType>('modify');
+
+  const { autoLogin } = useAutoLogin();
 
   const getAccounts = async () => {
     try {
@@ -85,6 +88,7 @@ const MainSection = () => {
             <AccountRow
               account={account}
               setModalType={setModalType}
+              autoLogin={autoLogin}
               toggleIsOpenModal={() => {
                 setSelectedAccount(account);
                 toggleIsOpenModal();
