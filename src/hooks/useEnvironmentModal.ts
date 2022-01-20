@@ -41,11 +41,6 @@ const useEnvironmentModal = (onClose: () => void, environmentValue?: Environment
   }, [environment, onClose]);
 
   const onClickModifyEnvironment = useCallback(async () => {
-    handleAxiosError(async () => {
-      await modifyEnvironment(environment.id, environment);
-      onClose();
-    }, []);
-
     try {
       await modifyEnvironment(environment.id, environment);
       onClose();
