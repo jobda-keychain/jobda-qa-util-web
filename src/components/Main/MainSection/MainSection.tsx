@@ -66,11 +66,12 @@ const MainSection = () => {
 
   useEffect(() => {
     setCurrentPage(1);
+    getAccounts();
   }, [tabNumber]);
 
   useEffect(() => {
     getAccounts();
-  }, [tabNumber, filters, currentPage]);
+  }, [filters, currentPage]);
 
   return (
     <SectionWrapper>
