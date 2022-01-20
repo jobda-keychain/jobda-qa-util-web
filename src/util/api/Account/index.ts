@@ -57,9 +57,5 @@ export const getFilterList = async (platform?: string) => {
 };
 
 export const login = async (id: number) => {
-  try {
-    return await instance.post<LoginResponse>(`/accounts/${id}`);
-  } catch (error) {
-    throw error;
-  }
+  return await instance.post<LoginResponse>(`/accounts/${id}`);
 };
