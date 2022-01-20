@@ -4,8 +4,8 @@ import * as S from './style';
 import { EnvironmentFilter } from './../../../types/filter.types';
 import { getEnvironmentList } from './../../../util/api/EnvironmentList/index';
 import { addAccount, getDetail, modifyAccount } from './../../../util/api/Account/index';
-import { AxiosError } from 'axios';
 import { EnvironmentOptionsType } from './../../../models/vo/index';
+import handleAxiosError from '../../../util/api/handleAxiosError';
 
 type AccountModalType = 'add' | 'modify' | 'detail';
 
@@ -82,51 +82,41 @@ const AccountModal: FC<Props> = ({ type, onClose, id }) => {
   };
 
   const addingAccount = async () => {
-    try {
-      await addAccount({
-        ...inputs,
-        environmentId: environmentValue && environmentValue.id,
-      });
-      console.log('계정이 성공적으로 생성되었습니다.');
-      onClose();
-    } catch (err: unknown) {
-      const axiosError = err as AxiosError;
-
-      if (axiosError.response?.status === 400) {
-        setErrorMessage('잘못된 입력 값입니다.');
-      } else if (axiosError.response?.status === 401) {
-        setErrorMessage('존재하지 않는 계정입니다.');
-      } else if (axiosError.response?.status === 409) {
-        setErrorMessage('환경, 서비스, 아이디가 중복됩니다.');
-      } else {
-        setErrorMessage(axiosError.message);
-      }
-    }
+    handleAxiosError(
+      async () => {
+        await addAccount({
+          ...inputs,
+          environmentId: environmentValue && environmentValue.id,
+        });
+        onClose();
+      },
+      {
+        400: '잘못된 입력입니다.',
+        401: '존재하지 않는 계정입니다.',
+        409: '환경, 서비스, 아이디가 중복됩니다.',
+      },
+      setErrorMessage,
+    );
   };
 
   const modifyingAccount = async () => {
-    try {
-      await modifyAccount(
-        {
-          ...inputs,
-        },
-        id,
-      );
-      console.log('계정이 성공적으로 수정되었습니다.');
-      onClose();
-    } catch (err: unknown) {
-      const axiosError = err as AxiosError;
-
-      if (axiosError.response?.status === 400) {
-        setErrorMessage('잘못된 입력 값입니다.');
-      } else if (axiosError.response?.status === 401) {
-        setErrorMessage('존재하지 않는 계정입니다.');
-      } else if (axiosError.response?.status === 409) {
-        setErrorMessage('환경, 서비스, 아이디가 중복됩니다.');
-      } else {
-        setErrorMessage(axiosError.message);
-      }
-    }
+    handleAxiosError(
+      async () => {
+        await modifyAccount(
+          {
+            ...inputs,
+          },
+          id,
+        );
+        onClose();
+      },
+      {
+        400: '잘못된 입력입니다.',
+        401: '존재하지 않는 계정입니다.',
+        409: '환경, 서비스, 아이디가 중복됩니다.',
+      },
+      setErrorMessage,
+    );
   };
 
   const onSubmitHandler = async (e: React.SyntheticEvent) => {

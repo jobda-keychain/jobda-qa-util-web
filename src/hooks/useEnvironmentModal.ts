@@ -25,35 +25,25 @@ const useEnvironmentModal = (onClose: () => void, environmentValue?: Environment
     });
 
   const onClickCreateEnvironment = useCallback(async () => {
-    try {
-      await createEnvironment(environment);
-      onClose();
-    } catch (error: any) {
-      const axiosError = error as AxiosError;
-      if (axiosError.response?.status === 409) {
-        setErrorMessage('이미 존재하는 이름입니다.');
-      } else if (axiosError.response?.status === 400) {
-        setErrorMessage('잘못된 입력입니다.');
-      } else {
-        setErrorMessage(axiosError.message);
-      }
-    }
+    handleAxiosError(
+      async () => {
+        await createEnvironment(environment);
+        onClose();
+      },
+      { 409: '이미 존재하는 이름입니다.', 400: '잘못된 입력입니다.' },
+      setErrorMessage,
+    );
   }, [environment, onClose]);
 
   const onClickModifyEnvironment = useCallback(async () => {
-    try {
-      await modifyEnvironment(environment.id, environment);
-      onClose();
-    } catch (error: any) {
-      const axiosError = error as AxiosError;
-      if (axiosError.response?.status === 409) {
-        setErrorMessage('이미 존재하는 이름입니다.');
-      } else if (axiosError.response?.status === 400) {
-        setErrorMessage('잘못된 입력입니다.');
-      } else {
-        setErrorMessage(axiosError.message);
-      }
-    }
+    handleAxiosError(
+      async () => {
+        await modifyEnvironment(environment.id, environment);
+        onClose();
+      },
+      { 409: '이미 존재하는 이름입니다.', 400: '잘못된 입력입니다.' },
+      setErrorMessage,
+    );
   }, [environment, onClose]);
 
   return {
