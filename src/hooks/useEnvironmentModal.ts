@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import { useCallback, useState } from 'react';
 import { Platform } from '../lib/enum/platform';
 import { Environment } from '../types/environment.types';
