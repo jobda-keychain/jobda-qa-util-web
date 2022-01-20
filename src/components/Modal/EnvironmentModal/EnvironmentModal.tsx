@@ -10,12 +10,14 @@ interface EnvironmentModalProps {
   type: 'create' | 'modify';
   environmentValue?: Environment;
   onClose: () => void;
+  refresh?: () => void;
 }
 
 const EnvironmentModal: FC<EnvironmentModalProps> = ({
   type,
   environmentValue,
   onClose,
+  refresh,
 }): JSX.Element => {
   const {
     environment,
@@ -23,7 +25,7 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
     onChangeEnvironment,
     onClickCreateEnvironment,
     onClickModifyEnvironment,
-  } = useEnvironmentModal(onClose, environmentValue);
+  } = useEnvironmentModal(onClose, refresh, environmentValue);
 
   const onClick = type === 'create' ? onClickCreateEnvironment : onClickModifyEnvironment;
   const typeLabel = type === 'create' ? '생성' : '수정';

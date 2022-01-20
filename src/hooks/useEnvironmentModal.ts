@@ -4,7 +4,11 @@ import { Environment } from '../types/environment.types';
 import handleAxiosError from '../util/api/handleAxiosError';
 import { createEnvironment, modifyEnvironment } from '../util/api/environment';
 
-const useEnvironmentModal = (onClose: () => void, environmentValue?: Environment) => {
+const useEnvironmentModal = (
+  onClose: () => void,
+  refresh?: () => void,
+  environmentValue?: Environment,
+) => {
   const [environment, setEnvironment] = useState(
     environmentValue ?? {
       id: 0,
@@ -28,6 +32,7 @@ const useEnvironmentModal = (onClose: () => void, environmentValue?: Environment
       async () => {
         await createEnvironment(environment);
         onClose();
+        window.location.reload();
       },
       { 409: '이미 존재하는 이름입니다.', 400: '잘못된 입력입니다.' },
       setErrorMessage,
@@ -38,6 +43,7 @@ const useEnvironmentModal = (onClose: () => void, environmentValue?: Environment
     handleAxiosError(
       async () => {
         await modifyEnvironment(environment.id, environment);
+        refresh?.();
         onClose();
       },
       { 409: '이미 존재하는 이름입니다.', 400: '잘못된 입력입니다.' },

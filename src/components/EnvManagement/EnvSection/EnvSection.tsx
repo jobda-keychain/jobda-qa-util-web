@@ -98,13 +98,19 @@ const EnvSection = () => {
             type='modify'
             environmentValue={selectedEnvironment}
             onClose={toggleIsOpenModal}
+            refresh={getEnvironments}
           />
         </ModalWrapper>
       </Modal>
 
       <Modal open={modalType === 'delete' && isOpenModal} onClose={toggleIsOpenModal}>
         <ModalWrapper>
-          <DeleteModal type='environment' id={selectedEnvironment.id} onClose={toggleIsOpenModal} />
+          <DeleteModal
+            type='environment'
+            id={selectedEnvironment.id}
+            onClose={toggleIsOpenModal}
+            getAccounts={getEnvironments}
+          />
         </ModalWrapper>
       </Modal>
     </SectionWrapper>
