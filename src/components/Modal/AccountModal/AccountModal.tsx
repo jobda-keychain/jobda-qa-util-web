@@ -45,11 +45,11 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
   const [environments, setEnvironments] = useState<EnvironmentOptionsType[]>([]);
   const [environmentValue, setEnvironmentValue] = useState<EnvironmentOptionsType | null>(null);
   const [inputs, setInputs] = useState({
-    userId: '',
+    accountId: '',
     password: '',
     description: '',
   });
-  const { userId, password, description } = inputs;
+  const { accountId, password, description } = inputs;
   const { title, buttonText, isAdd, isDetail } = getModalInfo(type);
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -72,7 +72,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
       .then(res => {
         setEnvironmentValue(res.data.environment);
         setInputs({
-          userId: res.data.userId,
+          accountId: res.data.accountId,
           password: res.data.password,
           description: res.data.description,
         });
@@ -174,7 +174,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
           <TextField
             required
             name='userId'
-            value={userId}
+            value={accountId}
             onChange={onInputsChange}
             disabled={isDetail}
             id='standard-basic'

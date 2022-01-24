@@ -24,7 +24,7 @@ const MainSection = () => {
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [selectedAccount, setSelectedAccount] = useState<Account>({
     id: 1,
-    userId: '',
+    accountId: '',
     password: '',
     platform: Platform.JOBDA,
     environment: '',
