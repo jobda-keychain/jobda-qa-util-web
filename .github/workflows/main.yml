@@ -30,3 +30,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        
+      - name: Deploy
+        env:
+          REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+        run: npm run deploy
