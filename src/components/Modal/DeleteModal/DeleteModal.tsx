@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Alert, Button } from '@mui/material';
 import React, { FC } from 'react';
 import useDeleteAccount from '../../../hooks/useDeleteAccount';
 import useDeleteEnvironment from '../../../hooks/useDeleteEnvironment';
@@ -14,13 +14,18 @@ interface DeleteModalProps {
 
 const DeleteModal: FC<DeleteModalProps> = ({ id, type, onClose, getAccounts }) => {
   const { onClickDeleteAccountButton } = useDeleteAccount(id, onClose, getAccounts);
-  const { onClickDeleteEnvironmentButton } = useDeleteEnvironment(id, onClose, getAccounts);
+  const { errorMessage, onClickDeleteEnvironmentButton } = useDeleteEnvironment(
+    id,
+    onClose,
+    getAccounts,
+  );
 
   const onClick = type === 'account' ? onClickDeleteAccountButton : onClickDeleteEnvironmentButton;
 
   return (
     <S.ModalContainer>
       <span>계정을 삭제하시겠습니까?</span>
+
       <S.ButtonContainer>
         <Button onClick={onClick} variant='contained'>
           예
@@ -29,6 +34,8 @@ const DeleteModal: FC<DeleteModalProps> = ({ id, type, onClose, getAccounts }) =
           아니오
         </Button>
       </S.ButtonContainer>
+
+      {errorMessage && <Alert severity='error'>{errorMessage}</Alert>}
     </S.ModalContainer>
   );
 };

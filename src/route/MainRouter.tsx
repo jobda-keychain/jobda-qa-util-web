@@ -6,11 +6,11 @@ import NotFound from '../page/NotFound/NotFound';
 
 const MainRouter = () => {
   return (
-    <BrowserRouter basename='/'>
+    <BrowserRouter basename='/jobda-qa-util-web'>
       <Routes>
-        <Route path='*' element={<NotFound />} />
         <Route path='/' element={<Main />} />
         <Route path='/env-management' element={<EnvManagement />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
