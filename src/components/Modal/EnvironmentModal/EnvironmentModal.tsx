@@ -37,6 +37,7 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
       <div>
         <S.MultipleInputWrapper count={2}>
           <TextField
+            required
             name='name'
             label='환경 이름'
             variant='filled'
@@ -55,6 +56,7 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
 
         <S.InputWrapper>
           <TextField
+            required
             name='clientDomain'
             label='클라이언트 도메인'
             variant='filled'
@@ -66,6 +68,7 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
 
         <S.InputWrapper>
           <TextField
+            required
             name='serverDomain'
             label='서버 도메인'
             variant='filled'

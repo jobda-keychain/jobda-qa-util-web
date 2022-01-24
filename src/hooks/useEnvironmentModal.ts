@@ -34,7 +34,10 @@ const useEnvironmentModal = (
         onClose();
         window.location.reload();
       },
-      { 409: '이미 존재하는 이름입니다.', 400: '잘못된 입력입니다.' },
+      {
+        409: '이미 존재하는 이름입니다.',
+        400: '이름은 2~10자, 서버 도메인과 클라이언트 도메인은 2~255자로 입력해주세요.',
+      },
       setErrorMessage,
     );
   }, [environment, onClose]);
