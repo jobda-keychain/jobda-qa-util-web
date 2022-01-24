@@ -173,7 +173,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
         <S.AuthInputsContainer>
           <TextField
             required
-            name='userId'
+            name='accountId'
             value={accountId}
             onChange={onInputsChange}
             disabled={isDetail}
