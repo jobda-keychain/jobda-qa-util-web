@@ -15,4 +15,8 @@ export const ServiceTab = styled(Tab)`
   height: 60px;
   font-size: 20px;
   color: rgba(0, 0, 0, 0.25);
+
+  &.Mui-selected {
+    color: #00c17c;
+  }
 `;
