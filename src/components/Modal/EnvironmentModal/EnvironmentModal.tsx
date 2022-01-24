@@ -42,7 +42,7 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
             variant='filled'
             value={environment.name}
             onChange={onChangeEnvironment}
-            inputProps={{ maxLength: 10, minLength: 2 }}
+            inputProps={{ maxLength: 10, minLength: 2, pattern: '^(http|https)://' }}
           />
           <div>
             <ServiceRadio
@@ -60,7 +60,7 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
             variant='filled'
             value={environment.clientDomain}
             onChange={onChangeEnvironment}
-            inputProps={{ maxLength: 255, minLength: 2 }}
+            inputProps={{ maxLength: 255, minLength: 2, pattern: '^(http|https)://' }}
           />
         </S.InputWrapper>
 
