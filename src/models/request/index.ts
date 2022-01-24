@@ -1,14 +1,14 @@
 import { Platform } from '../../lib/enum/platform';
 
 export interface AddAccountRequest {
-  userId: string;
+  accountId: string;
   password: string;
   environmentId: number | null;
   description: string;
 }
 
 export interface ModifyAccountRequest {
-  userId: string;
+  accountId: string;
   password: string;
   description: string;
 }
