@@ -92,7 +92,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
         window.location.reload();
       },
       {
-        400: '잘못된 입력입니다.',
+        400: '이름은 2~10자, 서버 도메인과 클라이언트 도메인은 2~255자로 입력해주세요.',
         401: '존재하지 않는 계정입니다.',
         409: '환경, 서비스, 아이디가 중복됩니다.',
       },
