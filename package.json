@@ -2,7 +2,7 @@
   "name": "jobda-qa-util",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://jobda-keychain.github.io/jobda-qa-util-web",
+  "homepage": "https://jobda-keychain.github.io/jobda-qa-util-web/",
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
