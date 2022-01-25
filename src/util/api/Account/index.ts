@@ -56,6 +56,14 @@ export const getFilterList = async (platform?: string) => {
   }
 };
 
+export const getEnvironmemtName = async () => {
+  try {
+    return await instance.get<FilterListResponse>(`/environments/names`);
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const login = async (id: number) => {
   return await instance.post<LoginResponse>(`/accounts/${id}`);
 };

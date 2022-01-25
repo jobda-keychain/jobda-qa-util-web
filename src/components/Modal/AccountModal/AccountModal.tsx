@@ -2,7 +2,12 @@ import { TextField, Alert } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
 import { EnvironmentOptionsType } from './../../../models/vo/index';
-import { addAccount, getDetail, getFilterList } from '../../../util/api/Account';
+import {
+  addAccount,
+  getDetail,
+  getEnvironmemtName,
+  getFilterList,
+} from '../../../util/api/Account';
 import { modifyAccount } from './../../../util/api/Account/index';
 import handleAxiosError from '../../../util/api/handleAxiosError';
 
@@ -56,7 +61,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
 
   const fetchFilterList = async () => {
     try {
-      const res = await getFilterList();
+      const res = await getEnvironmemtName();
       const environments = res.data.data.map(ele => ({
         id: ele.id,
         label: `${ele.name}(${ele.platform})`,
