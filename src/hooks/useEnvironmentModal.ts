@@ -51,11 +51,11 @@ const useEnvironmentModal = (
       },
       {
         409: '이미 존재하는 이름입니다.',
-        400: '환경에 속한 계정이 있습니다. 환경에 속한 계정을 전부 제거하고 재시도하세요',
+        400: '환경에 속한 계정이 있습니다. 속한 계정을 전부 제거하고 재시도하세요',
       },
       setErrorMessage,
     );
-  }, [environment, onClose]);
+  }, [environment, refresh, onClose]);
 
   return {
     environment,
