@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getDetail } from '../util/api/Account';
 
 const useCopy = (id: number, onClose: () => void) => {
@@ -8,17 +8,14 @@ const useCopy = (id: number, onClose: () => void) => {
 
   const onChangeFormat = (e: React.ChangeEvent<HTMLInputElement>) => setFormat(e.target.value);
 
-  useEffect(() => {
-    navigator.permissions.query({ name: 'clipboard-write' as PermissionName }).then(result => {
-      if (result.state === 'denied') {
-        setErrorMessage('클립보드 권한을 허용해주세요.');
-      }
-    });
-  }, []);
+  const fetchDetail = async () => {
+    const { data } = await getDetail(id);
+    return data;
+  };
 
   const doFormat = async () => {
     try {
-      const { data } = await getDetail(id);
+      const data = await fetchDetail();
 
       return format
         .replace('!(Env)', data.environment.label)
@@ -26,21 +23,28 @@ const useCopy = (id: number, onClose: () => void) => {
         .replace('!(Pw)', data.password!)
         .replace('!(Ser)', data.platform);
     } catch (error: any) {
-      navigator.permissions.query({ name: 'clipboard-write' as PermissionName }).then(result => {
-        if (result.state === 'granted' || result.state === 'prompt') {
-          setErrorMessage('클립보드 권한을 허용해주세요.');
-        }
-        return '';
-      });
+      return '';
     }
   };
 
   const copy = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    doFormat().then(async value => {
-      if (value) {
-        await navigator.clipboard.writeText(value);
-        onClose();
+
+    const formattedMessage = await doFormat();
+
+    navigator.permissions.query({ name: 'clipboard-write' as PermissionName }).then(result => {
+      result.onchange = () => {
+        if (result.state === 'granted' || result.state === 'prompt') {
+          setErrorMessage('');
+        } else {
+          setErrorMessage('클립보드 권한을 허용해주세요.');
+        }
+      };
+
+      if (result.state === 'granted' || result.state === 'prompt') {
+        navigator.clipboard.writeText(formattedMessage).then(() => {
+          onClose();
+        });
       }
     });
   };
