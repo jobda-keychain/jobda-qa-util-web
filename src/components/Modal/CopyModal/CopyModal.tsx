@@ -13,7 +13,7 @@ const CopyModal: FC<CopyModalProps> = ({ id, onClose }) => {
   const { format, errorMessage, onChangeFormat, copy } = useCopy(id, onClose);
 
   return (
-    <S.CopyModal>
+    <S.ModalWrapper onSubmit={copy}>
       <div>
         <h3>클립보드에 복사</h3>
 
@@ -25,14 +25,20 @@ const CopyModal: FC<CopyModalProps> = ({ id, onClose }) => {
         </S.HelpWrapper>
       </div>
 
-      <TextField label='복사 양식' variant='filled' value={format} onChange={onChangeFormat} />
+      <TextField
+        required
+        label='복사 양식'
+        variant='filled'
+        value={format}
+        onChange={onChangeFormat}
+      />
 
       {errorMessage && <Alert severity='error'>{errorMessage}</Alert>}
 
       <S.ButtonWrapper>
-        <ModalButton onClick={copy}>복사</ModalButton>
+        <ModalButton>복사</ModalButton>
       </S.ButtonWrapper>
-    </S.CopyModal>
+    </S.ModalWrapper>
   );
 };
 

@@ -20,21 +20,23 @@ const useCopy = (id: number, onClose: () => void) => {
     try {
       const { data } = await getDetail(id);
 
-      if (!format) {
-        return `환경: ${data.environment.label} 아이디: ${data.accountId} 비밀번호: ${data.password} 서비스: ${data.platform}`;
-      } else {
-        return format
-          .replace('!(Env)', data.environment.label)
-          .replace('!(Id)', data.accountId)
-          .replace('!(Pw)', data.password!)
-          .replace('!(Ser)', data.platform);
-      }
+      return format
+        .replace('!(Env)', data.environment.label)
+        .replace('!(Id)', data.accountId)
+        .replace('!(Pw)', data.password!)
+        .replace('!(Ser)', data.platform);
     } catch (error: any) {
-      return '';
+      navigator.permissions.query({ name: 'clipboard-write' as PermissionName }).then(result => {
+        if (result.state === 'granted' || result.state === 'prompt') {
+          setErrorMessage('클립보드 권한을 허용해주세요.');
+        }
+        return '';
+      });
     }
   };
 
-  const copy = async () => {
+  const copy = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     doFormat().then(async value => {
       if (value) {
         await navigator.clipboard.writeText(value);
