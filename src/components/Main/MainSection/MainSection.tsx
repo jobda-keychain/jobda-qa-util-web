@@ -141,7 +141,7 @@ const MainSection = () => {
 
       <Modal open={modalType === 'copy' && isOpenModal} onClose={toggleIsOpenModal}>
         <ModalWrapper>
-          <CopyModal id={selectedAccount.id} onClose={toggleIsOpenModal} />
+          <CopyModal id={selectedAccount.id} />
         </ModalWrapper>
       </Modal>
     </SectionWrapper>

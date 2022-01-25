@@ -6,11 +6,10 @@ import * as S from './style';
 
 interface CopyModalProps {
   id: number;
-  onClose: () => void;
 }
 
-const CopyModal: FC<CopyModalProps> = ({ id, onClose }) => {
-  const { format, errorMessage, onChangeFormat, copy } = useCopy(id, onClose);
+const CopyModal: FC<CopyModalProps> = ({ id }) => {
+  const { format, successMessage, errorMessage, onChangeFormat, copy } = useCopy(id);
 
   return (
     <S.ModalWrapper onSubmit={copy}>
@@ -32,6 +31,8 @@ const CopyModal: FC<CopyModalProps> = ({ id, onClose }) => {
         value={format}
         onChange={onChangeFormat}
       />
+
+      {successMessage && <Alert severity='success'>{successMessage}</Alert>}
 
       {errorMessage && <Alert severity='error'>{errorMessage}</Alert>}
 
