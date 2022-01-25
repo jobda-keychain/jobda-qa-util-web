@@ -9,7 +9,7 @@ import AccountHeader from '../AccountList/AccountHeader';
 import { Account } from './../../../types/account.types';
 import useModal from '../../../hooks/useModal';
 import { AccountModalType } from '../../../types/modal.types';
-import { Modal } from '@mui/material';
+import { Alert, Modal } from '@mui/material';
 import AccountModal from '../../Modal/AccountModal/AccountModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import CopyModal from '../../Modal/CopyModal/CopyModal';
@@ -141,7 +141,7 @@ const MainSection = () => {
 
       <Modal open={modalType === 'copy' && isOpenModal} onClose={toggleIsOpenModal}>
         <ModalWrapper>
-          <CopyModal id={selectedAccount.id} />
+          <CopyModal id={selectedAccount.id} onClose={toggleIsOpenModal} />
         </ModalWrapper>
       </Modal>
     </SectionWrapper>
