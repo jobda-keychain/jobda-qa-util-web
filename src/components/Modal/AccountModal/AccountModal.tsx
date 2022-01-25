@@ -10,6 +10,7 @@ import {
 } from '../../../util/api/Account';
 import { modifyAccount } from './../../../util/api/Account/index';
 import handleAxiosError from '../../../util/api/handleAxiosError';
+import cogoToast from 'cogo-toast';
 
 type AccountModalType = 'add' | 'modify' | 'detail';
 
@@ -83,7 +84,11 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
         });
       })
       .catch(err => {
-        throw err;
+        if (err.response?.status === 404) {
+          onClose();
+          cogoToast.error('존재하지 않는 계정입니다.');
+          if (getAccounts) getAccounts();
+        }
       });
   };
 
