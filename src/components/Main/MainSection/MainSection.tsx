@@ -74,36 +74,38 @@ const MainSection = () => {
 
   return (
     <SectionWrapper>
-      <S.Header>
-        <PublicTab tabNumber={tabNumber} setTabNumber={setTabNumber} />
-        <S.EnvBtn to='/env-management'>
-          <img src={setting} alt='' />
-          <span>환경 관리</span>
-        </S.EnvBtn>
-      </S.Header>
-      {tabNumber !== 0 && (
-        <MainFilter filters={filters} setFilters={setFilters} tabNumber={tabNumber} />
-      )}
-      <ListWrapper>
-        <AccountHeader />
-        <hr />
-        {accounts.map(account => (
-          <div key={account.id}>
-            <AccountRow
-              account={account}
-              setModalType={setModalType}
-              autoLogin={() => {
-                autoLogin(account.id);
-              }}
-              toggleIsOpenModal={() => {
-                setSelectedAccount(account);
-                toggleIsOpenModal();
-              }}
-            />
-            <hr />
-          </div>
-        ))}
-      </ListWrapper>
+      <div>
+        <S.Header>
+          <PublicTab tabNumber={tabNumber} setTabNumber={setTabNumber} />
+          <S.EnvBtn to='/env-management'>
+            <img src={setting} alt='' />
+            <span>환경 관리</span>
+          </S.EnvBtn>
+        </S.Header>
+        {tabNumber !== 0 && (
+          <MainFilter filters={filters} setFilters={setFilters} tabNumber={tabNumber} />
+        )}
+        <ListWrapper>
+          <AccountHeader />
+          <hr />
+          {accounts.map(account => (
+            <div key={account.id}>
+              <AccountRow
+                account={account}
+                setModalType={setModalType}
+                autoLogin={() => {
+                  autoLogin(account.id);
+                }}
+                toggleIsOpenModal={() => {
+                  setSelectedAccount(account);
+                  toggleIsOpenModal();
+                }}
+              />
+              <hr />
+            </div>
+          ))}
+        </ListWrapper>
+      </div>
 
       <PaginationtWrapper>
         <StyledPagination page={currentPage} onChange={pageHandler} count={pageCount} />
