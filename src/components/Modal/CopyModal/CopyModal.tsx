@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { Alert, TextField } from '@mui/material';
 import React, { FC } from 'react';
 import useCopy from '../../../hooks/useCopy';
 import { ModalButton } from '../../../style/Modal';
@@ -10,7 +10,7 @@ interface CopyModalProps {
 }
 
 const CopyModal: FC<CopyModalProps> = ({ id, onClose }) => {
-  const { format, onChangeFormat, copy } = useCopy(id, onClose);
+  const { format, errorMessage, onChangeFormat, copy } = useCopy(id, onClose);
 
   return (
     <S.CopyModal>
@@ -26,6 +26,8 @@ const CopyModal: FC<CopyModalProps> = ({ id, onClose }) => {
       </div>
 
       <TextField label='복사 양식' variant='filled' value={format} onChange={onChangeFormat} />
+
+      {errorMessage && <Alert severity='error'>{errorMessage}</Alert>}
 
       <S.ButtonWrapper>
         <ModalButton onClick={copy}>복사</ModalButton>
