@@ -25,7 +25,7 @@ const CopyModal: FC<CopyModalProps> = ({ id, onClose }) => {
         </S.HelpWrapper>
       </div>
 
-      <TextField label='환경' variant='filled' value={format} onChange={onChangeFormat} />
+      <TextField label='복사 양식' variant='filled' value={format} onChange={onChangeFormat} />
 
       <S.ButtonWrapper>
         <ModalButton onClick={copy}>복사</ModalButton>
