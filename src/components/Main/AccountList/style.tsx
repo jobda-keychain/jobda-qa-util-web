@@ -35,6 +35,8 @@ export const UserIdWrapper = styled.div<{ type: 'header' | 'row' }>`
 export const ButtonWrapper = styled.div`
   float: right;
   gap: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 
   * {
     height: 32px;
