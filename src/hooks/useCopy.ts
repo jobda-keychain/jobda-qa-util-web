@@ -1,3 +1,4 @@
+import cogoToast from 'cogo-toast';
 import { useState } from 'react';
 import { getDetail } from '../util/api/Account';
 
@@ -30,23 +31,20 @@ const useCopy = (id: number, onClose: () => void) => {
   const copy = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formattedMessage = await doFormat();
-
-    navigator.permissions.query({ name: 'clipboard-write' as PermissionName }).then(result => {
-      result.onchange = () => {
+    navigator.permissions
+      .query({ name: 'clipboard-write' as PermissionName })
+      .then(async result => {
         if (result.state === 'granted' || result.state === 'prompt') {
-          setErrorMessage('');
+          const formattedMessage = await doFormat();
+
+          navigator.clipboard.writeText(formattedMessage).then(() => {
+            onClose();
+            cogoToast.success('복사 성공!');
+          });
         } else {
           setErrorMessage('클립보드 권한을 허용해주세요.');
         }
-      };
-
-      if (result.state === 'granted' || result.state === 'prompt') {
-        navigator.clipboard.writeText(formattedMessage).then(() => {
-          onClose();
-        });
-      }
-    });
+      });
   };
 
   return { format, errorMessage, onChangeFormat, copy };

@@ -23,6 +23,7 @@ export const PlatformWrapper = styled.div<{ type: 'header' | 'row' }>`
 `;
 
 export const ClientDomainWrapper = styled.div<{ type: 'header' | 'row' }>`
+  word-break: break-all;
   padding-top: 15px;
   padding-bottom: 15px;
   margin-right: 10px;
@@ -31,6 +32,7 @@ export const ClientDomainWrapper = styled.div<{ type: 'header' | 'row' }>`
 `;
 
 export const ServerDomainWrapper = styled.div<{ type: 'header' | 'row' }>`
+  word-break: break-all;
   margin-right: 10px;
   width: 30%;
   ${({ type }) => getWrapperStyle(type)}

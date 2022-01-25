@@ -9,7 +9,7 @@ import AccountHeader from '../AccountList/AccountHeader';
 import { Account } from './../../../types/account.types';
 import useModal from '../../../hooks/useModal';
 import { AccountModalType } from '../../../types/modal.types';
-import { Modal } from '@mui/material';
+import { Alert, Modal } from '@mui/material';
 import AccountModal from '../../Modal/AccountModal/AccountModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import CopyModal from '../../Modal/CopyModal/CopyModal';
@@ -74,36 +74,38 @@ const MainSection = () => {
 
   return (
     <SectionWrapper>
-      <S.Header>
-        <PublicTab tabNumber={tabNumber} setTabNumber={setTabNumber} />
-        <S.EnvBtn to='/env-management'>
-          <img src={setting} alt='' />
-          <span>환경 관리</span>
-        </S.EnvBtn>
-      </S.Header>
-      {tabNumber !== 0 && (
-        <MainFilter filters={filters} setFilters={setFilters} tabNumber={tabNumber} />
-      )}
-      <ListWrapper>
-        <AccountHeader />
-        <hr />
-        {accounts.map(account => (
-          <div key={account.id}>
-            <AccountRow
-              account={account}
-              setModalType={setModalType}
-              autoLogin={() => {
-                autoLogin(account.id);
-              }}
-              toggleIsOpenModal={() => {
-                setSelectedAccount(account);
-                toggleIsOpenModal();
-              }}
-            />
-            <hr />
-          </div>
-        ))}
-      </ListWrapper>
+      <div>
+        <S.Header>
+          <PublicTab tabNumber={tabNumber} setTabNumber={setTabNumber} />
+          <S.EnvBtn to='/env-management'>
+            <img src={setting} alt='' />
+            <span>환경 관리</span>
+          </S.EnvBtn>
+        </S.Header>
+        {tabNumber !== 0 && (
+          <MainFilter filters={filters} setFilters={setFilters} tabNumber={tabNumber} />
+        )}
+        <ListWrapper>
+          <AccountHeader />
+          <hr />
+          {accounts.map(account => (
+            <div key={account.id}>
+              <AccountRow
+                account={account}
+                setModalType={setModalType}
+                autoLogin={() => {
+                  autoLogin(account.id);
+                }}
+                toggleIsOpenModal={() => {
+                  setSelectedAccount(account);
+                  toggleIsOpenModal();
+                }}
+              />
+              <hr />
+            </div>
+          ))}
+        </ListWrapper>
+      </div>
 
       <PaginationtWrapper>
         <StyledPagination page={currentPage} onChange={pageHandler} count={pageCount} />
@@ -111,7 +113,12 @@ const MainSection = () => {
 
       <Modal open={modalType === 'detail' && isOpenModal} onClose={toggleIsOpenModal}>
         <ModalWrapper>
-          <AccountModal id={selectedAccount.id} type='detail' onClose={toggleIsOpenModal} />
+          <AccountModal
+            getAccounts={getAccounts}
+            id={selectedAccount.id}
+            type='detail'
+            onClose={toggleIsOpenModal}
+          />
         </ModalWrapper>
       </Modal>
 

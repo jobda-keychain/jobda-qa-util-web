@@ -6,7 +6,7 @@ import NotFound from '../page/NotFound/NotFound';
 
 const MainRouter = () => {
   return (
-    <BrowserRouter basename='/jobda-qa-util-web'>
+    <BrowserRouter>
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/env-management' element={<EnvManagement />} />

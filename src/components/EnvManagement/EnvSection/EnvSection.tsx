@@ -66,27 +66,29 @@ const EnvSection = () => {
 
   return (
     <SectionWrapper>
-      <S.TabBox>
-        <PublicTab tabNumber={tabNumber} setTabNumber={setTabNumber} />
-      </S.TabBox>
-      <ListWrapper>
-        <EnvironmentHeader />
-        <hr />
+      <div>
+        <S.TabBox>
+          <PublicTab tabNumber={tabNumber} setTabNumber={setTabNumber} />
+        </S.TabBox>
+        <ListWrapper>
+          <EnvironmentHeader />
+          <hr />
 
-        {environments.map(environment => (
-          <div key={environment.id}>
-            <EnvironmentRow
-              environment={environment}
-              setModalType={setModalType}
-              toggleIsOpenModal={() => {
-                setSelectedEnvironment(environment);
-                toggleIsOpenModal();
-              }}
-            />
-            <hr />
-          </div>
-        ))}
-      </ListWrapper>
+          {environments.map(environment => (
+            <div key={environment.id}>
+              <EnvironmentRow
+                environment={environment}
+                setModalType={setModalType}
+                toggleIsOpenModal={() => {
+                  setSelectedEnvironment(environment);
+                  toggleIsOpenModal();
+                }}
+              />
+              <hr />
+            </div>
+          ))}
+        </ListWrapper>
+      </div>
 
       <PaginationtWrapper>
         <StyledPagination page={currentPage} onChange={pageHandler} count={pageCount} />
