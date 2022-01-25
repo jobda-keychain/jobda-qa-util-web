@@ -23,6 +23,8 @@ export const PlatformWrapper = styled.div<{ type: 'header' | 'row' }>`
 `;
 
 export const UserIdWrapper = styled.div<{ type: 'header' | 'row' }>`
+  padding-top: 15px;
+  padding-bottom: 15px;
   margin-right: 10px;
   width: 50%;
   height: 100%;

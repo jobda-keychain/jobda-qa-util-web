@@ -40,6 +40,7 @@ const AccountRow: FC<AccountRowProps> = ({
       >
         {accountId}
       </S.UserIdWrapper>
+
       <S.ButtonWrapper>
         <IconButton
           onClick={() => {
