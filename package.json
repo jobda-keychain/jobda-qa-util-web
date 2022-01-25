@@ -30,7 +30,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI= react-scripts build",
+    "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
