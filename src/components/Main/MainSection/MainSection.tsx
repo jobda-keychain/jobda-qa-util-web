@@ -28,7 +28,6 @@ const MainSection = () => {
     password: '',
     platform: Platform.JOBDA,
     environment: '',
-    description: '',
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState<EnvironmentOptionsType[]>([]);

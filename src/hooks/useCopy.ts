@@ -11,11 +11,11 @@ const useCopy = (id: number, onClose: () => void) => {
       const { data } = await getDetail(id);
 
       if (!format) {
-        return `환경: ${data.environment} 아이디: ${data.userId} 비밀번호: ${data.password} 서비스: ${data.platform}`;
+        return `환경: ${data.environment.label} 아이디: ${data.accountId} 비밀번호: ${data.password} 서비스: ${data.platform}`;
       } else {
         return format
-          .replace('!(Env)', data.environment)
-          .replace('!(Id)', data.userId)
+          .replace('!(Env)', data.environment.label)
+          .replace('!(Id)', data.accountId)
           .replace('!(Pw)', data.password!)
           .replace('!(Ser)', data.platform);
       }
