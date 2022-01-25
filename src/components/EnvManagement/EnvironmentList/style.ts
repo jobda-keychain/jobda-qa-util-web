@@ -23,6 +23,8 @@ export const PlatformWrapper = styled.div<{ type: 'header' | 'row' }>`
 `;
 
 export const ClientDomainWrapper = styled.div<{ type: 'header' | 'row' }>`
+  padding-top: 15px;
+  padding-bottom: 15px;
   margin-right: 10px;
   width: 30%;
   ${({ type }) => getWrapperStyle(type)}
@@ -37,6 +39,8 @@ export const ServerDomainWrapper = styled.div<{ type: 'header' | 'row' }>`
 export const ButtonWrapper = styled.div`
   float: right;
   gap: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 
   * {
     height: 32px;

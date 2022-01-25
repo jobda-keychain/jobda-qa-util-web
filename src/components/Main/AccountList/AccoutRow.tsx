@@ -21,7 +21,7 @@ const AccountRow: FC<AccountRowProps> = ({
   toggleIsOpenModal,
   autoLogin,
 }) => {
-  const { environment, platform, userId } = account;
+  const { environment, platform, accountId } = account;
 
   return (
     <Row>
@@ -38,8 +38,9 @@ const AccountRow: FC<AccountRowProps> = ({
           toggleIsOpenModal();
         }}
       >
-        {userId}
+        {accountId}
       </S.UserIdWrapper>
+
       <S.ButtonWrapper>
         <IconButton
           onClick={() => {

@@ -9,8 +9,6 @@
     "@mui/material": "^5.2.7",
     "@mui/styled-engine-sc": "^5.1.0",
     "@mui/styles": "^5.2.3",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.18",
@@ -28,16 +26,15 @@
     "recoil": "^0.5.2",
     "styled-components": "^5.3.3",
     "styled-reset": "^4.3.4",
-    "typescript": "^4.5.4",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "CI= react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "CI= gh-pages -d build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +55,8 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
     "@types/styled-components": "^5.1.19",
     "gh-pages": "^3.2.3"
   }

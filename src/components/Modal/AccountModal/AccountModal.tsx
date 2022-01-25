@@ -2,7 +2,12 @@ import { TextField, Alert } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
 import { EnvironmentOptionsType } from './../../../models/vo/index';
-import { addAccount, getDetail, getFilterList } from '../../../util/api/Account';
+import {
+  addAccount,
+  getDetail,
+  getEnvironmemtName,
+  getFilterList,
+} from '../../../util/api/Account';
 import { modifyAccount } from './../../../util/api/Account/index';
 import handleAxiosError from '../../../util/api/handleAxiosError';
 
@@ -45,18 +50,18 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
   const [environments, setEnvironments] = useState<EnvironmentOptionsType[]>([]);
   const [environmentValue, setEnvironmentValue] = useState<EnvironmentOptionsType | null>(null);
   const [inputs, setInputs] = useState({
-    userId: '',
+    accountId: '',
     password: '',
     description: '',
   });
-  const { userId, password, description } = inputs;
+  const { accountId, password, description } = inputs;
   const { title, buttonText, isAdd, isDetail } = getModalInfo(type);
 
   const [errorMessage, setErrorMessage] = useState('');
 
   const fetchFilterList = async () => {
     try {
-      const res = await getFilterList();
+      const res = await getEnvironmemtName();
       const environments = res.data.data.map(ele => ({
         id: ele.id,
         label: `${ele.name}(${ele.platform})`,
@@ -72,7 +77,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
       .then(res => {
         setEnvironmentValue(res.data.environment);
         setInputs({
-          userId: res.data.userId,
+          accountId: res.data.accountId,
           password: res.data.password,
           description: res.data.description,
         });
@@ -92,7 +97,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
         window.location.reload();
       },
       {
-        400: '잘못된 입력입니다.',
+        400: '아이디는 2~20자, 비밀번호는 2~20자, 설명은 0~100자로 입력해주세요.',
         401: '존재하지 않는 계정입니다.',
         409: '환경, 서비스, 아이디가 중복됩니다.',
       },
@@ -113,7 +118,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
         if (getAccounts) getAccounts();
       },
       {
-        400: '잘못된 입력입니다.',
+        400: '아이디는 2~20자, 비밀번호는 2~20자, 설명은 0~100자로 입력해주세요.',
         401: '존재하지 않는 계정입니다.',
         409: '환경, 서비스, 아이디가 중복됩니다.',
       },
@@ -173,8 +178,8 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
         <S.AuthInputsContainer>
           <TextField
             required
-            name='userId'
-            value={userId}
+            name='accountId'
+            value={accountId}
             onChange={onInputsChange}
             disabled={isDetail}
             id='standard-basic'

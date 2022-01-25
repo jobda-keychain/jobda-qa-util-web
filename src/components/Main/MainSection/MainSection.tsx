@@ -24,11 +24,10 @@ const MainSection = () => {
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [selectedAccount, setSelectedAccount] = useState<Account>({
     id: 1,
-    userId: '',
+    accountId: '',
     password: '',
     platform: Platform.JOBDA,
     environment: '',
-    description: '',
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState<EnvironmentOptionsType[]>([]);
