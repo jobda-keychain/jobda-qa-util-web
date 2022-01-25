@@ -38,9 +38,11 @@ const useCopy = (id: number) => {
           const formattedMessage = await doFormat();
 
           navigator.clipboard.writeText(formattedMessage).then(() => {
+            setErrorMessage('');
             setSuccessMessage('복사 성공!');
           });
         } else {
+          setSuccessMessage('');
           setErrorMessage('클립보드 권한을 허용해주세요.');
         }
       });
