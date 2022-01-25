@@ -24,7 +24,7 @@ const DeleteModal: FC<DeleteModalProps> = ({ id, type, onClose, getAccounts }) =
 
   return (
     <S.ModalContainer>
-      <span>계정을 삭제하시겠습니까?</span>
+      <span>{type ? '계정' : '환경'}을 삭제하시겠습니까?</span>
 
       <S.ButtonContainer>
         <Button onClick={onClick} variant='contained'>
