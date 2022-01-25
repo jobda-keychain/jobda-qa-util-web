@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/jobda-qa-util-web/static/js/main.e2ba4b4c.js",
+    "main.js": "/jobda-qa-util-web/static/js/main.f0da3f07.js",
     "static/media/setting.svg": "/jobda-qa-util-web/static/media/setting.c8b8a1a5b3c5d4015502a9ff28c44441.svg",
     "index.html": "/jobda-qa-util-web/index.html",
-    "main.e2ba4b4c.js.map": "/jobda-qa-util-web/static/js/main.e2ba4b4c.js.map"
+    "main.f0da3f07.js.map": "/jobda-qa-util-web/static/js/main.f0da3f07.js.map"
   },
   "entrypoints": [
-    "static/js/main.e2ba4b4c.js"
+    "static/js/main.f0da3f07.js"
   ]
 }
