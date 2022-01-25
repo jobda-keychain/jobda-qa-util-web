@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ModalWrapper = styled.form`
   width: 600px;
-  height: 230px;
+  height: 280px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
