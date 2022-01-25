@@ -27,7 +27,9 @@ const ServiceRadio = ({ disabled, platform, onChangePlatform }: ServiceRadioProp
 
   return (
     <FormControl component='fieldset' disabled={disabled}>
-      <FormLabel component='legend'>서비스</FormLabel>
+      <FormLabel style={{ height: '10px' }} component='legend'>
+        서비스
+      </FormLabel>
       <RadioGroup row name='platform' value={platform} onChange={onChangePlatform}>
         {radioControls}
       </RadioGroup>

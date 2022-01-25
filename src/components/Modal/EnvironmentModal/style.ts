@@ -1,7 +1,13 @@
 import styled from 'styled-components';
-import { Modal } from '../../../style/Modal';
 
-export const EnvironmentModal = styled(Modal)`
+export const ModalWrapper = styled.form`
+  padding: 25px;
+  background-color: #f8f9fc;
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 600px;
   height: 400px;
   display: flex;
@@ -9,8 +15,13 @@ export const EnvironmentModal = styled(Modal)`
   justify-content: space-between;
 `;
 
+export const InputFormWrapper = styled.div`
+  * {
+    margin-bottom: 5px;
+  }
+`;
+
 export const InputWrapper = styled.div`
-  margin: 10px 0px;
   & > * {
     width: 100%;
   }

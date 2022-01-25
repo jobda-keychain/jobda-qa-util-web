@@ -1,5 +1,5 @@
 import { TextField, Alert } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import useEnvironmentModal from '../../../hooks/useEnvironmentModal';
 import { ModalButton } from '../../../style/Modal';
 import { Environment } from '../../../types/environment.types';
@@ -30,11 +30,15 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
   const onClick = type === 'create' ? onClickCreateEnvironment : onClickModifyEnvironment;
   const typeLabel = type === 'create' ? '생성' : '수정';
 
+  useEffect(() => {
+    console.log(/(^https?:\/\/)/.test('https://romi'));
+  });
+
   return (
-    <S.EnvironmentModal>
+    <S.ModalWrapper onSubmit={onClick}>
       <h3>환경{typeLabel}</h3>
 
-      <div>
+      <S.InputFormWrapper>
         <S.MultipleInputWrapper count={2}>
           <TextField
             required
@@ -43,7 +47,7 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
             variant='filled'
             value={environment.name}
             onChange={onChangeEnvironment}
-            inputProps={{ maxLength: 10, minLength: 2, pattern: '^(http|https)://' }}
+            inputProps={{ maxLength: 10, minLength: 2 }}
           />
           <div>
             <ServiceRadio
@@ -60,9 +64,14 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
             name='clientDomain'
             label='클라이언트 도메인'
             variant='filled'
+            placeholder='http:// https:// - 영어 대소문자, 숫자, @:%._+~#=/'
             value={environment.clientDomain}
             onChange={onChangeEnvironment}
-            inputProps={{ maxLength: 255, minLength: 2, pattern: '^(http|https)://' }}
+            inputProps={{
+              maxLength: 255,
+              minLength: 2,
+              pattern: 'https?://[-a-zA-Z0-9@:%._+~#=/]{2,255}',
+            }}
           />
         </S.InputWrapper>
 
@@ -72,19 +81,24 @@ const EnvironmentModal: FC<EnvironmentModalProps> = ({
             name='serverDomain'
             label='서버 도메인'
             variant='filled'
+            placeholder='http:// https:// - 영어 대소문자, 숫자, @:%._+~#=/'
             value={environment.serverDomain}
             onChange={onChangeEnvironment}
-            inputProps={{ maxLength: 255, minLength: 2 }}
+            inputProps={{
+              maxLength: 255,
+              minLength: 2,
+              pattern: 'https?://[-a-zA-Z0-9@:%._+~#=/]{2,255}',
+            }}
           />
         </S.InputWrapper>
-      </div>
+      </S.InputFormWrapper>
 
       {errorMessage && <Alert severity='error'>{errorMessage}</Alert>}
 
       <S.ButtonWrapper>
-        <ModalButton onClick={onClick}>{typeLabel}</ModalButton>
+        <ModalButton>{typeLabel}</ModalButton>
       </S.ButtonWrapper>
-    </S.EnvironmentModal>
+    </S.ModalWrapper>
   );
 };
 
