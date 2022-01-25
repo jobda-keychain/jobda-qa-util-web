@@ -29,7 +29,9 @@ const EnvironmentRow: FC<EnvironmentRowProps> = ({
         <PlatformLabel type={platform}>{platform}</PlatformLabel>
       </S.PlatformWrapper>
       <S.ServerDomainWrapper type='row'>
-        <a href={clientDomain}>{clientDomain}</a>
+        <a href={clientDomain} target='_blank' rel='noreferrer'>
+          {clientDomain}
+        </a>
       </S.ServerDomainWrapper>
       <S.ClientDomainWrapper type='row'>{serverDomain}</S.ClientDomainWrapper>
 

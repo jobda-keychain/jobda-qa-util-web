@@ -92,7 +92,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
         window.location.reload();
       },
       {
-        400: '잘못된 입력입니다.',
+        400: '아이디는 2~20자, 비밀번호는 2~20자, 설명은 0~100자로 입력해주세요.',
         401: '존재하지 않는 계정입니다.',
         409: '환경, 서비스, 아이디가 중복됩니다.',
       },
@@ -113,7 +113,7 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
         if (getAccounts) getAccounts();
       },
       {
-        400: '잘못된 입력입니다.',
+        400: '아이디는 2~20자, 비밀번호는 2~20자, 설명은 0~100자로 입력해주세요.',
         401: '존재하지 않는 계정입니다.',
         409: '환경, 서비스, 아이디가 중복됩니다.',
       },

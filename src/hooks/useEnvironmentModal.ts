@@ -34,7 +34,10 @@ const useEnvironmentModal = (
         onClose();
         window.location.reload();
       },
-      { 409: '이미 존재하는 이름입니다.', 400: '잘못된 입력입니다.' },
+      {
+        409: '이미 존재하는 이름입니다.',
+        400: '이름은 2~10자, 서버 도메인과 클라이언트 도메인은 2~255자로 입력해주세요.',
+      },
       setErrorMessage,
     );
   }, [environment, onClose]);
@@ -48,11 +51,11 @@ const useEnvironmentModal = (
       },
       {
         409: '이미 존재하는 이름입니다.',
-        400: '환경에 속한 계정이 있습니다. 환경에 속한 계정을 전부 제거하고 재시도하세요',
+        400: '환경에 속한 계정이 있습니다. 속한 계정을 전부 제거하고 재시도하세요',
       },
       setErrorMessage,
     );
-  }, [environment, onClose]);
+  }, [environment, refresh, onClose]);
 
   return {
     environment,
