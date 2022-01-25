@@ -18,7 +18,10 @@ const CopyModal: FC<CopyModalProps> = ({ id, onClose }) => {
         <h3>클립보드에 복사</h3>
 
         <S.HelpWrapper>
-          기본 값: '환경: !(Env) 아이디: !(Id) 비밀번호: !(Pw) 서비스: !(Ser)'
+          <div>환경 - !(Env)</div>
+          <div>아이디 - !(Id)</div>
+          <div>비밀번호 - !(Pw)</div>
+          <div>서비스 - !(Ser)</div>
         </S.HelpWrapper>
       </div>
 

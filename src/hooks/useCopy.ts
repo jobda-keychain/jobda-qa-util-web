@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { getDetail } from '../util/api/Account';
 
 const useCopy = (id: number, onClose: () => void) => {
-  const [format, setFormat] = useState('');
+  const [format, setFormat] = useState('환경: !(Env) 아이디: !(Id) 비밀번호: !(Pw) 서비스: !(Ser)');
 
   const onChangeFormat = (e: React.ChangeEvent<HTMLInputElement>) => setFormat(e.target.value);
 

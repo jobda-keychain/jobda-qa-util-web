@@ -12,6 +12,8 @@ export const CopyModal = styled(Modal)`
 export const HelpWrapper = styled.div`
   margin: 10px 0px;
   color: #939393;
+  display: flex;
+  gap: 20px;
 `;
 
 export const ButtonWrapper = styled.div`
