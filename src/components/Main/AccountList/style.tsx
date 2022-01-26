@@ -12,6 +12,8 @@ function getWrapperStyle(type: 'header' | 'row') {
 
 export const EnvironmentWrapper = styled.div<{ type: 'header' | 'row' }>`
   margin-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   width: 10%;
   ${({ type }) => getWrapperStyle(type)}
 `;
