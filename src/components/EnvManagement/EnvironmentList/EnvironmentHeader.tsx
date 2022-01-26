@@ -10,10 +10,10 @@ const EnvironmentHeader = (): JSX.Element => {
       <S.ClientDomainWrapper type='header'>클라이언트 도메인</S.ClientDomainWrapper>
       <S.ServerDomainWrapper type='header'>서버 도메인</S.ServerDomainWrapper>
 
-      <S.ButtonWrapper>
+      <S.ButtonHelpWrapper>
         <div>수정</div>
         <div>삭제</div>
-      </S.ButtonWrapper>
+      </S.ButtonHelpWrapper>
     </Row>
   );
 };

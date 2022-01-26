@@ -1,24 +1,20 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import * as S from './style';
-import AccountRow from '../AccountList/AccoutRow';
 import StyledPagination from '../../Public/PaginationButton/PaginationButton';
 import { ListWrapper, PaginationtWrapper, SectionWrapper } from '../../../style/Section';
 import { setting } from '../../../assets/Main';
-import { MainFilter, PublicTab } from '../..';
-import AccountHeader from '../AccountList/AccountHeader';
 import { Account, AccountStateInterface } from './../../../types/account.types';
 import useModal from '../../../hooks/useModal';
 import { AccountModalType } from '../../../types/modal.types';
-import { Alert, Modal } from '@mui/material';
-import AccountModal from '../../Modal/AccountModal/AccountModal';
-import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
-import CopyModal from '../../Modal/CopyModal/CopyModal';
+import { Modal } from '@mui/material';
 import { ModalWrapper } from '../../../style/Modal';
 import { getAccountList } from './../../../util/api/Account/index';
 import { Platform } from '../../../lib/enum/platform';
-import { EnvironmentOptionsType } from './../../../models/vo/index';
 import useAutoLogin from './../../../hooks/useAutoLogin';
 import { accountReducer } from '../../../hooks/useAccountReducer';
+import { PublicTab } from '../../Public';
+import { AccountModal, CopyModal, DeleteModal } from '../../Modal';
+import { AccountHeader, AccountRow, MainFilter } from '..';
 
 const initialState: AccountStateInterface = {
   filters: [],

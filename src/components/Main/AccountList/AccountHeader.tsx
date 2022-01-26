@@ -7,14 +7,14 @@ const AccountHeader = (): JSX.Element => {
     <Row>
       <S.EnvironmentWrapper type='header'>환경</S.EnvironmentWrapper>
       <S.PlatformWrapper type='header'>서비스</S.PlatformWrapper>
-      <S.UserIdWrapper type='header'>아이디</S.UserIdWrapper>
+      <S.UserIdHeaderWrapper type='header'>아이디</S.UserIdHeaderWrapper>
 
-      <S.ButtonWrapper>
+      <S.ButtonTextWrapper>
         <div>수정</div>
         <div>삭제</div>
         <div>이동</div>
         <div>복사</div>
-      </S.ButtonWrapper>
+      </S.ButtonTextWrapper>
     </Row>
   );
 };
