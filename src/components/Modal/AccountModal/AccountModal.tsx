@@ -95,6 +95,10 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
   const addingAccount = async () => {
     handleAxiosError(
       async () => {
+        setInputs({
+          ...inputs,
+          description: inputs.description.trim(),
+        });
         await addAccount({
           ...inputs,
           environmentId: environmentValue && environmentValue.id,
@@ -147,10 +151,17 @@ const AccountModal: FC<Props> = ({ type, onClose, id, getAccounts }) => {
 
   const onInputsChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { value, name } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
+    if (name === 'description') {
+      setInputs({
+        ...inputs,
+        [name]: value.replace(/^\s*/, ''),
+      });
+    } else {
+      setInputs({
+        ...inputs,
+        [name]: value.replaceAll(' ', ''),
+      });
+    }
   };
 
   useEffect(() => {
