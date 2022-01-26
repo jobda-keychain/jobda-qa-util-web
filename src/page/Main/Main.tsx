@@ -1,5 +1,6 @@
 import React from 'react';
-import { PublicHeader, MainSection } from '../../components';
+import { PublicHeader } from '../../components/Public';
+import { MainSection } from '../../components/Main';
 
 const Main = (): JSX.Element => {
   return (
