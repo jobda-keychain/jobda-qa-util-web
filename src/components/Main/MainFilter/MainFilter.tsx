@@ -75,7 +75,6 @@ const MainFilter: FC<MainFilterProps> = ({ filters, dispatch, tabNumber }) => {
   };
 
   useEffect(() => {
-    resetFilter();
     setFilterValue(null);
     fetchFilterList();
   }, [tabNumber]);
