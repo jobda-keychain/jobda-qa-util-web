@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
 const Main = lazy(() => import('../page/Main/Main'));
