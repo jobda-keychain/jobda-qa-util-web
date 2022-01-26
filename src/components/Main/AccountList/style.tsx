@@ -32,6 +32,15 @@ export const UserIdWrapper = styled.div<{ type: 'header' | 'row' }>`
   cursor: pointer;
 `;
 
+export const UserIdHeaderWrapper = styled.div<{ type: 'header' | 'row' }>`
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-right: 10px;
+  width: 50%;
+  height: 100%;
+  ${({ type }) => getWrapperStyle(type)};
+`;
+
 export const ButtonWrapper = styled.div`
   float: right;
   gap: 10px;
@@ -46,4 +55,11 @@ export const ButtonWrapper = styled.div`
   button {
     color: #bebebe;
   }
+`;
+
+export const ButtonTextWrapper = styled.div`
+  float: right;
+  gap: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 `;

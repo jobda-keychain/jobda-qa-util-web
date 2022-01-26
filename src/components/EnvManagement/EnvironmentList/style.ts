@@ -38,6 +38,13 @@ export const ServerDomainWrapper = styled.div<{ type: 'header' | 'row' }>`
   ${({ type }) => getWrapperStyle(type)}
 `;
 
+export const ButtonHelpWrapper = styled.div`
+  float: right;
+  gap: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+`;
+
 export const ButtonWrapper = styled.div`
   float: right;
   gap: 10px;
