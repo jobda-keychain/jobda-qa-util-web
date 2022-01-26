@@ -17,6 +17,7 @@ export const ModalButton = styled.button`
   color: white;
   background-color: #00c17c;
   border: none;
+  cursor: pointer;
 `;
 
 export const ModalWrapper = React.forwardRef((props: any, ref: any) => (

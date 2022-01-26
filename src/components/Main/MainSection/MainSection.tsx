@@ -9,7 +9,7 @@ import AccountHeader from '../AccountList/AccountHeader';
 import { Account, AccountStateInterface } from './../../../types/account.types';
 import useModal from '../../../hooks/useModal';
 import { AccountModalType } from '../../../types/modal.types';
-import { Modal } from '@mui/material';
+import { Alert, Modal } from '@mui/material';
 import AccountModal from '../../Modal/AccountModal/AccountModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import CopyModal from '../../Modal/CopyModal/CopyModal';
@@ -35,7 +35,6 @@ const MainSection = () => {
     password: '',
     platform: Platform.JOBDA,
     environment: '',
-    description: '',
   });
   const { isOpenModal, toggleIsOpenModal } = useModal();
   const [modalType, setModalType] = useState<AccountModalType>('modify');
@@ -81,6 +80,7 @@ const MainSection = () => {
 
   return (
     <SectionWrapper>
+
       <S.Header>
         <PublicTab tabNumber={tabNumber} dispatch={dispatch} />
         <S.EnvBtn to='/env-management'>
@@ -112,13 +112,19 @@ const MainSection = () => {
         ))}
       </ListWrapper>
 
+
       <PaginationtWrapper>
         <StyledPagination page={currentPage} onChange={pageHandler} count={pageCount} />
       </PaginationtWrapper>
 
       <Modal open={modalType === 'detail' && isOpenModal} onClose={toggleIsOpenModal}>
         <ModalWrapper>
-          <AccountModal id={selectedAccount.id} type='detail' onClose={toggleIsOpenModal} />
+          <AccountModal
+            getAccounts={getAccounts}
+            id={selectedAccount.id}
+            type='detail'
+            onClose={toggleIsOpenModal}
+          />
         </ModalWrapper>
       </Modal>
 
