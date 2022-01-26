@@ -24,7 +24,7 @@ const useEnvironmentModal = (
   const onChangeEnvironment = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEnvironment({
       ...environment,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value.replaceAll(' ', ''),
     });
 
   const onClickCreateEnvironment = useCallback(

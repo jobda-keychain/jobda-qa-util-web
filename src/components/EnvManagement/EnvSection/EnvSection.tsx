@@ -7,20 +7,24 @@ import EnvironmentRow from '../EnvironmentList/EnvironmentRow';
 import EnvironmentHeader from '../EnvironmentList/EnvironmentHeader';
 import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
-import { useEffect, useState } from 'react';
-
+import { useEffect, useReducer, useState } from 'react';
 import useModal from '../../../hooks/useModal';
 import { EnvironmentModalType } from '../../../types/modal.types';
 import { ModalWrapper } from '../../../style/Modal';
 import { Environment } from '../../../types/environment.types';
 import { Platform } from '../../../lib/enum/platform';
 import { getEnvironmentList } from '../../../util/api/environment';
+import { accountReducer } from '../../../hooks/useAccountReducer';
+import { AccountStateInterface } from '../../../types/account.types';
+
+const initialState: AccountStateInterface = {
+  currentPage: 1,
+  tabNumber: 0,
+};
 
 const EnvSection = () => {
   const [pageCount, setPageCount] = useState(1);
-  const [currentPage, setCurrentPage] = useState(1);
   const [environments, setEnvironments] = useState<Environment[]>([]);
-  const [tabNumber, setTabNumber] = useState<number>(0);
   const [selectedEnvironment, setSelectedEnvironment] = useState<Environment>({
     id: 0,
     name: '',
@@ -29,6 +33,8 @@ const EnvSection = () => {
     platform: Platform.JOBDA,
   });
   const { isOpenModal, toggleIsOpenModal } = useModal();
+  const [state, dispatch] = useReducer(accountReducer, initialState);
+  const { currentPage, tabNumber } = state;
 
   const getEnvironments = async () => {
     try {
@@ -52,48 +58,45 @@ const EnvSection = () => {
   };
 
   useEffect(() => {
-    setCurrentPage(1);
-  }, [tabNumber]);
-
-  useEffect(() => {
     getEnvironments();
   }, [tabNumber, currentPage]);
 
   const pageHandler = (event: React.ChangeEvent<unknown>, value: number) => {
-    setCurrentPage(value);
+    dispatch({
+      type: 'CHANGE_PAGE',
+      payload: {
+        value,
+      },
+    });
   };
+
   const [modalType, setModalType] = useState<EnvironmentModalType>('modify');
 
   return (
     <SectionWrapper>
-      <div>
-        <S.TabBox>
-          <PublicTab tabNumber={tabNumber} setTabNumber={setTabNumber} />
-        </S.TabBox>
-        <ListWrapper>
-          <EnvironmentHeader />
-          <hr />
-
-          {environments.map(environment => (
-            <div key={environment.id}>
-              <EnvironmentRow
-                environment={environment}
-                setModalType={setModalType}
-                toggleIsOpenModal={() => {
-                  setSelectedEnvironment(environment);
-                  toggleIsOpenModal();
-                }}
-              />
-              <hr />
-            </div>
-          ))}
-        </ListWrapper>
-      </div>
-
+      <S.TabBox>
+        <PublicTab tabNumber={tabNumber} dispatch={dispatch} />
+      </S.TabBox>
+      <ListWrapper>
+        <EnvironmentHeader />
+        <hr />
+        {environments.map(environment => (
+          <div key={environment.id}>
+            <EnvironmentRow
+              environment={environment}
+              setModalType={setModalType}
+              toggleIsOpenModal={() => {
+                setSelectedEnvironment(environment);
+                toggleIsOpenModal();
+              }}
+            />
+            <hr />
+          </div>
+        ))}
+      </ListWrapper>
       <PaginationtWrapper>
         <StyledPagination page={currentPage} onChange={pageHandler} count={pageCount} />
       </PaginationtWrapper>
-
       <Modal open={modalType === 'modify' && isOpenModal} onClose={toggleIsOpenModal}>
         <ModalWrapper>
           <EnvironmentModal
@@ -104,7 +107,6 @@ const EnvSection = () => {
           />
         </ModalWrapper>
       </Modal>
-
       <Modal open={modalType === 'delete' && isOpenModal} onClose={toggleIsOpenModal}>
         <ModalWrapper>
           <DeleteModal

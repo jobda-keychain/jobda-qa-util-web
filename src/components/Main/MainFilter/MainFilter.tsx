@@ -4,14 +4,15 @@ import { deleteTag } from '../../../assets/Main';
 import { TextField } from '@mui/material';
 import { getFilterList } from '../../../util/api/Account';
 import { EnvironmentOptionsType } from './../../../models/vo/index';
+import { ActionInterface } from './../../../types/action.types';
 
 interface MainFilterProps {
-  filters: EnvironmentOptionsType[];
-  setFilters: (filters: EnvironmentOptionsType[]) => void;
+  filters?: EnvironmentOptionsType[];
+  dispatch: (action: ActionInterface) => void;
   tabNumber: number;
 }
 
-const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => {
+const MainFilter: FC<MainFilterProps> = ({ filters, dispatch, tabNumber }) => {
   const [environments, setEnvironments] = useState<EnvironmentOptionsType[]>([]);
   const [filterValue, setFilterValue] = useState<string | null>(null);
   const [filterInputValue, setFilterInputValue] = useState('');
@@ -19,17 +20,29 @@ const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => 
   const addFilter = (value: EnvironmentOptionsType) => {
     setFilterValue(null);
     setFilterInputValue('');
-    if (value && !filters.includes(value)) {
-      setFilters([...filters, value]);
+    if (value && !filters?.includes(value)) {
+      dispatch({
+        type: 'ADD_FILTER',
+        payload: {
+          value,
+        },
+      });
     }
   };
 
   const removeFilter = (id: number) => {
-    setFilters(filters.filter(ele => ele.id !== id));
+    dispatch({
+      type: 'REMOVE_FILTER',
+      payload: {
+        id,
+      },
+    });
   };
 
   const resetFilter = () => {
-    setFilters([]);
+    dispatch({
+      type: 'RESET_FILTER',
+    });
   };
 
   const inputHandler = (e: React.SyntheticEvent, value: string) => {
@@ -62,7 +75,6 @@ const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => 
   };
 
   useEffect(() => {
-    resetFilter();
     setFilterValue(null);
     fetchFilterList();
   }, [tabNumber]);
@@ -85,7 +97,7 @@ const MainFilter: FC<MainFilterProps> = ({ filters, setFilters, tabNumber }) => 
       />
       <S.ResetBtn onClick={resetFilter}>필터 초기화</S.ResetBtn>
       <S.FiltersBox>
-        {filters.map(ele => {
+        {filters?.map(ele => {
           return (
             <div key={ele.id} onClick={() => removeFilter(ele.id)}>
               <span>{ele.label}</span>

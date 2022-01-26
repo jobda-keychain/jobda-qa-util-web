@@ -1,4 +1,5 @@
 import { Platform } from '../lib/enum/platform';
+import { EnvironmentOptionsType } from './../models/vo/index';
 
 export interface Account {
   id: number;
@@ -13,11 +14,12 @@ export interface DetailAccount {
   accountId: string;
   password: string;
   platform: Platform;
-  environment: LabelEnvironment;
+  environment: EnvironmentOptionsType;
   description: string;
 }
 
-interface LabelEnvironment {
-  id: number;
-  label: string;
+export interface AccountStateInterface {
+  filters?: EnvironmentOptionsType[];
+  currentPage: number;
+  tabNumber: number;
 }
