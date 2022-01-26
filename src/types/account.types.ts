@@ -14,7 +14,7 @@ export interface DetailAccount {
   accountId: string;
   password: string;
   platform: Platform;
-  environment: LabelEnvironment;
+  environment: EnvironmentOptionsType;
   description: string;
 }
 
@@ -22,4 +22,4 @@ export interface AccountStateInterface {
   filters?: EnvironmentOptionsType[];
   currentPage: number;
   tabNumber: number;
-
+}

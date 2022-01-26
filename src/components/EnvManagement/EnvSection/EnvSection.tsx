@@ -80,27 +80,23 @@ const EnvSection = () => {
       <ListWrapper>
         <EnvironmentHeader />
         <hr />
-
-          {environments.map(environment => (
-            <div key={environment.id}>
-              <EnvironmentRow
-                environment={environment}
-                setModalType={setModalType}
-                toggleIsOpenModal={() => {
-                  setSelectedEnvironment(environment);
-                  toggleIsOpenModal();
-                }}
-              />
-              <hr />
-            </div>
-          ))}
-        </ListWrapper>
-      </div>
-
+        {environments.map(environment => (
+          <div key={environment.id}>
+            <EnvironmentRow
+              environment={environment}
+              setModalType={setModalType}
+              toggleIsOpenModal={() => {
+                setSelectedEnvironment(environment);
+                toggleIsOpenModal();
+              }}
+            />
+            <hr />
+          </div>
+        ))}
+      </ListWrapper>
       <PaginationtWrapper>
         <StyledPagination page={currentPage} onChange={pageHandler} count={pageCount} />
       </PaginationtWrapper>
-
       <Modal open={modalType === 'modify' && isOpenModal} onClose={toggleIsOpenModal}>
         <ModalWrapper>
           <EnvironmentModal
@@ -111,7 +107,6 @@ const EnvSection = () => {
           />
         </ModalWrapper>
       </Modal>
-
       <Modal open={modalType === 'delete' && isOpenModal} onClose={toggleIsOpenModal}>
         <ModalWrapper>
           <DeleteModal
