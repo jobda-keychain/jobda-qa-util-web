@@ -1,4 +1,5 @@
 import { Platform } from '../lib/enum/platform';
+import { EnvironmentOptionsType } from './../models/vo/index';
 
 export interface Account {
   id: number;
@@ -7,4 +8,10 @@ export interface Account {
   platform: Platform;
   environment: string;
   description: string;
+}
+
+export interface AccountStateInterface {
+  filters?: EnvironmentOptionsType[];
+  currentPage: number;
+  tabNumber: number;
 }
