@@ -1,12 +1,7 @@
 import * as S from './style';
-import { PublicTab } from '../..';
 import { Modal } from '@mui/material';
 import StyledPagination from '../../Public/PaginationButton/PaginationButton';
 import { ListWrapper, PaginationtWrapper, SectionWrapper } from '../../../style/Section';
-import EnvironmentRow from '../EnvironmentList/EnvironmentRow';
-import EnvironmentHeader from '../EnvironmentList/EnvironmentHeader';
-import EnvironmentModal from '../../Modal/EnvironmentModal/EnvironmentModal';
-import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import { useEffect, useReducer, useState } from 'react';
 import useModal from '../../../hooks/useModal';
 import { EnvironmentModalType } from '../../../types/modal.types';
@@ -16,13 +11,16 @@ import { Platform } from '../../../lib/enum/platform';
 import { getEnvironmentList } from '../../../util/api/environment';
 import { accountReducer } from '../../../hooks/useAccountReducer';
 import { AccountStateInterface } from '../../../types/account.types';
+import { PublicTab } from '../../Public';
+import { EnvironmentHeader, EnvironmentRow } from '..';
+import { DeleteModal, EnvironmentModal } from '../../Modal';
 
 const initialState: AccountStateInterface = {
   currentPage: 1,
   tabNumber: 0,
 };
 
-const EnvSection = () => {
+const EnvironmentSection = () => {
   const [pageCount, setPageCount] = useState(1);
   const [environments, setEnvironments] = useState<Environment[]>([]);
   const [selectedEnvironment, setSelectedEnvironment] = useState<Environment>({
@@ -124,4 +122,4 @@ const EnvSection = () => {
   );
 };
 
-export default EnvSection;
+export default EnvironmentSection;

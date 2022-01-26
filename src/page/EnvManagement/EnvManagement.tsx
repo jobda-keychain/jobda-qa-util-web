@@ -1,11 +1,12 @@
 import React from 'react';
-import { EnvSection, PublicHeader } from '../../components';
+import { PublicHeader } from '../../components/Public';
+import { EnvironmentSection } from '../../components/EnvManagement';
 
 const EnvManagement = () => {
   return (
     <>
       <PublicHeader />
-      <EnvSection />
+      <EnvironmentSection />
     </>
   );
 };

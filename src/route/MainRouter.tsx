@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import EnvManagement from '../page/EnvManagement/EnvManagement';
 import Main from '../page/Main/Main';
@@ -16,4 +16,4 @@ const MainRouter = () => {
   );
 };
 
-export default memo(MainRouter);
+export default MainRouter;
