@@ -9,14 +9,13 @@ import AccountHeader from '../AccountList/AccountHeader';
 import { Account, AccountStateInterface } from './../../../types/account.types';
 import useModal from '../../../hooks/useModal';
 import { AccountModalType } from '../../../types/modal.types';
-import { Alert, Modal } from '@mui/material';
+import { Modal } from '@mui/material';
 import AccountModal from '../../Modal/AccountModal/AccountModal';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
 import CopyModal from '../../Modal/CopyModal/CopyModal';
 import { ModalWrapper } from '../../../style/Modal';
 import { getAccountList } from './../../../util/api/Account/index';
 import { Platform } from '../../../lib/enum/platform';
-import { EnvironmentOptionsType } from './../../../models/vo/index';
 import useAutoLogin from './../../../hooks/useAutoLogin';
 import { accountReducer } from '../../../hooks/useAccountReducer';
 
