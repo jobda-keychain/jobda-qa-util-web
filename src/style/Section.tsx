@@ -4,7 +4,7 @@ export const SectionWrapper = styled('section')`
   margin: 0 200px;
   background-color: #fff;
   border-radius: 20px;
-  min-height: 650px;
+  min-height: 710px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
