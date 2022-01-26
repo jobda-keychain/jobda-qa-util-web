@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import * as S from './style';
 import AccountRow from '../AccountList/AccoutRow';
 import StyledPagination from '../../Public/PaginationButton/PaginationButton';
@@ -6,7 +6,7 @@ import { ListWrapper, PaginationtWrapper, SectionWrapper } from '../../../style/
 import { setting } from '../../../assets/Main';
 import { MainFilter, PublicTab } from '../..';
 import AccountHeader from '../AccountList/AccountHeader';
-import { Account } from './../../../types/account.types';
+import { Account, AccountStateInterface } from './../../../types/account.types';
 import useModal from '../../../hooks/useModal';
 import { AccountModalType } from '../../../types/modal.types';
 import { Modal } from '@mui/material';
@@ -18,6 +18,13 @@ import { getAccountList } from './../../../util/api/Account/index';
 import { Platform } from '../../../lib/enum/platform';
 import { EnvironmentOptionsType } from './../../../models/vo/index';
 import useAutoLogin from './../../../hooks/useAutoLogin';
+import { accountReducer } from '../../../hooks/useAccountReducer';
+
+const initialState: AccountStateInterface = {
+  filters: [],
+  currentPage: 1,
+  tabNumber: 0,
+};
 
 const MainSection = () => {
   const [pageCount, setPageCount] = useState(1);
@@ -30,11 +37,10 @@ const MainSection = () => {
     environment: '',
     description: '',
   });
-  const [currentPage, setCurrentPage] = useState(1);
-  const [filters, setFilters] = useState<EnvironmentOptionsType[]>([]);
-  const [tabNumber, setTabNumber] = useState<number>(0);
   const { isOpenModal, toggleIsOpenModal } = useModal();
   const [modalType, setModalType] = useState<AccountModalType>('modify');
+  const [state, dispatch] = useReducer(accountReducer, initialState);
+  const { filters, currentPage, tabNumber } = state;
 
   const { autoLogin } = useAutoLogin();
 
@@ -51,7 +57,7 @@ const MainSection = () => {
         case 2:
           platform = 'JOBDA_CMS';
       }
-      const environment = filters.map(ele => ele.id).join(',');
+      const environment = filters?.map(ele => ele.id).join(',');
       const res = await getAccountList(currentPage - 1, platform, environment);
       setAccounts(res.data.data);
       setPageCount(res.data.totalPages);
@@ -61,12 +67,13 @@ const MainSection = () => {
   };
 
   const pageHandler = (event: React.ChangeEvent<unknown>, value: number) => {
-    setCurrentPage(value);
+    dispatch({
+      type: 'CHANGE_PAGE',
+      payload: {
+        value,
+      },
+    });
   };
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [filters, tabNumber]);
 
   useEffect(() => {
     getAccounts();
@@ -75,14 +82,14 @@ const MainSection = () => {
   return (
     <SectionWrapper>
       <S.Header>
-        <PublicTab tabNumber={tabNumber} setTabNumber={setTabNumber} />
+        <PublicTab tabNumber={tabNumber} dispatch={dispatch} />
         <S.EnvBtn to='/env-management'>
           <img src={setting} alt='' />
           <span>환경 관리</span>
         </S.EnvBtn>
       </S.Header>
       {tabNumber !== 0 && (
-        <MainFilter filters={filters} setFilters={setFilters} tabNumber={tabNumber} />
+        <MainFilter filters={filters} dispatch={dispatch} tabNumber={tabNumber} />
       )}
       <ListWrapper>
         <AccountHeader />
