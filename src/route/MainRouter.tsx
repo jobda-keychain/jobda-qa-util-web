@@ -1,19 +1,22 @@
-import React, { memo } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import EnvManagement from '../page/EnvManagement/EnvManagement';
-import Main from '../page/Main/Main';
-import NotFound from '../page/NotFound/NotFound';
+
+const Main = lazy(() => import('../page/Main/Main'));
+const EnvManagement = lazy(() => import('../page/EnvManagement/EnvManagement'));
+const NotFound = lazy(() => import('../page/NotFound/NotFound'));
 
 const MainRouter = () => {
   return (
     <HashRouter>
-      <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/env-management' element={<EnvManagement />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={<div>loading...</div>}>
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/env-management' element={<EnvManagement />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </HashRouter>
   );
 };
 
-export default memo(MainRouter);
+export default MainRouter;
