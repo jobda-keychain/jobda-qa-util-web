@@ -33,6 +33,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "CI= react-scripts build",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "test": "jest",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
@@ -60,6 +61,8 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@types/styled-components": "^5.1.19",
-    "gh-pages": "^3.2.3"
+    "cra-bundle-analyzer": "^0.1.1",
+    "gh-pages": "^3.2.3",
+    "source-map-explorer": "^2.5.2"
   }
 }
