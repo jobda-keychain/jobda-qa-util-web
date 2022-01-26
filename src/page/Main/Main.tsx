@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { PublicHeader, MainSection } from '../../components';
 
 const Main = (): JSX.Element => {
@@ -10,4 +10,4 @@ const Main = (): JSX.Element => {
   );
 };
 
-export default memo(Main);
+export default Main;

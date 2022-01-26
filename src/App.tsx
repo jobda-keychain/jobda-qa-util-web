@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import MainRouter from './route/MainRouter';
 import GlobalStyle from './style/GlobalStyle';
 
@@ -11,4 +11,4 @@ const App = (): JSX.Element => {
   );
 };
 
-export default memo(App);
+export default App;
